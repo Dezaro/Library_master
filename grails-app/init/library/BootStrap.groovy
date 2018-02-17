@@ -6,7 +6,7 @@ class BootStrap {
 
     def init = { servletContext ->
 
-        def authorities = ['ROLE_BOSS', 'ROLE_EMPLOYEE']
+        def authorities = ['ROLE_BOSS', 'ROLE_EMPLOYEE', 'ROLE_ADMIN']
         authorities.each { String authority ->
             if ( !SecurityRole.findByAuthority(authority) ) {
                 new SecurityRole(authority: authority).save()
@@ -23,6 +23,12 @@ class BootStrap {
             def u = new User(username: 'watson', password: '221Bbakerstreet')
             u.save()
             new UserSecurityRole(user: u, securityRole: SecurityRole.findByAuthority('ROLE_EMPLOYEE')).save()
+        }
+
+        if ( !User.findByUsername('lilyana') ) {
+            def u = new User(username: 'lilyana', password: 'lilyanapass')
+            u.save()
+            new UserSecurityRole(user: u, securityRole: SecurityRole.findByAuthority('ROLE_ADMIN')).save()
         }
     }
     def destroy = {
