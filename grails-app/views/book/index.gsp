@@ -18,8 +18,11 @@
             <g:if test="${flash.message}">
                 <div class="message" role="status">${flash.message}</div>
             </g:if>
-            <f:table collection="${bookList}" />
-
+            %{--<f:table collection="${bookList}" />--}%
+            <g:each var="book" in="${bookList}">
+                <p>Title: ${book.title}</p>
+                <p>Author: ${book.author}</p>
+            </g:each>
             <div class="pagination">
                 <g:paginate total="${bookCount ?: 0}" />
             </div>

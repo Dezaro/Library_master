@@ -30,6 +30,12 @@ class BootStrap {
             u.save()
             new UserSecurityRole(user: u, securityRole: SecurityRole.findByAuthority('ROLE_ADMIN')).save()
         }
+
+        if ( !User.findByUsername('delo') ) {
+            def u = new User(username: 'delo', password: 'delo')
+            u.save()
+            new UserSecurityRole(user: u, securityRole: SecurityRole.findByAuthority('ROLE_ADMIN')).save()
+        }
     }
     def destroy = {
     }
