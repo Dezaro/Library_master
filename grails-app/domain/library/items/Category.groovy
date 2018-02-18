@@ -16,4 +16,9 @@ class Category {
     static constraints = {
         categoryName nullable: false, blank: false
     }
+
+    @Override
+    String toString() {
+        return categoryName
+    }
 }

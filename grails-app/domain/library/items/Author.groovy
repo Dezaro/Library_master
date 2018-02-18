@@ -15,4 +15,9 @@ class Author {
     static constraints = {
         authorName nullable: false, blank: false
     }
+
+    @Override
+    String toString() {
+        return authorName
+    }
 }

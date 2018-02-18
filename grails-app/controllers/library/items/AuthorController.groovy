@@ -2,75 +2,73 @@ package library.items
 
 import grails.plugin.springsecurity.annotation.Secured
 import grails.validation.ValidationException
-
 import static org.springframework.http.HttpStatus.*
 
-@SuppressWarnings(['FactoryMethodName', 'ReturnNullFromCatchBlock'])
 @Secured(['ROLE_ADMIN'])
-class BookController {
+class AuthorController {
 
-    BookService bookService
+    AuthorService authorService
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
-        respond bookService.list(params), model:[bookCount: bookService.count()]
+        respond authorService.list(params), model:[authorCount: authorService.count()]
     }
 
     def show(Long id) {
-        respond bookService.get(id)
+        respond authorService.get(id)
     }
 
     def create() {
-        respond new Book(params)
+        respond new Author(params)
     }
 
-    def save(Book book) {
-        if (book == null) {
+    def save(Author author) {
+        if (author == null) {
             notFound()
             return
         }
 
         try {
-            bookService.save(book)
+            authorService.save(author)
         } catch (ValidationException e) {
-            respond book.errors, view:'create'
+            respond author.errors, view:'create'
             return
         }
 
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.created.message', args: [message(code: 'book.label', default: 'Book'), book.id])
-                redirect book
+                flash.message = message(code: 'default.created.message', args: [message(code: 'author.label', default: 'Author'), author.id])
+                redirect author
             }
-            '*' { respond book, [status: CREATED] }
+            '*' { respond author, [status: CREATED] }
         }
     }
 
     def edit(Long id) {
-        respond bookService.get(id)
+        respond authorService.get(id)
     }
 
-    def update(Book book) {
-        if (book == null) {
+    def update(Author author) {
+        if (author == null) {
             notFound()
             return
         }
 
         try {
-            bookService.save(book)
+            authorService.save(author)
         } catch (ValidationException e) {
-            respond book.errors, view:'edit'
+            respond author.errors, view:'edit'
             return
         }
 
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.updated.message', args: [message(code: 'book.label', default: 'Book'), book.id])
-                redirect book
+                flash.message = message(code: 'default.updated.message', args: [message(code: 'author.label', default: 'Author'), author.id])
+                redirect author
             }
-            '*'{ respond book, [status: OK] }
+            '*'{ respond author, [status: OK] }
         }
     }
 
@@ -80,11 +78,11 @@ class BookController {
             return
         }
 
-        bookService.delete(id)
+        authorService.delete(id)
 
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.deleted.message', args: [message(code: 'book.label', default: 'Book'), id])
+                flash.message = message(code: 'default.deleted.message', args: [message(code: 'author.label', default: 'Author'), id])
                 redirect action:"index", method:"GET"
             }
             '*'{ render status: NO_CONTENT }
@@ -94,7 +92,7 @@ class BookController {
     protected void notFound() {
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.not.found.message', args: [message(code: 'book.label', default: 'Book'), params.id])
+                flash.message = message(code: 'default.not.found.message', args: [message(code: 'author.label', default: 'Author'), params.id])
                 redirect action: "index", method: "GET"
             }
             '*'{ render status: NOT_FOUND }

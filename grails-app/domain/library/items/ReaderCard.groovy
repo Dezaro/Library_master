@@ -11,7 +11,7 @@ class ReaderCard {
 
     Long id
     Long cardNumber
-    String reader_name
+    String readerNames
     Date dateOfBirth
     String address
     String phone
@@ -22,10 +22,15 @@ class ReaderCard {
     static constraints = {
         id nullable: false
         cardNumber nullable: false, unique: true
-        reader_name nullable: false
+        readerNames nullable: false
         dateOfBirth nullable: false
         phone nullable: false
         registerDate nullable: false
         email email: true
+    }
+
+    @Override
+    String toString() {
+        return readerNames
     }
 }

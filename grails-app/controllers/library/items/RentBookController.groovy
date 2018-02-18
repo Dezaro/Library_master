@@ -2,75 +2,73 @@ package library.items
 
 import grails.plugin.springsecurity.annotation.Secured
 import grails.validation.ValidationException
-
 import static org.springframework.http.HttpStatus.*
 
-@SuppressWarnings(['FactoryMethodName', 'ReturnNullFromCatchBlock'])
 @Secured(['ROLE_ADMIN'])
-class BookController {
+class RentBookController {
 
-    BookService bookService
+    RentBookService rentBookService
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
-        respond bookService.list(params), model:[bookCount: bookService.count()]
+        respond rentBookService.list(params), model:[rentBookCount: rentBookService.count()]
     }
 
     def show(Long id) {
-        respond bookService.get(id)
+        respond rentBookService.get(id)
     }
 
     def create() {
-        respond new Book(params)
+        respond new RentBook(params)
     }
 
-    def save(Book book) {
-        if (book == null) {
+    def save(RentBook rentBook) {
+        if (rentBook == null) {
             notFound()
             return
         }
 
         try {
-            bookService.save(book)
+            rentBookService.save(rentBook)
         } catch (ValidationException e) {
-            respond book.errors, view:'create'
+            respond rentBook.errors, view:'create'
             return
         }
 
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.created.message', args: [message(code: 'book.label', default: 'Book'), book.id])
-                redirect book
+                flash.message = message(code: 'default.created.message', args: [message(code: 'rentBook.label', default: 'RentBook'), rentBook.id])
+                redirect rentBook
             }
-            '*' { respond book, [status: CREATED] }
+            '*' { respond rentBook, [status: CREATED] }
         }
     }
 
     def edit(Long id) {
-        respond bookService.get(id)
+        respond rentBookService.get(id)
     }
 
-    def update(Book book) {
-        if (book == null) {
+    def update(RentBook rentBook) {
+        if (rentBook == null) {
             notFound()
             return
         }
 
         try {
-            bookService.save(book)
+            rentBookService.save(rentBook)
         } catch (ValidationException e) {
-            respond book.errors, view:'edit'
+            respond rentBook.errors, view:'edit'
             return
         }
 
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.updated.message', args: [message(code: 'book.label', default: 'Book'), book.id])
-                redirect book
+                flash.message = message(code: 'default.updated.message', args: [message(code: 'rentBook.label', default: 'RentBook'), rentBook.id])
+                redirect rentBook
             }
-            '*'{ respond book, [status: OK] }
+            '*'{ respond rentBook, [status: OK] }
         }
     }
 
@@ -80,11 +78,11 @@ class BookController {
             return
         }
 
-        bookService.delete(id)
+        rentBookService.delete(id)
 
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.deleted.message', args: [message(code: 'book.label', default: 'Book'), id])
+                flash.message = message(code: 'default.deleted.message', args: [message(code: 'rentBook.label', default: 'RentBook'), id])
                 redirect action:"index", method:"GET"
             }
             '*'{ render status: NO_CONTENT }
@@ -94,7 +92,7 @@ class BookController {
     protected void notFound() {
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.not.found.message', args: [message(code: 'book.label', default: 'Book'), params.id])
+                flash.message = message(code: 'default.not.found.message', args: [message(code: 'rentBook.label', default: 'RentBook'), params.id])
                 redirect action: "index", method: "GET"
             }
             '*'{ render status: NOT_FOUND }

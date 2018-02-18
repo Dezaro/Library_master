@@ -11,7 +11,7 @@ import groovy.transform.ToString
 class Book {
 
     static belongsTo = [category: Category, author:Author]
-    Long id
+//    Long id
     String title
     Date publishedDate
     String isbn
@@ -22,9 +22,14 @@ class Book {
 
 
     static constraints = {
-        id nullable: false, blank:false
         title nullable: false, blank: false
         isbn unique: true, nullable: false
         pageNumber nullable: false, blank: false
+    }
+
+    @Override
+    String toString() {
+        return title
+//        return title + ', ' + Author.findById(authorId).getAuthorName()
     }
 }
