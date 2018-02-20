@@ -298,7 +298,7 @@ a.hvr-shutter-in-vertical:hover:before,a.hvr-shutter-in-vertical:focus:before,a.
 /*--//banner-bottom--*/
 /*--content--*/
 .content{
-	background: url(../images/pic4.jpg) no-repeat 0px 0px;
+	/*background: url(../images/pic4.jpg) no-repeat 0px 0px;*/
 	background-size:cover;
 	-webkit-background-size: cover;
 	-o-background-size: cover;
