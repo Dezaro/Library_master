@@ -129,7 +129,8 @@ img {
 }
 
 .nav a {
-    color: #666666;
+    /*color: #666666;*/
+    color: white;
     display: block;
     padding: 0.25em 0.7em;
     text-decoration: none;
@@ -139,7 +140,7 @@ img {
 }
 
 .nav a:active, .nav a:visited {
-    color: #666666;
+    color: white;
 }
 
 .nav a:focus, .nav a:hover {

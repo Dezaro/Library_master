@@ -5,43 +5,20 @@
     <g:set var="entityName" value="${message(code: 'book.label', default: 'Book')}"/>
     <title><g:message code="default.list.label" args="[entityName]"/></title>
 </head>
-%{--<body>--}%
-%{--<a href="#list-book" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>--}%
-%{--<div class="nav" role="navigation">--}%
-%{--<ul>--}%
-%{--<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>--}%
-%{--<li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>--}%
-%{--</ul>--}%
-%{--</div>--}%
-%{--<div id="list-book" class="content scaffold-list" role="main">--}%
-%{--<h1><g:message code="default.list.label" args="[entityName]" /></h1>--}%
-%{--<g:if test="${flash.message}">--}%
-%{--<div class="message" role="status">${flash.message}</div>--}%
-%{--</g:if>--}%
-%{--<f:table collection="${bookList}" />--}%
-%{--<g:each var="book" in="${bookList}">--}%
-%{--<p>Title: ${book.title}</p>--}%
-%{--<p>Author: ${book.author}</p>--}%
-%{--</g:each>--}%
-%{--<div class="pagination">--}%
-%{--<g:paginate total="${bookCount ?: 0}" />--}%
-%{--</div>--}%
-%{--</div>--}%
-%{--</body>--}%
+
 <body>
 <div class="container">
     <div class="table-wrapper">
         <div class="table-title">
             <div class="row">
                 <div class="col-sm-5">
-                    <h2>User <b>Management</b></h2>
+                    <h2>Books <b>Management</b></h2>
                 </div>
 
                 <div class="col-sm-7">
                     <g:link class="btn btn-primary" action="create"><i
                             class="material-icons">&#xE147;</i><span><g:message code="default.new.label"
                                                                                 args="[entityName]"/></span></a></g:link>
-                %{--<a href="#" class="btn btn-primary"><i class="material-icons">&#xE147;</i> <span>Add New User</span></a>--}%
                     <a href="${createLink(uri: '/')}" class="btn btn-primary"><i
                             class="material-icons">&#xE88A;</i> <span><g:message code="default.home.label"/></span></a>
                 </div>
@@ -50,7 +27,6 @@
         <table class="table table-striped table-hover">
             <thead>
             <tr>
-                %{--<th>#</th>--}%
                 <th>Title</th>
                 <th>Published date</th>
                 <th>ISBN</th>
@@ -73,11 +49,8 @@
                     <td>${book.pageNumber}</td>
                     <td><span class="status text-success">&bull;</span> Active</td>
                     <td>
-                        %{--<a href="#" class="settings" title="Settings" data-toggle="tooltip"><i class="material-icons">&#xE8B8;</i></a>--}%
-
                         <g:link action="edit" id="${book.id}" class="settings" title="Settings" data-toggle="tooltip"><i
                                 class="material-icons">&#xE8B8;</i></g:link>
-
                         <a href="#deleteModal" data-toggle="modal" class=" delete" title="Delete"
                            data-book-id="${book.id}"><i
                                 class="material-icons">&#xE5C9;</i></a>
@@ -89,63 +62,6 @@
                 </tr>
             </g:each>
             </tbody>
-            %{--<tbody>--}%
-            %{--<tr>--}%
-            %{--<td>1</td>--}%
-            %{--<td><a href="#"><img src="/examples/images/avatar/1.jpg" class="avatar" alt="Avatar"> Michael Holz</a></td>--}%
-            %{--<td>04/10/2013</td>--}%
-            %{--<td>Admin</td>--}%
-            %{--<td><span class="status text-success">&bull;</span> Active</td>--}%
-            %{--<td>--}%
-            %{--<a href="#" class="settings" title="Settings" data-toggle="tooltip"><i class="material-icons">&#xE8B8;</i></a>--}%
-            %{--<a href="#" class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE5C9;</i></a>--}%
-            %{--</td>--}%
-            %{--</tr>--}%
-            %{--<tr>--}%
-            %{--<td>2</td>--}%
-            %{--<td><a href="#"><img src="/examples/images/avatar/2.jpg" class="avatar" alt="Avatar"> Paula Wilson</a></td>--}%
-            %{--<td>05/08/2014</td>--}%
-            %{--<td>Publisher</td>--}%
-            %{--<td><span class="status text-success">&bull;</span> Active</td>--}%
-            %{--<td>--}%
-            %{--<a href="#" class="settings" title="Settings" data-toggle="tooltip"><i class="material-icons">&#xE8B8;</i></a>--}%
-            %{--<a href="#" class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE5C9;</i></a>--}%
-            %{--</td>--}%
-            %{--</tr>--}%
-            %{--<tr>--}%
-            %{--<td>3</td>--}%
-            %{--<td><a href="#"><img src="/examples/images/avatar/3.jpg" class="avatar" alt="Avatar"> Antonio Moreno</a></td>--}%
-            %{--<td>11/05/2015</td>--}%
-            %{--<td>Publisher</td>--}%
-            %{--<td><span class="status text-danger">&bull;</span> Suspended</td>--}%
-            %{--<td>--}%
-            %{--<a href="#" class="settings" title="Settings" data-toggle="tooltip"><i class="material-icons">&#xE8B8;</i></a>--}%
-            %{--<a href="#" class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE5C9;</i></a>--}%
-            %{--</td>--}%
-            %{--</tr>--}%
-            %{--<tr>--}%
-            %{--<td>4</td>--}%
-            %{--<td><a href="#"><img src="/examples/images/avatar/4.jpg" class="avatar" alt="Avatar"> Mary Saveley</a></td>--}%
-            %{--<td>06/09/2016</td>--}%
-            %{--<td>Reviewer</td>--}%
-            %{--<td><span class="status text-success">&bull;</span> Active</td>--}%
-            %{--<td>--}%
-            %{--<a href="#" class="settings" title="Settings" data-toggle="tooltip"><i class="material-icons">&#xE8B8;</i></a>--}%
-            %{--<a href="#" class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE5C9;</i></a>--}%
-            %{--</td>--}%
-            %{--</tr>--}%
-            %{--<tr>--}%
-            %{--<td>5</td>--}%
-            %{--<td><a href="#"><img src="/examples/images/avatar/5.jpg" class="avatar" alt="Avatar"> Martin Sommer</a></td>--}%
-            %{--<td>12/08/2017</td>--}%
-            %{--<td>Moderator</td>--}%
-            %{--<td><span class="status text-warning">&bull;</span> Inactive</td>--}%
-            %{--<td>--}%
-            %{--<a href="#" class="settings" title="Settings" data-toggle="tooltip"><i class="material-icons">&#xE8B8;</i></a>--}%
-            %{--<a href="#" class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE5C9;</i></a>--}%
-            %{--</td>--}%
-            %{--</tr>--}%
-            %{--</tbody>--}%
         </table>
 
         <div class="clearfix">
@@ -213,39 +129,5 @@
         </div>
     </div>
 </div>
-%{--<div id="deleteModal" class="modal hide">--}%
-%{--<div class="modal-header">--}%
-%{--<a href="#" data-dismiss="modal" aria-hidden="true" class="close">×</a>--}%
-%{--<h3>Delete</h3>--}%
-%{--</div>--}%
-%{--<div class="modal-body">--}%
-%{--<p>You are about to delete.</p>--}%
-%{--<p>Do you want to proceed?</p>--}%
-%{--</div>--}%
-%{--<div class="modal-footer">--}%
-%{--<a href="#" id="btnYes" class="btn danger">Delete</a>--}%
-%{--<a href="#" data-dismiss="modal" aria-hidden="true" class="btn secondary">Cancel</a>--}%
-%{--</div>--}%
-%{--</div>--}%
-%{--<script>--}%
-%{--$('#deleteModal').on('show', function() {--}%
-%{--var id = $(this).data('id'),--}%
-%{--removeBtn = $(this).find('.danger');--}%
-%{--});--}%
-
-%{--$('.confirm-delete').on('click', function(e) {--}%
-%{--e.preventDefault();--}%
-
-%{--var id = $(this).data('id');--}%
-%{--$('#deleteModal').data('id', id).modal('show');--}%
-%{--});--}%
-
-%{--$('#btnYes').click(function() {--}%
-%{--// handle deletion here--}%
-%{--var id = $('#deleteModal').data('id');--}%
-%{--$('[data-id='+id+']').remove();--}%
-%{--$('#deleteModal').modal('hide');--}%
-%{--});--}%
-%{--</script>--}%
 </body>
 </html>
