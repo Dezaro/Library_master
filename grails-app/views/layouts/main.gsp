@@ -11,6 +11,7 @@
 
     <asset:stylesheet src="application.css"/>
 
+
     <g:layoutHead/>
 </head>
 <body>
