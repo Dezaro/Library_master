@@ -9,7 +9,6 @@ import groovy.transform.ToString
 @EqualsAndHashCode
 class Category {
 
-    static hasMany = [books:Book]
     Long id
     String categoryName
 

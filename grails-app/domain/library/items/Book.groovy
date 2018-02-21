@@ -10,8 +10,7 @@ import groovy.transform.ToString
 @EqualsAndHashCode
 class Book {
 
-    static belongsTo = [category: Category, author:Author]
-//    Long id
+    Long id
     String title
     Date publishedDate
     String isbn
@@ -20,6 +19,7 @@ class Book {
     int pageNumber
     boolean isAvailable = Boolean.TRUE
 
+    static belongsTo = [author: Author, category: Category]
 
     static constraints = {
         title nullable: false, blank: false

@@ -9,7 +9,7 @@ import groovy.transform.ToString
 @EqualsAndHashCode
 class Author {
 
-    static hasMany = [books:Book]
+    Long id
     String authorName
 
     static constraints = {
