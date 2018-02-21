@@ -17,19 +17,29 @@ class Book {
     String description
     String publisher
     int pageNumber
-    boolean isAvailable = Boolean.TRUE
+    int availability
+    String cover
 
     static belongsTo = [author: Author, category: Category]
 
     static constraints = {
         title nullable: false, blank: false
-        isbn unique: true, nullable: false
+        isbn nullable: false, minSize: 13, maxSize: 13, matches: "[0-9]+"
         pageNumber nullable: false, blank: false
+        publishedDate nullable:  true, defaultValue: "now()"
+        description nullable: true
+        publisher nullable: true
+        availability nullable: false
+        cover inList: ["Mека", "Tвърда"]
     }
 
     @Override
     String toString() {
         return title
 //        return title + ', ' + Author.findById(authorId).getAuthorName()
+    }
+
+    static mapping = {
+        version false
     }
 }

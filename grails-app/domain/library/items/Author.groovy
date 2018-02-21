@@ -20,4 +20,8 @@ class Author {
     String toString() {
         return authorName
     }
+
+    static mapping = {
+        version false
+    }
 }

@@ -20,4 +20,8 @@ class Category {
     String toString() {
         return categoryName
     }
+
+    static mapping = {
+        version false
+    }
 }

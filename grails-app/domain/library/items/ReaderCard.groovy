@@ -20,17 +20,21 @@ class ReaderCard {
     boolean isActive = Boolean.TRUE
 
     static constraints = {
-        id nullable: false
         cardNumber nullable: false, unique: true
         readerNames nullable: false
         dateOfBirth nullable: false
         phone nullable: false
-        registerDate nullable: false
+        registerDate nullable: false, defaultValue: "now()"
         email email: true
+        address nullable: true
     }
 
     @Override
     String toString() {
         return readerNames
+    }
+
+    static mapping = {
+        version false
     }
 }

@@ -9,16 +9,21 @@ import groovy.transform.ToString
 @EqualsAndHashCode
 class RentBook {
 
-    static belongsTo = [readerCards: ReaderCard, books: Book]
     Long id
     Date rentDate
     Date returnBeforeDate
     Date returnDate
     boolean isReturn = Boolean.FALSE
 
+    static belongsTo = [readerCard: ReaderCard, book: Book]
+
     static constraints = {
-        id nullable: false, unique: true
-        rentDate nullable: false
+        rentDate nullable: false, defaultValue: "now()"
         returnBeforeDate nullable: false
+        returnDate nullable: true
+    }
+
+    static mapping = {
+        version false
     }
 }
