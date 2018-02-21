@@ -23,7 +23,7 @@ class BookItem {
 
     @Override
     String toString() {
-        return book.getTitle() + ' - ' +  bookSerialNumber
+        return bookSerialNumber
 //        return title + ', ' + Author.findById(authorId).getAuthorName()
     }
 

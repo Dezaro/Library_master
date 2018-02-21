@@ -15,7 +15,7 @@ class RentBook {
     Date returnDate
     boolean isReturn = Boolean.FALSE
 
-    static belongsTo = [readerCard: ReaderCard, book: Book]
+    static belongsTo = [readerCard: ReaderCard, bookItem: BookItem]
 
     static constraints = {
         rentDate nullable: false, defaultValue: "now()"
