@@ -7,7 +7,7 @@
 
 <body>
 
-<div id="content" role="main" style="margin-top: 40px;">
+<div id="content" role="main">
     <section class="row colset-2-its">
         <div class="media">
             %{--<div style="display: inline-block;">--}%
