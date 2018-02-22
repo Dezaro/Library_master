@@ -1,4 +1,4 @@
-package library
+package library.items
 
 import grails.plugin.springsecurity.SpringSecurityUtils
 

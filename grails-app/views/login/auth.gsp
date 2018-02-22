@@ -7,21 +7,19 @@
 
 <body>
 
-<div class="container">
+<div class="container" style="margin-top: 30px;">
     <div class="row">
         %{--<div class="fheader"><g:message code='springSecurity.login.header'/></div>--}%
-
-        %{--<g:if test='${flash.message}'>--}%
-        %{--<div class="login_message">${flash.message}</div>--}%
-        %{--</g:if>--}%
 
         <div class="col-md-4 col-md-offset-4">
             <div class="panel panel-default">
                 <div class="panel-heading"><strong class=""><g:message code='springSecurity.login.header'/></strong>
-
                 </div>
 
                 <div class="panel-body">
+                    <g:if test='${flash.message}'>
+                        <div class="alert alert-danger"><strong>${flash.message}</strong></div>
+                    </g:if>
                     <form class="form-horizontal" role="form" action="${postUrl ?: '/login/authenticate'}" method="POST"
                           id="loginForm" class="cssform" autocomplete="off">
                         <div class="form-group">
@@ -29,8 +27,12 @@
                                     code='springSecurity.login.username.label'/>:</label>
 
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" name="${usernameParameter ?: 'username'}"
-                                       id="username" placeholder="User name" required="">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="material-form-icons">&#xE8D3;</i>
+                                    </span>
+                                    <input type="text" class="form-control" name="${usernameParameter ?: 'username'}"
+                                           id="username" placeholder="User name" required="">
+                                </div>
                             </div>
                         </div>
 
@@ -39,8 +41,13 @@
                                     code='springSecurity.login.password.label'/>:</label>
 
                             <div class="col-sm-9">
-                                <input type="password" class="form-control" name="${passwordParameter ?: 'password'}"
-                                       id="password" placeholder="Password" required="">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="material-form-icons">&#xE897;</i>
+                                    </span>
+                                    <input type="password" class="form-control"
+                                           name="${passwordParameter ?: 'password'}"
+                                           id="password" placeholder="Password" required="">
+                                </div>
                             </div>
                         </div>
 
@@ -62,7 +69,8 @@
                     </form>
                 </div>
 
-                <div class="panel-footer">Not Registered? <a href="#" class="">Register here</a>
+                <div class="panel-footer">Not Registered? <a href="" data-toggle="modal" data-target="#registerModal"
+                                                             class="">Register here</a>
 
                 </div>
             </div>

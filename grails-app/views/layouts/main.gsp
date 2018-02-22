@@ -63,17 +63,17 @@
 
                 </li>
                 <li><a href="/">CONTACT</a></li>
-                <li><a href="#" data-toggle="modal" data-target="#myModal">Register</a></li>
+                <li><a href="" data-toggle="modal" data-target="#registerModal">Register</a></li>
                 %{--<li><a href="/logout/index">Logout</a></li>--}%
                 %{--<g:link controller='logout' action=''>Spring Logout</g:link>--}%
                 %{--<li>${createLink(controller:'Logout') }</li>--}%
                 <script>
-                    function desf() {
+                    function logOut() {
                         var form_logout = document.getElementById('form_logout');
                         form_logout.submit();
                     }
                 </script>
-                <li><a onclick="desf()">Logout</a></li>
+                <li style="cursor: pointer;"><a onclick="logOut()">Logout</a></li>
 
                 <form id="form_logout" name="logout" method="POST" action="${createLink(controller: 'logout')}">
                     %{--<input type="submit" value="logout">--}%
@@ -153,7 +153,7 @@
 <!-- //footer-->
 <!-- Modal -->
 
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
