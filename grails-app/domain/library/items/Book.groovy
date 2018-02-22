@@ -19,6 +19,7 @@ class Book {
     int pageNumber
     int availability
     String cover
+    String pictureUrl
 
     static belongsTo = [author: Author, category: Category]
 
@@ -31,6 +32,7 @@ class Book {
         publisher nullable: true
         availability nullable: false
         cover inList: ["Mека", "Tвърда"]
+        pictureUrl nullable: true
     }
 
     @Override

@@ -13,6 +13,25 @@ class BookController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
+    def test(Integer max) {
+        def bookList
+        def bookTotal
+        params.max = Math.min(max ?: 3, 6)
+
+        if ( params.searchquery == null) {
+            bookList = Book.list(params)
+            bookTotal = Book.count()
+        }
+        else{
+            bookList = Book.findAllByTitleIlikeOrAuthorIlike('%'+params.searchquery+'%','%'+params.searchquery+'%',params)
+            bookTotal = Book.findAllByTitleIlikeOrAuthorIlike('%'+params.searchquery+'%','%'+params.searchquery+'%').size()
+        }
+//        respond bookList, formats: ['json']
+
+        [bookList: bookList, bookTotal: bookTotal, params: params ]
+//        respond bookList, bookTotal, params
+    }
+
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
         respond bookService.list(params), model:[bookCount: bookService.count()]
