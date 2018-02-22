@@ -17,27 +17,6 @@
 
 <body>
 
-%{--<div class="navbar navbar-default navbar-static-top" role="navigation">--}%
-%{--<div class="container">--}%
-%{--<div class="navbar-header">--}%
-%{--<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">--}%
-%{--<span class="sr-only">Toggle navigation</span>--}%
-%{--<span class="icon-bar"></span>--}%
-%{--<span class="icon-bar"></span>--}%
-%{--<span class="icon-bar"></span>--}%
-%{--</button>--}%
-%{--<a class="navbar-brand" href="/#">--}%
-%{--<asset:image src="grails.svg" alt="Grails Logo"/>--}%
-%{--</a>--}%
-%{--</div>--}%
-%{--<div class="navbar-collapse collapse" aria-expanded="false" style="height: 0.8px;">--}%
-%{--<ul class="nav navbar-nav navbar-right">--}%
-%{--<g:pageProperty name="page.nav" />--}%
-%{--</ul>--}%
-%{--</div>--}%
-%{--</div>--}%
-%{--</div>--}%
-
 <!-- page-head -->
 <div class="page-head">
     <div class="header-nav ">
@@ -53,31 +32,30 @@
             </label>
             <input id="mobile_menu" type="checkbox">
             <ul class="nav">
-                <li><a class="${controllerName == null ? 'active' : ''}" href="/">home</a></li>
-                <li><a class="${controllerName == 'book' ? 'active' : ''}" href="/book">${controllerName}</a></li>
-                <li><a href="/">courses</a>
 
-                </li>
-                <li><a href="/">Shortcodes</a></li>
-                <li><a href="/">GALLERY</a>
+                <li><a class="${controllerName == 'home' ? 'active' : ''}" href="/">home</a></li>
+                <li><a class="${controllerName == 'courses' ? 'active' : ''}" href="/">courses</a></li>
+                <li><a class="${controllerName == 'about' ? 'active' : ''}" href="/">about</a></li>
+                <li><a class="${controllerName == 'contacts' ? 'active' : ''}" href="/">contacts</a></li>
 
-                </li>
-                <li><a href="/">CONTACT</a></li>
-                <li><a href="" data-toggle="modal" data-target="#registerModal">Register</a></li>
-                %{--<li><a href="/logout/index">Logout</a></li>--}%
-                %{--<g:link controller='logout' action=''>Spring Logout</g:link>--}%
-                %{--<li>${createLink(controller:'Logout') }</li>--}%
-                <script>
-                    function logOut() {
-                        var form_logout = document.getElementById('form_logout');
-                        form_logout.submit();
-                    }
-                </script>
-                <li style="cursor: pointer;"><a onclick="logOut()">Logout</a></li>
+                <sec:ifNotLoggedIn>
+                    <li><a href="" data-toggle="modal" data-target="#registerModal">Register</a></li>
+                    <li><a class="${controllerName == 'login' ? 'active' : ''}" href="/login/auth">login</a></li>
+                </sec:ifNotLoggedIn>
 
-                <form id="form_logout" name="logout" method="POST" action="${createLink(controller: 'logout')}">
-                    %{--<input type="submit" value="logout">--}%
-                </form>
+                <sec:ifLoggedIn>
+                    <script>
+                        function logOut() {
+                            var form_logout = document.getElementById('form_logout');
+                            form_logout.submit();
+                        }
+                    </script>
+                    <li style="cursor: pointer;"><a onclick="logOut()">Logout</a></li>
+
+                    <form id="form_logout" name="logout" method="POST"
+                          action="${createLink(controller: 'logout')}"></form>
+                </sec:ifLoggedIn>
+
             </ul>
         </div>
 
@@ -86,9 +64,40 @@
 </div>
 <!-- //page-head -->
 
-<g:layoutBody/>
+%{--<g:layoutBody/>--}%
 
-%{--<div class="footer" role="contentinfo"></div>--}%
+
+<div class="container" style="margin-top: 40px;float: left; padding: 0;">
+    <div class="row" style="padding: 0;">
+        <div class="col-md-4">
+        <!-- It can be fixed with bootstrap affix http://getbootstrap.com/javascript/#affix-->
+            <sec:ifLoggedIn>
+                <div id="sidebar" class="well sidebar-nav" style="width: 200px; float: right;">
+                    <h5><i class="glyphicon glyphicon-home"></i>
+                        <small><b>MANAGEMENT</b></small>
+                    </h5>
+                    <ul class="nav nav-pills nav-stacked">
+                        <li class="active"><a href="#">Home</a></li>
+                        <li><a href="#">Add</a></li>
+                        <li><a href="#">Search</a></li>
+                    </ul>
+                    <h5><i class="glyphicon glyphicon-user"></i>
+                        <small><b>USERS</b></small>
+                    </h5>
+                    <ul class="nav nav-pills nav-stacked">
+                        <li><a href="#">List</a></li>
+                        <li><a href="#">Manage</a></li>
+                    </ul>
+                </div>
+            </sec:ifLoggedIn>
+        </div>
+
+        <div class="col-md-8">
+            <g:layoutBody/>
+        </div>
+    </div>
+</div>
+
 
 <!--footer-->
 <div class="footer">
@@ -151,8 +160,8 @@
     </div>
 </div>
 <!-- //footer-->
-<!-- Modal -->
 
+<!-- Modal -->
 <div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">

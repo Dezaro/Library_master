@@ -2,119 +2,62 @@
 <head>
     <meta name="layout" content="${gspLayout ?: 'main'}"/>
     <title><g:message code='springSecurity.login.title'/></title>
-
 </head>
 
 <body>
 
-<div class="container" style="margin-top: 30px;">
-    <div class="row">
-        %{--<div class="fheader"><g:message code='springSecurity.login.header'/></div>--}%
+<div class="row">
+    <div class="login-form col-md-6">
+        <g:if test='${flash.message}'>
+            <div class="alert alert-danger"><strong>${flash.message}</strong></div>
+        </g:if>
+        <form role="form" action="${postUrl ?: '/login/authenticate'}" method="POST"
+              id="loginForm" autocomplete="off">
+            <h2 class="text-center">Sign in</h2>
 
-        <div class="col-md-4 col-md-offset-4">
-            <div class="panel panel-default">
-                <div class="panel-heading"><strong class=""><g:message code='springSecurity.login.header'/></strong>
-                </div>
-
-                <div class="panel-body">
-                    <g:if test='${flash.message}'>
-                        <div class="alert alert-danger"><strong>${flash.message}</strong></div>
-                    </g:if>
-                    <form class="form-horizontal" role="form" action="${postUrl ?: '/login/authenticate'}" method="POST"
-                          id="loginForm" class="cssform" autocomplete="off">
-                        <div class="form-group">
-                            <label for="username" class="col-sm-3 control-label"><g:message
-                                    code='springSecurity.login.username.label'/>:</label>
-
-                            <div class="col-sm-9">
-                                <div class="input-group">
-                                    <span class="input-group-addon"><i class="material-form-icons">&#xE8D3;</i>
-                                    </span>
-                                    <input type="text" class="form-control" name="${usernameParameter ?: 'username'}"
-                                           id="username" placeholder="User name" required="">
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="password" class="col-sm-3 control-label"><g:message
-                                    code='springSecurity.login.password.label'/>:</label>
-
-                            <div class="col-sm-9">
-                                <div class="input-group">
-                                    <span class="input-group-addon"><i class="material-form-icons">&#xE897;</i>
-                                    </span>
-                                    <input type="password" class="form-control"
-                                           name="${passwordParameter ?: 'password'}"
-                                           id="password" placeholder="Password" required="">
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-sm-offset-3 col-sm-9">
-                                <div class="checkbox">
-                                    <label class="">
-                                        <input type="checkbox" class="">Remember me</label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group last">
-                            <div class="col-sm-offset-3 col-sm-9">
-                                <button type="submit" class="btn btn-success btn-sm">Sign in</button>
-                                <button type="reset" class="btn btn-default btn-sm">Reset</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-
-                <div class="panel-footer">Not Registered? <a href="" data-toggle="modal" data-target="#registerModal"
-                                                             class="">Register here</a>
-
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                    <input type="text" class="form-control" name="${usernameParameter ?: 'username'}"
+                           id="username" placeholder="User name" required="required">
                 </div>
             </div>
-        </div>
+
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                    <input type="password" class="form-control"
+                           name="${passwordParameter ?: 'password'}"
+                           id="password" placeholder="Password" required="required">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary login-btn btn-block">Sign in</button>
+            </div>
+
+            <div class="clearfix">
+                <label class="pull-left checkbox-inline"><input type="checkbox"> Remember me</label>
+                <a href="" class="pull-right">Forgot Password?</a>
+            </div>
+
+            <div class="or-seperator"><i>or</i></div>
+
+            <p class="text-center">Login with your social media account</p>
+
+            <div class="text-center social-btn">
+                <a href="" class="btn btn-primary"><i class="fa fa-facebook"></i>&nbsp; Facebook</a>
+                <a href="" class="btn btn-info"><i class="fa fa-twitter"></i>&nbsp; Twitter</a>
+                <a href="" class="btn btn-danger"><i class="fa fa-google"></i>&nbsp; Google</a>
+            </div>
+        </form>
+
+        <p class="text-center text-muted small">Don't have an account? <a href="" data-toggle="modal"
+                                                                          data-target="#registerModal">Sign up here!</a>
+        </p>
     </div>
 </div>
 
-%{--<div id="login">--}%
-%{--<div class="inner">--}%
-%{--<div class="fheader"><g:message code='springSecurity.login.header'/></div>--}%
-
-%{--<g:if test='${flash.message}'>--}%
-%{--<div class="login_message">${flash.message}</div>--}%
-%{--</g:if>--}%
-
-%{--<form action="${postUrl ?: '/login/authenticate'}" method="POST" id="loginForm" class="cssform" autocomplete="off">--}%
-%{--<p>--}%
-%{--<label for="username"><g:message code='springSecurity.login.username.label'/>:</label>--}%
-%{--<input type="text" class="text_" name="${usernameParameter ?: 'username'}" id="username"/>--}%
-%{--</p>--}%
-
-%{--<p>--}%
-%{--<label for="password"><g:message code='springSecurity.login.password.label'/>:</label>--}%
-%{--<input type="password" class="text_" name="${passwordParameter ?: 'password'}" id="password"/>--}%
-%{--</p>--}%
-
-%{--<p>--}%
-%{--<label for="coordinateValue">${position}</label>--}%
-%{--<input type="hidden" name="coordinatePosition" id="coordinatePosition" value="${position}"/>--}%
-%{--<input type="text" class="text_" name="coordinateValue" id="coordinateValue"/>--}%
-%{--</p>--}%
-
-%{--<p id="remember_me_holder">--}%
-%{--<input type="checkbox" class="chk" name="${rememberMeParameter ?: 'remember-me'}" id="remember_me" <g:if test='${hasCookie}'>checked="checked"</g:if>/>--}%
-%{--<label for="remember_me"><g:message code='springSecurity.login.remember.me.label'/></label>--}%
-%{--</p>--}%
-
-%{--<p>--}%
-%{--<input type="submit" id="submit" value="${message(code: 'springSecurity.login.button')}"/>--}%
-%{--<input type="submit" id="submit" value="delo"/>--}%
-%{--</p>--}%
-%{--</form>--}%
-%{--</div>--}%
-%{--</div>--}%
 <script>
     (function () {
         document.forms['loginForm'].elements['${usernameParameter ?: 'username'}'].focus();
