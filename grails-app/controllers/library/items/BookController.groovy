@@ -16,16 +16,20 @@ class BookController {
     def search(Integer max) {
         def bookList
         def bookTotal
+        def authorList
         params.max = Math.min(max ?: 3, 6)
 
-        if (params.title == null) {
+        if (params.searchFor == null) {
             bookList = Book.list(params)
             bookTotal = Book.count()
         } else {
-            bookList = Book.findAllByTitleIlike('%' + params.title + '%', params)
-            bookTotal = Book.findAllByTitleIlike('%' + params.title + '%').size()
+
+              authorList = Author.findByAuthorName(params.searchFor)
+              bookList = Book.findAllByTitleIlikeOrAuthor('%' + params.searchFor + '%', authorList)
+//            bookList = Book.findAllByTitleIlike('%' + params.searchFor + '%', params)
+            bookTotal = Book.findAllByTitleIlike('%' + params.searchFor + '%').size()
         }
-//        respond bookList, formats: ['json']
+//        respond bookList , formats: ['json']
 
         [bookList: bookList, bookTotal: bookTotal, params: params]
 //        respond bookList, bookTotal, params

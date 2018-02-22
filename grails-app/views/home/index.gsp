@@ -17,8 +17,9 @@
             <div class="row" id="search">
                 <g:form action="search" method="GET" enctype="multipart/form-data">
                     <div class="form-group col-xs-9">
-                        <g:textField class="form-control" type="text" placeholder="Search" name="title"
-                                     value="${params.title}"/>
+                        <g:textField class="form-control" type="text" placeholder="Search by title or author"
+                                     name="searchFor"
+                                     value="${params.searchFor}"/>
                     </div>
 
                     <div class="form-group col-xs-3">
@@ -28,12 +29,22 @@
             </div>
 
             <div class="row" id="filter">
-                <form>
+                <g:form action="filter" method="GET">
                     <div class="form-group col-sm-3 col-xs-6">
-                        <select data-filter="make" class="filter-make filter form-control">
-                            <option value="">Select Make</option>
-                            <option value="">Show All</option>
-                        </select>
+                        %{--<select onchange="this.form.submit()" data-filter="make" class="filter-make filter form-control">--}%
+                        %{--<option value="">Select Category</option>--}%
+                        %{--<g:each var="category" in="${categoryList}">--}%
+                        %{--<option  value="${params.filter}">${category.categoryName}</option>--}%
+                        %{--</g:each>--}%
+                        %{--</select>--}%
+                        <g:select optionKey="id"
+                                  optionValue="categoryName"
+                                  name="category"
+                                  from="${categoryList}"
+                                  noSelection="${['null':'Select Category...']}"
+                                  onchange="this.form.submit()" data-filter="make"
+                                  class="filter-make filter form-control">
+                        </g:select>
                     </div>
 
                     <div class="form-group col-sm-3 col-xs-6">
@@ -56,7 +67,7 @@
                             <option value="">Show All</option>
                         </select>
                     </div>
-                </form>
+                </g:form>
             </div>
 
             <g:each var="book" in="${bookList}">
