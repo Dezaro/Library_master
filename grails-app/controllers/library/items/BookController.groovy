@@ -13,28 +13,27 @@ class BookController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
-    def test(Integer max) {
+    def search(Integer max) {
         def bookList
         def bookTotal
         params.max = Math.min(max ?: 3, 6)
 
-        if ( params.searchquery == null) {
+        if (params.title == null) {
             bookList = Book.list(params)
             bookTotal = Book.count()
-        }
-        else{
-            bookList = Book.findAllByTitleIlikeOrAuthorIlike('%'+params.searchquery+'%','%'+params.searchquery+'%',params)
-            bookTotal = Book.findAllByTitleIlikeOrAuthorIlike('%'+params.searchquery+'%','%'+params.searchquery+'%').size()
+        } else {
+            bookList = Book.findAllByTitleIlike('%' + params.title + '%', params)
+            bookTotal = Book.findAllByTitleIlike('%' + params.title + '%').size()
         }
 //        respond bookList, formats: ['json']
 
-        [bookList: bookList, bookTotal: bookTotal, params: params ]
+        [bookList: bookList, bookTotal: bookTotal, params: params]
 //        respond bookList, bookTotal, params
     }
 
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
-        respond bookService.list(params), model:[bookCount: bookService.count()]
+        respond bookService.list(params), model: [bookCount: bookService.count()]
     }
 
     def show(Long id) {
@@ -54,7 +53,7 @@ class BookController {
         try {
             bookService.save(book)
         } catch (ValidationException e) {
-            respond book.errors, view:'create'
+            respond book.errors, view: 'create'
             return
         }
 
@@ -80,7 +79,7 @@ class BookController {
         try {
             bookService.save(book)
         } catch (ValidationException e) {
-            respond book.errors, view:'edit'
+            respond book.errors, view: 'edit'
             return
         }
 
@@ -89,7 +88,7 @@ class BookController {
                 flash.message = message(code: 'default.updated.message', args: [message(code: 'book.label', default: 'Book'), book.id])
                 redirect book
             }
-            '*'{ respond book, [status: OK] }
+            '*' { respond book, [status: OK] }
         }
     }
 
@@ -104,9 +103,9 @@ class BookController {
         request.withFormat {
             form multipartForm {
                 flash.message = message(code: 'default.deleted.message', args: [message(code: 'book.label', default: 'Book'), id])
-                redirect action:"index", method:"GET"
+                redirect action: "index", method: "GET"
             }
-            '*'{ render status: NO_CONTENT }
+            '*' { render status: NO_CONTENT }
         }
     }
 
@@ -116,7 +115,7 @@ class BookController {
                 flash.message = message(code: 'default.not.found.message', args: [message(code: 'book.label', default: 'Book'), params.id])
                 redirect action: "index", method: "GET"
             }
-            '*'{ render status: NOT_FOUND }
+            '*' { render status: NOT_FOUND }
         }
     }
 }

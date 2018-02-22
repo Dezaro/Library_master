@@ -11,19 +11,20 @@
     <section class="row colset-2-its">
         <div class="media">
             %{--<div style="display: inline-block;">--}%
-                %{--<h2 class="title">Books</h2>--}%
+            %{--<h2 class="title">Books</h2>--}%
             %{--</div>--}%
 
             <div class="row" id="search">
-                <form id="search-form" action="" method="POST" enctype="multipart/form-data">
+                <g:form action="search" method="GET" enctype="multipart/form-data">
                     <div class="form-group col-xs-9">
-                        <input class="form-control" type="text" placeholder="Search"/>
+                        <g:textField class="form-control" type="text" placeholder="Search" name="title"
+                                     value="${params.title}"/>
                     </div>
 
                     <div class="form-group col-xs-3">
                         <button type="submit" class="btn btn-block btn-primary">Search</button>
                     </div>
-                </form>
+                </g:form>
             </div>
 
             <div class="row" id="filter">
