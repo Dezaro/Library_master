@@ -244,6 +244,10 @@
             </div>
         </div>
 
+        %{--<g:each var="b" in="${grailsApplication.book.index}">--}%
+
+        %{--</g:each>--}%
+
         <div id="controllers" role="navigation">
             <h2>Available Controllers:</h2>
             <ul>

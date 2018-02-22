@@ -1,7 +1,8 @@
 <div id="card-template-${book?.id}" class="item poster card">
     <div class="image_content">
-        <img class="poster fade lazyloaded"
-             src="${book?.pictureUrl}">
+        <g:link controller="book" action="show" id="${book.id}"><img class="poster fade1 lazyloaded"
+                                                   src="${book?.pictureUrl}"></g:link>
+
     </div>
 
     <div class="info">
