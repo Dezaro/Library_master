@@ -24,7 +24,7 @@
                 </div>
             </div>
         </div>
-        <g:render template="bookList" var="book" collection="${bookList}" />
+        %{--<g:render template="bookList" var="book" collection="${bookList}" />--}%
         <table class="table table-striped table-hover">
             <thead>
             <tr>
