@@ -29,44 +29,50 @@
             </div>
 
             <div class="row" id="filter">
-                <g:form action="filter" method="GET">
-                    <div class="form-group col-sm-3 col-xs-6">
-                        %{--<select onchange="this.form.submit()" data-filter="make" class="filter-make filter form-control">--}%
-                        %{--<option value="">Select Category</option>--}%
+                <g:form action="filter" method="POST">
+                    <div class="form-group col-sm-4 col-xs-6">
+                        %{--<select onchange="this.form.submit()" data-filter="make"--}%
+                        %{--class="filter-make filter form-control">--}%
+                        %{--<option name="category" value="">Select Category</option>--}%
+                        %{--<option name="category" value="null">Show all</option>--}%
                         %{--<g:each var="category" in="${categoryList}">--}%
-                        %{--<option  value="${params.filter}">${category.categoryName}</option>--}%
+                        %{--<option name="category" value="${category.id}">${category.categoryName}</option>--}%
                         %{--</g:each>--}%
                         %{--</select>--}%
                         <g:select optionKey="id"
                                   optionValue="categoryName"
                                   name="category"
                                   from="${categoryList}"
-                                  noSelection="${['null':'Select Category...']}"
+                                  noSelection="${['null': 'Select Category...']}"
                                   onchange="this.form.submit()" data-filter="make"
                                   class="filter-make filter form-control">
                         </g:select>
                     </div>
 
-                    <div class="form-group col-sm-3 col-xs-6">
-                        <select data-filter="model" class="filter-model filter form-control">
-                            <option value="">Select Model</option>
-                            <option value="">Show All</option>
-                        </select>
+                    <div class="form-group col-sm-5 col-xs-6">
+                        <g:select optionKey="id"
+                                  optionValue="authorName"
+                                  name="author"
+                                  from="${authorList}"
+                                  noSelection="${['null': 'Select Author...']}"
+                                  onchange="this.form.submit()" data-filter="make"
+                                  class="filter-make filter form-control">
+                        </g:select>
                     </div>
 
-                    <div class="form-group col-sm-3 col-xs-6">
-                        <select data-filter="type" class="filter-type filter form-control">
-                            <option value="">Select Type</option>
-                            <option value="">Show All</option>
-                        </select>
-                    </div>
+                    %{--<div class="form-group col-sm-3 col-xs-6">--}%
+                        %{--<select data-filter="type" class="filter-type filter form-control">--}%
+                            %{--<option value="">Select Type</option>--}%
+                            %{--<option value="">Show All</option>--}%
+                        %{--</select>--}%
+                    %{--</div>--}%
 
-                    <div class="form-group col-sm-3 col-xs-6">
-                        <select data-filter="price" class="filter-price filter form-control">
-                            <option value="">Select Price Range</option>
-                            <option value="">Show All</option>
-                        </select>
-                    </div>
+                    %{--<div class="form-group col-sm-3 col-xs-6">--}%
+                        %{--<select data-filter="price" class="filter-price filter form-control">--}%
+                            %{--<option value="">Select Price Range</option>--}%
+                            %{--<option value="">Show All</option>--}%
+                        %{--</select>--}%
+                    %{--</div>--}%
                 </g:form>
             </div>
 
@@ -75,14 +81,14 @@
             </g:each>
 
             %{--<div id="controllers" role="navigation">--}%
-                %{--<h2>Available Controllers:</h2>--}%
-                %{--<ul>--}%
-                    %{--<g:each var="c" in="${grailsApplication.controllerClasses.sort { it.fullName }}">--}%
-                        %{--<li class="controller">--}%
-                            %{--<g:link controller="${c.logicalPropertyName}">${c.fullName}</g:link>--}%
-                        %{--</li>--}%
-                    %{--</g:each>--}%
-                %{--</ul>--}%
+            %{--<h2>Available Controllers:</h2>--}%
+            %{--<ul>--}%
+            %{--<g:each var="c" in="${grailsApplication.controllerClasses.sort { it.fullName }}">--}%
+            %{--<li class="controller">--}%
+            %{--<g:link controller="${c.logicalPropertyName}">${c.fullName}</g:link>--}%
+            %{--</li>--}%
+            %{--</g:each>--}%
+            %{--</ul>--}%
             %{--</div>--}%
 
     </section>

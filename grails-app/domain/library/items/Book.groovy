@@ -30,7 +30,7 @@ class Book {
         publishedDate nullable:  true, defaultValue: "now()"
         description nullable: true
         publisher nullable: true
-        availability nullable: false
+        availability nullable: false, defaultValue: "0"
         cover inList: ["Soft", "Hard"]
         pictureUrl nullable: true
     }
