@@ -53,7 +53,8 @@
             url: url,
             dataType: "json"
         }).done(function (response) {
-            document.getElementById("pictureUrl").value = response.items[0].volumeInfo.imageLinks.thumbnail;
+//            TODO FIX BUG BUGGER
+//            document.getElementById("pictureUrl").value = response.items[0].volumeInfo.imageLinks.thumbnail;
         }).fail(function () {
             console.log("Something went wrong!");
         }).always(function () {

@@ -6,7 +6,9 @@
 // to create separate JavaScript files as needed.
 //
 //= require jquery-2.2.0.min
+//= require prettify
 //= require bootstrap
+//= require bootstrap-datepicker
 //= require_tree .
 //= require_self
 
@@ -17,7 +19,9 @@ if (typeof jQuery !== 'undefined') {
         }).ajaxStop(function() {
             $('#spinner').fadeOut();
         });
+
     })(jQuery);
 }
+
 
 

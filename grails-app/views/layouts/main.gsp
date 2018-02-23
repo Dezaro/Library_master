@@ -10,7 +10,7 @@
     <asset:link rel="icon" href="favicon.ico" type="image/x-ico"/>
 
     <asset:stylesheet src="application.css"/>
-
+    <asset:javascript src="application.js"/>
 
     <g:layoutHead/>
     <style>
@@ -50,6 +50,10 @@
         border-color: rgba(255, 255, 255, 0);
         background: none;
     }
+    body{
+        overflow:auto;
+        font-size: 16px;
+    }
     </style>
 </head>
 
@@ -60,7 +64,7 @@
     <div class="header-nav ">
         <div class="logo wow fadeInUp animated" data-wow-delay=".5s">
             <h1>
-                <a class="link link--kumya" href="/"><i></i><span data-letters="EDUMA">EDUMA</span></a>
+                <a class="link link--kumya" href="/"><i></i><span data-letters="LIBRARY" style="font-size: 36px;">LIBRARY</span></a>
             </h1>
         </div>
 
@@ -105,7 +109,7 @@
 <!-- page-content -->
 <div class="container" style="margin-top: 40px;width: 100%">
     %{--<div class="row">--}%
-        <div class="col-md-3">
+        <div class="col-md-2">
         <!-- It can be fixed with bootstrap affix http://getbootstrap.com/javascript/#affix-->
             <sec:ifLoggedIn>
                 <!-- Left column -->
@@ -124,9 +128,11 @@
             </sec:ifLoggedIn>
         </div>
 
-        <div class="col-md-9">
+        <div class="col-md-8">
             <g:layoutBody/>
         </div>
+
+    <div class="col-md-2"></div>
     %{--</div>--}%
 </div>
 <!-- //page-content -->
@@ -251,7 +257,7 @@
     <g:message code="spinner.alt" default="Loading&hellip;"/>
 </div>
 
-<asset:javascript src="application.js"/>
+
 
 </body>
 </html>

@@ -19,8 +19,8 @@
                     <g:link class="btn btn-primary" action="create"><i
                             class="material-icons">&#xE147;</i><span><g:message code="default.new.label"
                                                                                 args="[entityName]"/></span></a></g:link>
-                    <a href="${createLink(uri: '/')}" class="btn btn-primary"><i
-                            class="material-icons">&#xE88A;</i> <span><g:message code="default.home.label"/></span></a>
+                    %{--<a href="${createLink(uri: '/')}" class="btn btn-primary"><i--}%
+                            %{--class="material-icons">&#xE88A;</i> <span><g:message code="default.home.label"/></span></a>--}%
                 </div>
             </div>
         </div>

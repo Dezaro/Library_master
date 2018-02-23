@@ -71,7 +71,8 @@ class BookController {
     }
 
     def edit(Long id) {
-        respond bookService.get(id)
+//        respond bookService.get(id)
+        [book: bookService.get(id), coverInList: Book.constraints.cover.inList]
     }
 
     def update(Book book) {
