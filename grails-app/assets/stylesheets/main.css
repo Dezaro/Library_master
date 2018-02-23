@@ -140,7 +140,7 @@ img {
 }
 
 .nav a:active, .nav a:visited {
-    color: white;
+    /*color: white;*/
 }
 
 .nav a:focus, .nav a:hover {

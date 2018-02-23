@@ -13,6 +13,44 @@
 
 
     <g:layoutHead/>
+    <style>
+    .blue-static {
+        color: #337ab7;
+        font-family: 'Nunito', sans-serif;
+        font-size: 22px;
+        font-weight: 500;
+    }
+
+    .nav-custom li a.active, .nav li a:hover {
+        background: none;
+        font-weight: bold;
+        color: #E21737 !important;
+        outline: none;
+        text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.8);
+    }
+
+    .nav-custom li{
+        width: 100%;
+    }
+
+    .nav-custom > li > a {
+        padding: .5em 1em .5em 1em;
+        font-family: 'Nunito', sans-serif;
+        display: block;
+        width: 100%;
+        /*color: #3ea0f3;*/
+        color: #556687;
+        margin: 0;
+        font-size: 16px;
+        font-weight: 500;
+        text-transform: uppercase;
+        border: none;
+        letter-spacing: 1px;
+        border-style: solid;
+        border-color: rgba(255, 255, 255, 0);
+        background: none;
+    }
+    </style>
 </head>
 
 <body>
@@ -64,40 +102,34 @@
 </div>
 <!-- //page-head -->
 
-%{--<g:layoutBody/>--}%
-
-
-<div class="container" style="margin-top: 40px;float: left; padding: 0;">
-    <div class="row" style="padding: 0;">
-        <div class="col-md-4">
+<!-- page-content -->
+<div class="container" style="margin-top: 40px;width: 100%">
+    %{--<div class="row">--}%
+        <div class="col-md-3">
         <!-- It can be fixed with bootstrap affix http://getbootstrap.com/javascript/#affix-->
             <sec:ifLoggedIn>
-                <div id="sidebar" class="well sidebar-nav" style="width: 200px; float: right;">
-                    <h5><i class="glyphicon glyphicon-home"></i>
-                        <small><b>MANAGEMENT</b></small>
-                    </h5>
-                    <ul class="nav nav-pills nav-stacked">
-                        <li class="active"><a href="#">Home</a></li>
-                        <li><a href="#">Add</a></li>
-                        <li><a href="#">Search</a></li>
-                    </ul>
-                    <h5><i class="glyphicon glyphicon-user"></i>
-                        <small><b>USERS</b></small>
-                    </h5>
-                    <ul class="nav nav-pills nav-stacked">
-                        <li><a href="#">List</a></li>
-                        <li><a href="#">Manage</a></li>
-                    </ul>
-                </div>
+                <!-- Left column -->
+                <span class="blue-static"><i class="fa fa-ln fa-wrench"></i> Management</span>
+                <hr>
+                <ul class="nav nav-custom nav-pills nav-stacked">
+                    <li ><a href="/author/index" class="${controllerName == 'author' ? 'active' : ''}"><i class="glyphicon glyphicon-user"></i> Authors</a></li>
+                    <li><a href="/book/index" class="${controllerName == 'book' ? 'active' : ''}"><i class="glyphicon glyphicon-book"></i> Books</a></li>
+                    <li><a href="/bookItem/index" class="${controllerName == 'bookItems' ? 'active' : ''}"><i class="glyphicon glyphicon-tag"></i> Book Items</a></li>
+                    <li><a href="/category/index" class="${controllerName == 'category' ? 'active' : ''}"><i class="glyphicon glyphicon-list"></i> Category</a></li>
+                    <li><a href="/readerCard/index" class="${controllerName == 'readerCard' ? 'active' : ''}"><i class="glyphicon glyphicon-list-alt"></i> Readers cards</a></li>
+                    <li><a href="/rentBook/index" class="${controllerName == 'rentBook' ? 'active' : ''}"><i class="glyphicon glyphicon-download-alt"></i> Rent Books</a></li>
+                    <li><a href="/user/index" class="${controllerName == 'user' ? 'active' : ''}"><i class="fa fa-ln fa-users"></i> Users</a></li>
+                </ul>
+                <hr><!-- /col-3 -->
             </sec:ifLoggedIn>
         </div>
 
-        <div class="col-md-8">
+        <div class="col-md-9">
             <g:layoutBody/>
         </div>
-    </div>
+    %{--</div>--}%
 </div>
-
+<!-- //page-content -->
 
 <!--footer-->
 <div class="footer">
@@ -213,7 +245,7 @@
         </div>
     </div>
 </div>
-
+<!-- //Modal -->
 
 <div id="spinner" class="spinner" style="display:none;">
     <g:message code="spinner.alt" default="Loading&hellip;"/>

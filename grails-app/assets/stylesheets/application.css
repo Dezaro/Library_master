@@ -5,10 +5,9 @@
 * Any CSS file within this directory can be referenced here using a relative path.
 *
 * You're free to add application-wide styles to this file and they'll appear at the top of the
-* compiled file, but it's generally better to create a new file per style scope.
+* compiled file, but it's generally better to create a new file per style scope. require grails
 *
 *= require bootstrap
-*= require grails
 *= require main
 *= require mobile
 *= require_self
@@ -521,4 +520,27 @@ div.item.backdrop.card2 div.content, div.item.poster div.content {
     position: relative;
     top: -11px;
     z-index: 1;
+}
+.blue-static {
+    color: #337ab7;
+    font-family: 'Nunito', sans-serif;
+    font-size: 22px;
+    font-weight: 500;
+}
+
+.nav-custom > li > a {
+    padding: .5em 1em .5em 1em;
+    font-family: 'Nunito', sans-serif;
+    display: block;
+    /*color: #3ea0f3;*/
+    color: #556687;
+    margin: 0;
+    font-size: 16px;
+    font-weight: 500;
+    text-transform: uppercase;
+    border: none;
+    letter-spacing: 1px;
+    border-style: solid;
+    border-color: rgba(255, 255, 255, 0);
+    background: none;
 }

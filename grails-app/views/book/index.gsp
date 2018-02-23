@@ -7,8 +7,8 @@
 </head>
 
 <body>
-<div class="container">
-    <div class="table-wrapper">
+<div class="container" style="width: 100%;">
+    <div class="table-wrapper" style="width: 100%;">
         <div class="table-title">
             <div class="row">
                 <div class="col-sm-5">
