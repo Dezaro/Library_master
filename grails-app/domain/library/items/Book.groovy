@@ -31,7 +31,7 @@ class Book {
         description nullable: true
         publisher nullable: true
         availability nullable: false
-        cover inList: ["Mека", "Tвърда"]
+        cover inList: ["Soft", "Hard"]
         pictureUrl nullable: true
     }
 

@@ -32,7 +32,9 @@ class HomeController {
         }
 //        respond bookList , formats: ['json']
 
-        [bookList: bookList, categoryList: Category.getAll()]
-        respond bookList, view: 'index'
+//        [bookList: bookList, categoryList: Category.getAll()]
+//        render(template: '/book/list', model:  [bookList: bookList])
+        render(view: 'index', model: [bookList: bookList, categoryList: Category.getAll()])
+//        respond bookList, view: 'index'
     }
 }
