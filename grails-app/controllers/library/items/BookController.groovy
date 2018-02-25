@@ -71,8 +71,11 @@ class BookController {
     }
 
     def edit(Long id) {
-//        respond bookService.get(id)
-        [book: bookService.get(id), coverInList: Book.constraints.cover.inList]
+        respond bookService.get(id)
+//        respond Book.findById(id).constraints, formats: ['json']
+//        respond Book.constrainedProperties, formats: ['json']
+//        [book: bookService.get(id), coverInList: Book.constraints.print()]
+//        [book: bookService.get(id), coverInList: Book.constraints]
     }
 
     def update(Book book) {

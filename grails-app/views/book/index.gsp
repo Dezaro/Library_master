@@ -19,8 +19,8 @@
                     <g:link class="btn btn-primary" action="create"><i
                             class="material-icons">&#xE147;</i><span><g:message code="default.new.label"
                                                                                 args="[entityName]"/></span></a></g:link>
-                    %{--<a href="${createLink(uri: '/')}" class="btn btn-primary"><i--}%
-                            %{--class="material-icons">&#xE88A;</i> <span><g:message code="default.home.label"/></span></a>--}%
+                %{--<a href="${createLink(uri: '/')}" class="btn btn-primary"><i--}%
+                %{--class="material-icons">&#xE88A;</i> <span><g:message code="default.home.label"/></span></a>--}%
                 </div>
             </div>
         </div>
@@ -41,8 +41,10 @@
             <tbody>
             <g:each var="book" in="${bookList}">
                 <tr>
-                    <td><g:link action="show" id="${book.id}"><g:img dir="images" file="icon3.png" class="avatar"
-                                                                     alt="Avatar"/> ${book.title}</g:link></td>
+                    <td><g:link action="show" id="${book.id}"><img
+                            src="${book.pictureUrl == null ? '/assets/icon3.png' : book.pictureUrl.toString()}"
+                            height="45" width="45" class="avatar"
+                            alt="Avatar"/> ${book.title}</g:link></td>
                     <td>${book.publishedDate}</td>
                     <td>${book.isbn}</td>
                     <td>${book.description}</td>
