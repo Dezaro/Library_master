@@ -1,3 +1,5 @@
+<%@ page import="library.items.Category" %>
+<%@ page import="library.items.Author" %>
 <!doctype html>
 <html>
 <head>
@@ -29,23 +31,16 @@
             </div>
 
             <div class="row" id="filter">
-                <g:form action="filter" method="POST">
+                <g:form action="filter" method="GET">
                     <div class="form-group col-sm-4 col-xs-6">
-                        %{--<select onchange="this.form.submit()" data-filter="make"--}%
-                        %{--class="filter-make filter form-control">--}%
-                        %{--<option name="category" value="">Select Category</option>--}%
-                        %{--<option name="category" value="null">Show all</option>--}%
-                        %{--<g:each var="category" in="${categoryList}">--}%
-                        %{--<option name="category" value="${category.id}">${category.categoryName}</option>--}%
-                        %{--</g:each>--}%
-                        %{--</select>--}%
-                        <g:select optionKey="id"
+                        <g:select id="categories" optionKey="id"
                                   optionValue="categoryName"
                                   name="category"
-                                  from="${categoryList}"
+                                  from="${Category.list()}"
                                   noSelection="${['null': 'Select Category...']}"
                                   onchange="this.form.submit()" data-filter="make"
-                                  class="filter-make filter form-control">
+                                  class="filter-make filter form-control"
+                                  value="${params.category}">
                         </g:select>
                     </div>
 
@@ -53,10 +48,11 @@
                         <g:select optionKey="id"
                                   optionValue="authorName"
                                   name="author"
-                                  from="${authorList}"
+                                  from="${Author.list()}"
                                   noSelection="${['null': 'Select Author...']}"
                                   onchange="this.form.submit()" data-filter="make"
-                                  class="filter-make filter form-control">
+                                  class="filter-make filter form-control"
+                                  value="${params.author}">
                         </g:select>
                     </div>
 

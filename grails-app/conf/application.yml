@@ -102,7 +102,7 @@ environments:
     development:
         dataSource:
             dbCreate: update
-            url: jdbc:mysql://127.0.0.1:3306/devdb
+            url: jdbc:mysql://127.0.0.1:3306/devdb?useUnicode=yes&characterEncoding=UTF-8
     test:
         dataSource:
             dbCreate: update

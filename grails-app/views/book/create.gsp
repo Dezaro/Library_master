@@ -225,8 +225,11 @@
             url: url,
             dataType: "json"
         }).done(function (response) {
-//            TODO FIX BUG BUGGER
-//            document.getElementById("pictureUrl").value = response.items[0].volumeInfo.imageLinks.thumbnail;
+            if (parseInt(response.totalItems) != 0) {
+                if (typeof response.items[0].volumeInfo.imageLinks !== 'undefined') {
+                    document.getElementById("pictureUrl").value = response.items[0].volumeInfo.imageLinks.thumbnail;
+                }
+            }
         }).fail(function () {
             console.log("Something went wrong!");
         }).always(function () {

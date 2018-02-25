@@ -28,7 +28,7 @@ class Book {
         isbn nullable: false, minSize: 13, maxSize: 13, matches: "[0-9]+"
         pageNumber nullable: false, blank: false
         publishedDate nullable:  true, defaultValue: "now()"
-        description nullable: true
+        description nullable: true, maxSize: 1000
         publisher nullable: true
         availability nullable: false, defaultValue: "0"
         cover inList: ["Soft", "Hard"]
