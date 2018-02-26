@@ -198,7 +198,7 @@
                         %{--<button type="submit" class="btn btn-primary" style="margin-top: 15px;margin-bottom: 15px;">--}%
                         %{--<span class="fa fa-lg fa-edit"></span> Update--}%
                         %{--</button>--}%
-                        <button id="#createBtn" type="submit" class="btn btn-success"
+                        <button id="#createBtn" type="button" class="btn btn-success" onclick="submitForm()"
                                 style="margin-top: 15px;margin-bottom: 15px;">
                             <span class="fa fa-lg fa-plus-circle"></span> Create</button>
                     </div>
