@@ -21,6 +21,12 @@ class RentBookController {
         respond rentBookService.get(id)
     }
 
+    def showAllNotReturned(Integer max) {
+        def notReturnedList
+        notReturnedList = RentBook.findAllByIsReturn(false,[sort: "returnBeforeDate", order: "asc"]);
+        [notReturnedList: notReturnedList]
+    }
+
     def create() {
         respond new RentBook(params)
     }

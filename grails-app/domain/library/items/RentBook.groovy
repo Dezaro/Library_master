@@ -19,7 +19,7 @@ class RentBook {
 
     static constraints = {
         rentDate nullable: false, defaultValue: "now()"
-        returnBeforeDate nullable: false
+        returnBeforeDate nullable: false, defaultValue: "now()"
         returnDate nullable: true
     }
 
