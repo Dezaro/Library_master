@@ -8,6 +8,7 @@ import static org.springframework.http.HttpStatus.*
 class RentBookController {
 
     RentBookService rentBookService
+    BookItemService bookItemService
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
@@ -25,6 +26,7 @@ class RentBookController {
     }
 
     def save(RentBook rentBook) {
+        def bookItem
         if (rentBook == null) {
             notFound()
             return
@@ -32,6 +34,13 @@ class RentBookController {
 
         try {
             rentBookService.save(rentBook)
+            bookItem = BookItem.findById(rentBook.bookItem.id)
+            if (rentBook.isReturn == Boolean.TRUE) {
+                bookItem.isAvailable = Boolean.TRUE
+            } else {
+                bookItem.isAvailable = Boolean.FALSE
+            }
+            bookItemService.save(bookItem)
         } catch (ValidationException e) {
             respond rentBook.errors, view:'create'
             return

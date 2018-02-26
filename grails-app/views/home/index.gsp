@@ -31,13 +31,13 @@
             </div>
 
             <div class="row" id="filter">
-                <g:form action="filter" method="GET">
+                <g:form action="filter" method="POST">
                     <div class="form-group col-sm-4 col-xs-6">
                         <g:select id="categories" optionKey="id"
                                   optionValue="categoryName"
                                   name="category"
                                   from="${Category.list()}"
-                                  noSelection="${['null': 'Select Category...']}"
+                                  noSelection="${['null': 'All Categories...']}"
                                   onchange="this.form.submit()" data-filter="make"
                                   class="filter-make filter form-control"
                                   value="${params.category}">
@@ -49,7 +49,7 @@
                                   optionValue="authorName"
                                   name="author"
                                   from="${Author.list()}"
-                                  noSelection="${['null': 'Select Author...']}"
+                                  noSelection="${['null': 'All Authors...']}"
                                   onchange="this.form.submit()" data-filter="make"
                                   class="filter-make filter form-control"
                                   value="${params.author}">

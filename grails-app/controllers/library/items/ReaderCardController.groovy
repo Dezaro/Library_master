@@ -20,6 +20,22 @@ class ReaderCardController {
         respond readerCardService.get(id)
     }
 
+    def showAllNotReturnedBooks(Long id){
+        def rentBookItems
+        def readerCard
+        readerCard = ReaderCard.findById(id)
+        rentBookItems = RentBook.findAllByReaderCardAndIsReturn(readerCard, false)
+        [rentBookItems: rentBookItems]
+    }
+
+    def showAllGivenBooks(Long id){
+        def rentBookItems
+        def readerCard
+        readerCard = ReaderCard.findById(id)
+        rentBookItems = RentBook.findAllByReaderCard(readerCard)
+        [rentBookItems: rentBookItems]
+    }
+
     def create() {
         respond new ReaderCard(params)
     }

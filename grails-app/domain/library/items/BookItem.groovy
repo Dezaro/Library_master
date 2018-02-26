@@ -24,7 +24,6 @@ class BookItem {
     @Override
     String toString() {
         return bookSerialNumber
-//        return title + ', ' + Author.findById(authorId).getAuthorName()
     }
 
     static mapping = {

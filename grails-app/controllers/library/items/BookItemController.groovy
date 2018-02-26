@@ -8,6 +8,7 @@ import static org.springframework.http.HttpStatus.*
 class BookItemController {
 
     BookItemService bookItemService
+    BookService bookService
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
@@ -25,6 +26,7 @@ class BookItemController {
     }
 
     def save(BookItem bookItem) {
+        def book
         if (bookItem == null) {
             notFound()
             return
@@ -32,6 +34,9 @@ class BookItemController {
 
         try {
             bookItemService.save(bookItem)
+            book = Book.findById(bookItem.book.id)
+            book.availability = book.availability + 1;
+            bookService.save(book);
         } catch (ValidationException e) {
             respond bookItem.errors, view:'create'
             return
@@ -73,12 +78,21 @@ class BookItemController {
     }
 
     def delete(Long id) {
+        def bookItem
+        def book
         if (id == null) {
             notFound()
             return
         }
 
         bookItemService.delete(id)
+        bookItem = BookItem.findById(id)
+        book = Book.findById(bookItem.book.id)
+        book.availability = book.availability - 1;
+        if (book.availability < 0) {
+            book.availability = 0;
+        }
+        bookService.save(book);
 
         request.withFormat {
             form multipartForm {

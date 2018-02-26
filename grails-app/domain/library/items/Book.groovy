@@ -38,7 +38,6 @@ class Book {
     @Override
     String toString() {
         return title
-//        return title + ', ' + Author.findById(authorId).getAuthorName()
     }
 
     static mapping = {

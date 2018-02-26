@@ -12,7 +12,7 @@ class ReaderCard {
     Long id
     Long cardNumber
     String readerNames
-    String person_number
+    String personNumber
     String address
     String phone
     Date registerDate
@@ -22,7 +22,7 @@ class ReaderCard {
     static constraints = {
         cardNumber nullable: false, unique: true
         readerNames nullable: false
-        person_number nullable: true, minSize: 10, maxSize: 10
+        personNumber nullable: true, minSize: 10, maxSize: 10
         phone nullable: false
         registerDate nullable: false, defaultValue: "now()"
         email email: true
