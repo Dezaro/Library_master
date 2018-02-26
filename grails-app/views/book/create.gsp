@@ -215,27 +215,24 @@
 
 <script>
     function submitForm() {
-        var authorSelect = document.getElementById("author"),
+        var authorSelect = document.getElementById("author_id"),
             author = authorSelect.options[authorSelect.selectedIndex].text,
             apiKey = "AIzaSyAeeTMNTGN5AHk2RH2DLWCY0xeS1mwmsDA",
-            url = "https://www.googleapis.com/books/v1/volumes?q=" + document.getElementById('title').value + '+inauthor:' + author + "&maxResults=1&filter=ebooks&printType=books&projection=lite&key=" + apiKey;
+            url = "https://www.googleapis.com/books/v1/volumes?q=" + document.getElementById('title_id').value + '+inauthor:' + author + "&maxResults=1&filter=ebooks&printType=books&projection=lite&key=" + apiKey;
 
         $.ajax({
             method: "GET",
             url: url,
             dataType: "json"
         }).done(function (response) {
-            if (parseInt(response.totalItems) != 0) {
+            if (parseInt(response.totalItems) !== 0) {
                 if (typeof response.items[0].volumeInfo.imageLinks !== 'undefined') {
-                    document.getElementById("pictureUrl").value = response.items[0].volumeInfo.imageLinks.thumbnail;
+                    document.getElementById("picture_url_id").value = response.items[0].volumeInfo.imageLinks.thumbnail;
                 }
             }
         }).fail(function () {
             console.log("Something went wrong!");
         }).always(function () {
-            console.log("ОК!");
-            console.log(document.getElementById("pictureUrl").value);
-            console.log(document.getElementsByName("createBookForm")[0]);
             document.getElementsByName("createBookForm")[0].submit()
         });
     }
