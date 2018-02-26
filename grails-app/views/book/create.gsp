@@ -9,112 +9,112 @@
 <body>
 
 <div class="nav text-color-blues" role="navigation">
-    <h1>Book Create</h1>
-    <hr/>
-</div>
-
-<g:if test="${flash.message}">
-    <div class="alert alert-info" role="status">${flash.message}</div>
-</g:if>
-<g:hasErrors bean="${this.book}">
-    <ul class="alert alert-danger" role="alert" style="list-style-type: none;">
-        <g:eachError bean="${this.book}" var="error">
-            <li <g:if test="${error in org.springframework.validation.FieldError}">data-field-id="${error.field}"</g:if>><span
-                    class="glyphicon glyphicon-exclamation-sign"></span> <g:message error="${error}"/></li>
-        </g:eachError>
-    </ul>
-</g:hasErrors>
-
-<div class="container-fluid custom-form">
-    <div class="row">
-        <div class="col-md-2">
-        </div>
-
-        <div class="col-md-8">
-            <g:form class="comment-form-left" name="createBookForm" resource="${this.book}" method="POST">
-                <div class="form-group">
-                    <label for="title_id" class="col-sm-4 control-label">
-                        Title <span class="red-star">*</span>
-                    </label>
-
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" name="title" id="title_id" required/>
-                    </div>
+                    <h1>Book Create</h1>
+                    <hr/>
                 </div>
 
-                <div class="form-group">
-                    <label for="isbn_id" class="col-sm-4 control-label">
-                        ISBN <span class="red-star">*</span>
-                    </label>
+                <g:if test="${flash.message}">
+                    <div class="alert alert-info" role="status">${flash.message}</div>
+                </g:if>
+                <g:hasErrors bean="${this.book}">
+                    <ul class="alert alert-danger" role="alert" style="list-style-type: none;">
+                        <g:eachError bean="${this.book}" var="error">
+                            <li <g:if test="${error in org.springframework.validation.FieldError}">data-field-id="${error.field}"</g:if>><span
+                                    class="glyphicon glyphicon-exclamation-sign"></span> <g:message error="${error}"/></li>
+                        </g:eachError>
+                    </ul>
+                </g:hasErrors>
 
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" name="isbn" id="isbn_id" required/>
-                    </div>
-                </div>
+                <div class="container-fluid custom-form">
+                    <div class="row">
+                        <div class="col-md-2">
+                        </div>
 
-                <div class="form-group">
-                    <label for="page_number_id" class="col-sm-4 control-label">
-                        Page Number <span class="red-star">*</span>
-                    </label>
+                        <div class="col-md-8">
+                            <g:form class="comment-form-left" name="createBookForm" resource="${this.book}" method="POST">
+                                <div class="form-group">
+                                    <label for="title_id" class="col-sm-4 control-label">
+                                        Title <span class="red-star">*</span>
+                                    </label>
 
-                    <div class="col-sm-10">
-                        <input type="number" class="form-control" name="pageNumber" id="page_number_id" required/>
-                    </div>
-                </div>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" name="title" id="title_id" required/>
+                                    </div>
+                                </div>
 
-                <div class="form-group">
-                    <label for="publish_date_id" class="col-sm-4 control-label">
-                        Published Date
-                    </label>
+                                <div class="form-group">
+                                    <label for="isbn_id" class="col-sm-4 control-label">
+                                        ISBN <span class="red-star">*</span>
+                                    </label>
 
-                    <div class="col-sm-10">
-                        %{--<input type="date" id="publish_date_id" name="publishedDate" class="form-control"/>--}%
-                        <g:datePicker name="publish_date_id" precision="day"/>
-                    </div>
-                </div>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" name="isbn" id="isbn_id" required/>
+                                    </div>
+                                </div>
 
-                <div class="form-group">
-                    <label for="description_id" class="col-sm-4 control-label">
-                        Description
-                    </label>
+                                <div class="form-group">
+                                    <label for="page_number_id" class="col-sm-4 control-label">
+                                        Page Number <span class="red-star">*</span>
+                                    </label>
 
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" name="description" id="description_id"/>
-                    </div>
-                </div>
+                                    <div class="col-sm-10">
+                                        <input type="number" class="form-control" name="pageNumber" id="page_number_id" required/>
+                                    </div>
+                                </div>
 
-                <div class="form-group">
-                    <label for="publisher_id" class="col-sm-4 control-label">
-                        Publisher
-                    </label>
+                                <div class="form-group">
+                                    <label for="publish_date_id" class="col-sm-4 control-label">
+                                        Published Date
+                                    </label>
 
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" name="publisher" id="publisher_id"/>
-                    </div>
-                </div>
+                                    <div class="col-sm-10">
+                                        %{--<input type="date" id="publish_date_id" name="publishedDate" class="form-control"/>--}%
+                                        <g:datePicker name="publish_date_id" precision="day"/>
+                                    </div>
+                                </div>
 
-                <div class="form-group">
-                    <label for="cover_id" class="col-sm-4 control-label">
-                        Cover <span class="red-star">*</span>
-                    </label>
+                                <div class="form-group">
+                                    <label for="description_id" class="col-sm-4 control-label">
+                                        Description
+                                    </label>
 
-                    <div class="col-sm-10">
-                        <select class="form-control" name="cover" id="cover_id" required>
-                            <g:each var="inList" in="${['Soft', 'Hard']}">
-                                <option value="${inList}">${inList}</option>
-                            </g:each>
-                        </select>
-                        %{--<g:select name="cover" from="${coverInList}" value="${book.cover}" ></g:select>--}%
-                        %{--<g:select name="cover" from="${['Soft', 'Hard']}" value="${book.cover}" ></g:select>--}%
-                    </div>
-                </div>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" name="description" id="description_id"/>
+                                    </div>
+                                </div>
 
-                <div class="form-group">
-                    <label for="picture_url_id" class="col-sm-4 control-label">
-                        Picture Url
-                    </label>
+                                <div class="form-group">
+                                    <label for="publisher_id" class="col-sm-4 control-label">
+                                        Publisher
+                                    </label>
 
-                    <div class="col-sm-10">
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" name="publisher" id="publisher_id"/>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="cover_id" class="col-sm-4 control-label">
+                                        Cover <span class="red-star">*</span>
+                                    </label>
+
+                                    <div class="col-sm-10">
+                                        <select class="form-control" name="cover" id="cover_id" required>
+                                            <g:each var="inList" in="${['Soft', 'Hard']}">
+                                                <option value="${inList}">${inList}</option>
+                                            </g:each>
+                                        </select>
+                                        %{--<g:select name="cover" from="${coverInList}" value="${book.cover}" ></g:select>--}%
+                                        %{--<g:select name="cover" from="${['Soft', 'Hard']}" value="${book.cover}" ></g:select>--}%
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="picture_url_id" class="col-sm-4 control-label">
+                                        Picture Url
+                                    </label>
+
+                                    <div class="col-sm-10">
                         <input type="text" class="form-control" name="pictureUrl" id="picture_url_id"/>
                     </div>
                 </div>

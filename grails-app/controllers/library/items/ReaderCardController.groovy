@@ -13,14 +13,27 @@ class ReaderCardController {
 
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
-        respond readerCardService.list(params), model:[readerCardCount: readerCardService.count()]
+        respond readerCardService.list(params), model: [readerCardCount: readerCardService.count()]
     }
 
     def show(Long id) {
-        respond readerCardService.get(id)
+//        respond readerCardService.get(id)
+        def rentBookItems
+        def readerCard
+        def bookList = []
+        readerCard = ReaderCard.findById(id)
+        rentBookItems = RentBook.findAllByReaderCard(readerCard)
+        for (int i = 0; i < (int) rentBookItems.toArray().length; i++) {
+            def bookItem = BookItem.findById(rentBookItems[i].bookItem.id)
+            def book = Book.findById(bookItem.book.id)
+            bookList << [title: book.title, bookSerialNumber: bookItem.bookSerialNumber, rentDate: rentBookItems[i].rentDate, returnBeforeDate: rentBookItems[i].returnBeforeDate]
+        }
+//        [rentBookItems: rentBookItems]
+        respond(view: 'show', [readerCard: readerCardService.get(id), bookList: bookList])
+//        respond bookList, formats: ['json']
     }
 
-    def showAllNotReturnedBooks(Long id){
+    def showAllNotReturnedBooks(Long id) {
         def rentBookItems
         def readerCard
         readerCard = ReaderCard.findById(id)
@@ -28,12 +41,20 @@ class ReaderCardController {
         [rentBookItems: rentBookItems]
     }
 
-    def showAllGivenBooks(Long id){
+    def showAllGivenBooks(Long id) {
         def rentBookItems
         def readerCard
+        def bookList = []
         readerCard = ReaderCard.findById(id)
         rentBookItems = RentBook.findAllByReaderCard(readerCard)
-        [rentBookItems: rentBookItems]
+        for (int i = 0; i < (int) rentBookItems.toArray().length; i++) {
+            def bookItem = BookItem.findById(rentBookItems[i].bookItem.id)
+            def book = Book.findById(bookItem.book.id)
+            bookList << [title: book.title, bookSerialNumber: bookItem.bookSerialNumber, rentDate: rentBookItems[i].rentDate, returnBeforeDate: rentBookItems[i].returnBeforeDate]
+        }
+//        [rentBookItems: rentBookItems]
+        respond(view: 'show', [readerCard: readerCardService.get(id), bookList: bookList])
+//        respond bookList, formats: ['json']
     }
 
     def create() {
@@ -49,7 +70,7 @@ class ReaderCardController {
         try {
             readerCardService.save(readerCard)
         } catch (ValidationException e) {
-            respond readerCard.errors, view:'create'
+            respond readerCard.errors, view: 'create'
             return
         }
 
@@ -75,7 +96,7 @@ class ReaderCardController {
         try {
             readerCardService.save(readerCard)
         } catch (ValidationException e) {
-            respond readerCard.errors, view:'edit'
+            respond readerCard.errors, view: 'edit'
             return
         }
 
@@ -84,7 +105,7 @@ class ReaderCardController {
                 flash.message = message(code: 'default.updated.message', args: [message(code: 'readerCard.label', default: 'ReaderCard'), readerCard.id])
                 redirect readerCard
             }
-            '*'{ respond readerCard, [status: OK] }
+            '*' { respond readerCard, [status: OK] }
         }
     }
 
@@ -99,9 +120,9 @@ class ReaderCardController {
         request.withFormat {
             form multipartForm {
                 flash.message = message(code: 'default.deleted.message', args: [message(code: 'readerCard.label', default: 'ReaderCard'), id])
-                redirect action:"index", method:"GET"
+                redirect action: "index", method: "GET"
             }
-            '*'{ render status: NO_CONTENT }
+            '*' { render status: NO_CONTENT }
         }
     }
 
@@ -111,7 +132,7 @@ class ReaderCardController {
                 flash.message = message(code: 'default.not.found.message', args: [message(code: 'readerCard.label', default: 'ReaderCard'), params.id])
                 redirect action: "index", method: "GET"
             }
-            '*'{ render status: NOT_FOUND }
+            '*' { render status: NOT_FOUND }
         }
     }
 }
