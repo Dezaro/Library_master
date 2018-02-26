@@ -6,35 +6,57 @@
         <title><g:message code="default.edit.label" args="[entityName]" /></title>
     </head>
     <body>
-        <a href="#edit-author" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
-        <div class="nav" role="navigation">
-            <ul>
-                <li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
-                <li><g:link class="list" action="index"><g:message code="default.list.label" args="[entityName]" /></g:link></li>
-                <li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
-            </ul>
+
+    <div class="nav text-color-blues" role="navigation">
+        <h1>Author Update</h1>
+        <hr/>
+    </div>
+
+    <g:if test="${flash.message}">
+        <div class="alert alert-info" role="status">${flash.message}</div>
+    </g:if>
+    <g:hasErrors bean="${this.author}">
+        <ul class="alert alert-danger" role="alert" style="list-style-type: none;">
+            <g:eachError bean="${this.author}" var="error">
+                <li <g:if test="${error in org.springframework.validation.FieldError}">data-field-id="${error.field}"</g:if>><span
+                        class="glyphicon glyphicon-exclamation-sign"></span> <g:message error="${error}"/></li>
+            </g:eachError>
+        </ul>
+    </g:hasErrors>
+
+    <div class="container-fluid custom-form">
+        <div class="row">
+            <div class="col-md-2">
+            </div>
+
+            <div class="col-md-8">
+                <g:form class="comment-form-left" name="updateAuthorForm" resource="${this.author}" method="PUT">
+                    <div class="form-group">
+                        <label for="author_name_id" class="col-sm-4 control-label">
+                            Author Name <span class="red-star">*</span>
+                        </label>
+
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="authorName" id="author_name_id" value="${author.authorName}" required/>
+                        </div>
+                    </div>
+
+                    <div class="form-group" style="margin-top: 15px;">
+                        <div class="col-sm-3"></div>
+
+                        <div class="col-sm-4">
+                            <button id="#createBtn" type="submit" class="btn btn-primary"
+                                    style="margin-top: 15px;margin-bottom: 15px;">
+                                <span class="fa fa-lg fa-edit"></span> Update</button>
+                        </div>
+
+                        <div class="col-sm-4"></div>
+                    </div>
+                </g:form>
+            </div>
+
         </div>
-        <div id="edit-author" class="content scaffold-edit" role="main">
-            <h1><g:message code="default.edit.label" args="[entityName]" /></h1>
-            <g:if test="${flash.message}">
-            <div class="message" role="status">${flash.message}</div>
-            </g:if>
-            <g:hasErrors bean="${this.author}">
-            <ul class="errors" role="alert">
-                <g:eachError bean="${this.author}" var="error">
-                <li <g:if test="${error in org.springframework.validation.FieldError}">data-field-id="${error.field}"</g:if>><g:message error="${error}"/></li>
-                </g:eachError>
-            </ul>
-            </g:hasErrors>
-            <g:form resource="${this.author}" method="PUT">
-                <g:hiddenField name="version" value="${this.author?.version}" />
-                <fieldset class="form">
-                    <f:all bean="author"/>
-                </fieldset>
-                <fieldset class="buttons">
-                    <input class="save" type="submit" value="${message(code: 'default.button.update.label', default: 'Update')}" />
-                </fieldset>
-            </g:form>
-        </div>
+    </div>
+
     </body>
 </html>

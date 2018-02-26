@@ -7,39 +7,6 @@
 </head>
 
 <body>
-%{--<a href="#create-book" class="skip" tabindex="-1"><g:message code="default.link.skip.label"--}%
-%{--default="Skip to content&hellip;"/></a>--}%
-
-%{--<div class="nav" role="navigation">--}%
-%{--<ul>--}%
-%{--<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>--}%
-%{--<li><g:link class="list" action="index"><g:message code="default.list.label" args="[entityName]"/></g:link></li>--}%
-%{--</ul>--}%
-%{--</div>--}%
-
-%{--<div id="create-book" class="content scaffold-create" role="main">--}%
-%{--<h1><g:message code="default.create.label" args="[entityName]"/></h1>--}%
-%{--<g:if test="${flash.message}">--}%
-%{--<div class="message" role="status">${flash.message}</div>--}%
-%{--</g:if>--}%
-%{--<g:hasErrors bean="${this.book}">--}%
-%{--<ul class="errors" role="alert">--}%
-%{--<g:eachError bean="${this.book}" var="error">--}%
-%{--<li <g:if test="${error in org.springframework.validation.FieldError}">data-field-id="${error.field}"</g:if>><g:message--}%
-%{--error="${error}"/></li>--}%
-%{--</g:eachError>--}%
-%{--</ul>--}%
-%{--</g:hasErrors>--}%
-%{--<g:form name="createBookForm" resource="${this.book}" method="POST">--}%
-%{--<fieldset class="form">--}%
-%{--<f:all bean="book"/>--}%
-%{--</fieldset>--}%
-%{--<fieldset class="buttons">--}%
-%{--<button id="#createBtn" type="button" onclick="submitForm()" class="btn btn-danger">Create</button>--}%
-%{--<g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}" />--}%
-%{--</fieldset>--}%
-%{--</g:form>--}%
-%{--</div>--}%
 
 <div class="nav text-color-blues" role="navigation">
     <h1>Book Create</h1>
@@ -123,16 +90,6 @@
 
                     <div class="col-sm-10">
                         <input type="text" class="form-control" name="publisher" id="publisher_id"/>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="availability_id" class="col-sm-4 control-label">
-                        Availability <span class="red-star">*</span>
-                    </label>
-
-                    <div class="col-sm-10">
-                        <input type="number" class="form-control" name="availability" id="availability_id" required/>
                     </div>
                 </div>
 

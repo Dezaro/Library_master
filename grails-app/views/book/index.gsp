@@ -42,7 +42,7 @@
             <g:each var="book" in="${bookList}">
                 <tr>
                     <td><g:link action="show" id="${book.id}"><img
-                            src="${book.pictureUrl == null ? '/assets/icon3.png' : book.pictureUrl.toString()}"
+                            src="${book.pictureUrl == null ? '/assets/no-photo-6.jpg' : book.pictureUrl.toString()}"
                             height="45" width="45" class="avatar"
                             alt="Avatar"/> ${book.title}</g:link></td>
                     <td>${book.publishedDate}</td>
@@ -67,18 +67,8 @@
             </tbody>
         </table>
 
-        <div class="clearfix">
-            %{--<div class="hint-text">Showing <b>5</b> out of <b>25</b> entries</div>--}%
-            %{--<ul class="pagination">--}%
-            <g:paginate total="${bookCount ?: 0}"/>
-            %{--<li class="page-item disabled"><a href="#">Previous</a></li>--}%
-            %{--<li class="page-item"><a href="#" class="page-link">1</a></li>--}%
-            %{--<li class="page-item"><a href="#" class="page-link">2</a></li>--}%
-            %{--<li class="page-item active"><a href="#" class="page-link">3</a></li>--}%
-            %{--<li class="page-item"><a href="#" class="page-link">4</a></li>--}%
-            %{--<li class="page-item"><a href="#" class="page-link">5</a></li>--}%
-            %{--<li class="page-item"><a href="#" class="page-link">Next</a></li>--}%
-            %{--</ul>--}%
+        <div class="pagination">
+            <g:paginate total="${categoryCount ?: 0}"/>
         </div>
     </div>
 </div>

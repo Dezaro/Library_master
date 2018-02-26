@@ -97,17 +97,6 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="availability_id" class="col-sm-4 control-label">
-                        Availability <span class="red-star">*</span>
-                    </label>
-
-                    <div class="col-sm-10">
-                        <input type="number" class="form-control" name="availability" id="availability_id" required
-                               value="${book.availability}"/>
-                    </div>
-                </div>
-
-                <div class="form-group">
                     <label for="cover_id" class="col-sm-4 control-label">
                         Cover <span class="red-star">*</span>
                     </label>

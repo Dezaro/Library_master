@@ -107,7 +107,7 @@
 <!-- //page-head -->
 
 <!-- page-content -->
-<div class="container" style="margin-top: 40px;width: 100%">
+<div class="container" style="margin-top: 40px;width: 100%;background-color: white;">
     %{--<div class="row">--}%
         <div class="col-md-2">
         <!-- It can be fixed with bootstrap affix http://getbootstrap.com/javascript/#affix-->
