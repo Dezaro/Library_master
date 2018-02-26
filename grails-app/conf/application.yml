@@ -103,6 +103,17 @@ environments:
         dataSource:
             dbCreate: update
             url: jdbc:mysql://127.0.0.1:3306/devdb?useUnicode=yes&characterEncoding=UTF-8
+        grails:
+            mail:
+                    host: "smtp.gmail.com"
+                    port: 465
+                    username: "app.library.grails@gmail.com"
+                    password: "1701717005"
+                    props:
+                          mail.smtp.auth: "true"
+                          mail.smtp.socketFactory.port: "465"
+                          mail.smtp.socketFactory.class: "javax.net.ssl.SSLSocketFactory"
+                          mail.smtp.socketFactory.fallback: "false"
     test:
         dataSource:
             dbCreate: update
