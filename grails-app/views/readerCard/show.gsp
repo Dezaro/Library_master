@@ -7,7 +7,6 @@
 </head>
 
 <body>
-
 <div id="show-book" role="main" class="text-color-blues">
     <div class="row">
         <div class="text-color-blues col-sm-4" style="float:left;display: inline-block;">
@@ -17,11 +16,12 @@
         <div class="col-sm-8" style="float: right; display: inline-block;">
             <div class="btn-group">
                 %{--<button type="button" class="btn btn-default">Apple</button>--}%
-                %{--<button type="button" class="btn btn-success">Samsung</button>--}%
                 <a href="/readerCard/show/${readerCard.id}" type="button"
                    class="btn btn-primary ${actionName == 'show' ? 'active' : ''}">All Given</a>
                 <a href="/readerCard/showAllNotReturnedBooks/${readerCard.id}"
                    class="btn btn-danger ${actionName == 'showAllNotReturnedBooks' ? 'active' : ''}">Not Returned</a>
+                <a data-toggle="modal" href="#giveBookItem" type="button" class="btn btn-warning"
+                   style="cursor: pointer;"><i class="fa fa-lg fa-book"></i> Give Book</a>
             </div>
         </div>
     </div>
@@ -136,19 +136,50 @@
                     <td>${rentBook.rentDate}</td>
                     <td>${rentBook.returnBeforeDate}</td>
                     <td>
-                        <a onclick="onSendMail({
-                            email: '${readerCard.email}',
-                            book: '${rentBook.title}',
-                            returnBeforeDate: '${rentBook.returnBeforeDate}',
-                            name: '${readerCard.readerNames}'
-                        });" title="Send remind email"><i class="fa fa-lg fa-envelope-o text-info"></i></a>
+                        <g:if test="${rentBook.isReturn}">
+                            <span title="Mark as returned" style="cursor: pointer;" disabled readonly><i
+                                    class="material-icons" style="">&#xE065;</i></span>
+                            <span title="Send remind email" style="cursor: pointer;" disabled readonly><i
+                                    class="material-icons ">&#xE554;</i></span>
+                        </g:if>
+                        <g:else>
+                            <a href="/rentBook/returnBook/${rentBook.rentBookId}" title="Mark as returned"
+                               style="cursor: pointer;"><i
+                                    class="material-icons hover-success">&#xE065;</i></a>
+                            <a onclick="onSendMail({
+                                email: '${readerCard.email}',
+                                book: '${rentBook.title}',
+                                returnBeforeDate: '${rentBook.returnBeforeDate}',
+                                name: '${readerCard.readerNames}'
+                                %{--});" title="Send remind email"><i class="fa fa-lg fa-envelope-o text-info"></i></a>--}%
+                            });" title="Send remind email" style="cursor: pointer;"><i
+                                    class="material-icons ">&#xE554;</i></a>
+                        </g:else>
                     </td>
                 </tr>
             </g:each>
             </tbody>
         </table>
-
         <script>
+            function ajaxInfoModal(valid) {
+                var header = $("#modal_header_id"),
+                    btn = $("#modal_btn_id"),
+                    header_info_cls = 'modal-header-info',
+                    header_danger_cls = 'modal-header-danger',
+                    btn_info_cls = 'btn-info',
+                    btn_danger_cls = 'btn-danger';
+                if (valid) {
+                    header.removeClass(header_danger_cls);
+                    header.addClass(header_info_cls);
+                    btn.removeClass(btn_danger_cls);
+                    btn.addClass(btn_info_cls);
+                } else {
+                    header.removeClass(header_info_cls);
+                    header.addClass(header_danger_cls);
+                    btn.removeClass(btn_info_cls);
+                    btn.addClass(btn_danger_cls);
+                }
+            }
             function onSendMail(params) {
                 $('body').preloader();
                 $.ajax({
@@ -158,10 +189,13 @@
                 }).done(function (response) {
                     $('body').preloader('remove');
                     $('#sendMailInfo').modal('show');
+                    ajaxInfoModal(true);
                     $('.modal-body').text(response.message);
                 }).fail(function () {
-                    console.log("Something went wrong!");
                     $('body').preloader('remove');
+                    $('#sendMailInfo').modal('show');
+                    ajaxInfoModal(false);
+                    $('.modal-body').text('Something went wrong!');
                 })
             }
         </script>
@@ -170,23 +204,74 @@
              aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
-                    <div class="modal-header modal-header-info">
+                    <div class="modal-header modal-header-info" id="modal_header_id">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
 
-                        <h1><i class="fa fa-lg fa-info-circle"></i> Info Modal</h1>
+                        <h1><i class="fa fa-lg fa-info-circle"></i> Mail Info</h1>
                     </div>
 
                     <div class="modal-body">
                     </div>
 
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-info center-block" data-dismiss="modal"><i
+                        <button type="button" class="btn btn-info center-block" data-dismiss="modal"
+                                id="modal_btn_id"><i
                                 class="fa fa-lg fa-info-circle"></i> Accept</button>
-
                     </div>
-                </div><!-- /.modal-content -->
-            </div><!-- /.modal-dialog -->
-        </div><!-- /.modal -->
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="giveBookItem" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered ">
+                <div class="modal-content modal-lg">
+                    <div class="modal-header modal-header-warning">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+
+                        <h1><i class="fa fa-lg fa-book"></i> Give New Book</h1>
+                    </div>
+
+                    <div class="modal-body" style="height: 300px;">
+                        <div class="col-sm-4">
+                            %{--<img class="poster fade1-show lazyloaded" src="${book.pictureUrl == null ? '/assets/no-photo-6.jpg' : book.pictureUrl.toString()}">--}%
+                            <img height="250" width="200" src="">
+                        </div>
+
+                        <div class="col-sm-8">
+                            %{--<g:each var="book" in="${bookList}"></g:each>--}%
+                            <div class="form-group">
+                                <label for="author_id" class="col-sm-4 control-label">
+                                    Book Item <span class="red-star">*</span>
+                                </label>
+
+                                <div class="col-sm-10">
+                                    <select class="form-control" name="bookItem" id="give_book_id" required>
+                                        <g:each var="bookItem"
+                                                in="${library.items.BookItem.findAllByIsAvailable(true)}">
+                                            <option value="${bookItem.id}"
+                                                    data1="${library.items.Book.findById(bookItem.book.id)}">${library.items.Book.findById(bookItem.book.id).title}</option>
+                                        </g:each>
+                                        <script>
+                                            $('#give_book_id').on('change', function (e) {
+                                                var optionSelected = $('option:selected', this),
+                                                    valueSelected = this.value;
+                                                console.log(this.data1);
+                                            });
+                                        </script>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-warning center-block" data-dismiss="modal"><i
+                                class="fa fa-lg fa-book"></i> Give</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
     </div>
 </div>

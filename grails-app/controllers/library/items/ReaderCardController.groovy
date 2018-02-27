@@ -25,7 +25,7 @@ class ReaderCardController {
         for (int i = 0; i < (int) rentBookItems.toArray().length; i++) {
             def bookItem = BookItem.findById(rentBookItems[i].bookItem.id)
             def book = Book.findById(bookItem.book.id)
-            bookList << [title: book.title, bookSerialNumber: bookItem.bookSerialNumber, rentDate: rentBookItems[i].rentDate, returnBeforeDate: rentBookItems[i].returnBeforeDate, isReturn: rentBookItems[i].isReturn]
+            bookList << [rentBookId: rentBookItems[i].id, title: book.title, bookSerialNumber: bookItem.bookSerialNumber, rentDate: rentBookItems[i].rentDate, returnBeforeDate: rentBookItems[i].returnBeforeDate, isReturn: rentBookItems[i].isReturn]
         }
         [readerCard: readerCardService.get(id), bookList: bookList]
     }
@@ -39,7 +39,7 @@ class ReaderCardController {
         for (int i = 0; i < (int) rentBookItems.toArray().length; i++) {
             def bookItem = BookItem.findById(rentBookItems[i].bookItem.id)
             def book = Book.findById(bookItem.book.id)
-            bookList << [title: book.title, bookSerialNumber: bookItem.bookSerialNumber, rentDate: rentBookItems[i].rentDate, returnBeforeDate: rentBookItems[i].returnBeforeDate, isReturn: rentBookItems[i].isReturn]
+            bookList << [rentBookId: rentBookItems[i].id, title: book.title, bookSerialNumber: bookItem.bookSerialNumber, rentDate: rentBookItems[i].rentDate, returnBeforeDate: rentBookItems[i].returnBeforeDate, isReturn: rentBookItems[i].isReturn]
         }
         respond(view: 'show', [readerCard: readerCardService.get(id), bookList: bookList])
     }

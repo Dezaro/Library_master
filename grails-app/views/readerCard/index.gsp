@@ -69,9 +69,9 @@
                     <td>${readerCard.email}</td>
                     <td><span class="status text-success">&bull;</span> Active</td>
                     <td>
-                        <g:link action="show" id="${readerCard.id}"><i class="material-icons">&#xE3B1;</i></g:link>
+                        <g:link action="show" id="${readerCard.id}" title="Setting"><i class="material-icons">&#xE3B1;</i></g:link>
 
-                        <g:link action="edit" id="${readerCard.id}" class="settings" title="Settings"
+                        <g:link action="edit" id="${readerCard.id}" class="settings" title="Edit"
                                 data-toggle="tooltip"><i
                                 class="material-icons">&#xE8B8;</i></g:link>
 

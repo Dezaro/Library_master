@@ -23,16 +23,18 @@
 *= require datepicker
 *= require preloader
 */
-.custom-form{
+.custom-form {
     color: #566787;
     /*background: #f5f5f5;*/
     font-family: 'Varela Round', sans-serif;
     font-size: 12px;
 }
-.text-color-blues{
+
+.text-color-blues {
     color: #566787;
 }
-.custom-form .form-group{
+
+.custom-form .form-group {
     margin-bottom: 5px;
 }
 
@@ -166,6 +168,14 @@ table.table .avatar {
 }
 
 .text-success {
+    color: #10c469;
+}
+
+.hover-success {
+    color: #0b8045;
+}
+
+.hover-success:hover {
     color: #10c469;
 }
 
@@ -378,7 +388,6 @@ html, body {
     opacity: 1;
 }
 
-
 div.page_wrap {
     min-height: 100%;
     margin-bottom: -550px;
@@ -533,7 +542,7 @@ div.item.backdrop.card2 div.content, div.item.poster div.content {
     padding: 6px 4px;
 }
 
-.red-star{
+.red-star {
     color: red;
 }
 
@@ -631,8 +640,8 @@ div.item.backdrop.card2 div.content, div.item.poster div.content {
 }
 
 .modal-header-success {
-    color:#fff;
-    border-bottom:1px solid #eee;
+    color: #fff;
+    border-bottom: 1px solid #eee;
     background-color: #5cb85c;
     -webkit-border-top-left-radius: 5px;
     -webkit-border-top-right-radius: 5px;
@@ -641,9 +650,10 @@ div.item.backdrop.card2 div.content, div.item.poster div.content {
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
 }
+
 .modal-header-warning {
-    color:#fff;
-    border-bottom:1px solid #eee;
+    color: #fff;
+    border-bottom: 1px solid #eee;
     background-color: #f0ad4e;
     -webkit-border-top-left-radius: 5px;
     -webkit-border-top-right-radius: 5px;
@@ -652,9 +662,10 @@ div.item.backdrop.card2 div.content, div.item.poster div.content {
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
 }
+
 .modal-header-danger {
-    color:#fff;
-    border-bottom:1px solid #eee;
+    color: #fff;
+    border-bottom: 1px solid #eee;
     background-color: #d9534f;
     -webkit-border-top-left-radius: 5px;
     -webkit-border-top-right-radius: 5px;
@@ -663,9 +674,10 @@ div.item.backdrop.card2 div.content, div.item.poster div.content {
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
 }
+
 .modal-header-info {
-    color:#fff;
-    border-bottom:1px solid #eee;
+    color: #fff;
+    border-bottom: 1px solid #eee;
     background-color: #5bc0de;
     -webkit-border-top-left-radius: 5px;
     -webkit-border-top-right-radius: 5px;
@@ -674,9 +686,10 @@ div.item.backdrop.card2 div.content, div.item.poster div.content {
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
 }
+
 .modal-header-primary {
-    color:#fff;
-    border-bottom:1px solid #eee;
+    color: #fff;
+    border-bottom: 1px solid #eee;
     background-color: #428bca;
     -webkit-border-top-left-radius: 5px;
     -webkit-border-top-right-radius: 5px;
