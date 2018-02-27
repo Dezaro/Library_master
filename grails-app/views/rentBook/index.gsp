@@ -67,7 +67,24 @@
                             class="status ${rentBook.isReturn ? 'text-success' : 'text-danger'}">&bull;</span> ${rentBook.isReturn ? 'Returned' : 'Not Returned'}
                     </td>
                     <td>
-
+                        <g:if test="${rentBook.isReturn}">
+                            <span title="Mark as returned" style="cursor: pointer;" disabled readonly><i
+                                    class="material-icons" style="">&#xE065;</i></span>
+                            <span title="Send remind email" style="cursor: pointer;" disabled readonly><i
+                                    class="material-icons ">&#xE554;</i></span>
+                        </g:if>
+                        <g:else>
+                            <a href="/rentBook/returnBook/${rentBook.id}?view=rent" title="Mark as returned"
+                               style="cursor: pointer;"><i
+                                    class="material-icons hover-success">&#xE065;</i></a>
+                            <a onclick="onSendMail({
+                                email: '${library.items.ReaderCard.findById(rentBook.readerCard.id).email}',
+                                book: '${library.items.Book.findById(BookItem.findById(rentBook.bookItem.id).book.id).title}',
+                                returnBeforeDate: '${rentBook.returnBeforeDate}',
+                                name: '${library.items.ReaderCard.findById(rentBook.readerCard.id).readerNames}'
+                            });" title="Send remind email" style="cursor: pointer;"><i
+                                    class="material-icons ">&#xE554;</i></a>
+                        </g:else>
                         <g:link action="edit" id="${rentBook.id}" class="settings" title="Settings"
                                 data-toggle="tooltip"><i
                                 class="material-icons">&#xE8B8;</i></g:link>
@@ -102,6 +119,43 @@
     })(jQuery);
 </g:javascript>
 <script>
+    function ajaxInfoModal(valid) {
+        var header = $("#modal_header_id"),
+            btn = $("#modal_btn_id"),
+            header_info_cls = 'modal-header-info',
+            header_danger_cls = 'modal-header-danger',
+            btn_info_cls = 'btn-info',
+            btn_danger_cls = 'btn-danger';
+        if (valid) {
+            header.removeClass(header_danger_cls);
+            header.addClass(header_info_cls);
+            btn.removeClass(btn_danger_cls);
+            btn.addClass(btn_info_cls);
+        } else {
+            header.removeClass(header_info_cls);
+            header.addClass(header_danger_cls);
+            btn.removeClass(btn_info_cls);
+            btn.addClass(btn_danger_cls);
+        }
+    }
+    function onSendMail(params) {
+        $('body').preloader();
+        $.ajax({
+            method: 'POST',
+            url: '/emailSender/send',
+            data: params
+        }).done(function (response) {
+            $('body').preloader('remove');
+            $('#sendMailInfo').modal('show');
+            ajaxInfoModal(true);
+            $('.modal-body').text(response.message);
+        }).fail(function () {
+            $('body').preloader('remove');
+            $('#sendMailInfo').modal('show');
+            ajaxInfoModal(false);
+            $('.modal-body').text('Something went wrong!');
+        })
+    }
     function submitForm() {
         var rentBook_id = document.getElementsByName('rentBook_id')[0].value,
             rentBook_form = document.getElementById('form_' + rentBook_id);
@@ -109,6 +163,27 @@
     }
 </script>
 
+<div class="modal fade" id="sendMailInfo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header modal-header-info" id="modal_header_id">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+
+                <h1><i class="fa fa-lg fa-info-circle"></i> Mail Info</h1>
+            </div>
+
+            <div class="modal-body">
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-info center-block" data-dismiss="modal"
+                        id="modal_btn_id"><i
+                        class="fa fa-lg fa-info-circle"></i> Accept</button>
+            </div>
+        </div>
+    </div>
+</div>
 <div id="deleteModal" class="modal fade">
     <div class="modal-dialog modal-confirm">
         <div class="modal-content">

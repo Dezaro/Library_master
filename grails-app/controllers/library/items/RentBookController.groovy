@@ -40,7 +40,7 @@ class RentBookController {
         use(TimeCategory) {
             rentBook.returnBeforeDate = new Date() + 2.month
         }
-        RentBookService.save(rentBook)
+        rentBookService.save(rentBook)
         respond rentBook
     }
 
@@ -50,7 +50,22 @@ class RentBookController {
         rentBook.isReturn = Boolean.TRUE
         rentBook.returnDate = new Date()
         rentBookService.save(rentBook)
-        redirect(controller: "readerCard", action: "show", id: rentBook.readerCard.id)
+        if(params.view == 'rent'){
+            redirect(action: "index")
+        }else {
+            redirect(controller: "readerCard", action: "show", id: rentBook.readerCard.id)
+        }
+    }
+    // TODO fix bug with book item availability
+    def void changeAvailability(RentBook rentBook){
+        def bookItem
+        bookItem = BookItem.findById(rentBook.bookItem.id)
+        if (rentBook.isReturn == true) {
+            bookItem.isAvailable = Boolean.TRUE
+        } else {
+            bookItem.isAvailable = Boolean.FALSE
+        }
+        bookItemService.save(bookItem)
     }
 
     def create() {
@@ -58,7 +73,6 @@ class RentBookController {
     }
 
     def save(RentBook rentBook) {
-        def bookItem
         if (rentBook == null) {
             notFound()
             return
@@ -66,13 +80,6 @@ class RentBookController {
 
         try {
             rentBookService.save(rentBook)
-            bookItem = BookItem.findById(rentBook.bookItem.id)
-            if (rentBook.isReturn == Boolean.TRUE) {
-                bookItem.isAvailable = Boolean.TRUE
-            } else {
-                bookItem.isAvailable = Boolean.FALSE
-            }
-            bookItemService.save(bookItem)
         } catch (ValidationException e) {
             respond rentBook.errors, view:'create'
             return
