@@ -14,7 +14,8 @@ class EmailSenderController {
             html "<p>Hello " + params.name + ",</p> <p>we remind you that you have to return the book <span style='color:#ff0000; font-weight: bold'>'" + params.book + "'</span> to date <span style='color:#ff0000; font-weight: bold'>" + params.returnBeforeDate + "</span>.</p> <p>Best regards,</p> <p> Library</p>"
         }
 
-        flash.message = "Message sent at " + new Date()
-        redirect controller: 'home', action:"index"
+//        flash.message = "Message sent at " + new Date()
+        respond ([message: "Message sent at " + new Date()], formats: ['json'])
+//        redirect controller: 'home', action:"index"
     }
 }

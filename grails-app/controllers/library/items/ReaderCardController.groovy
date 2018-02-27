@@ -17,7 +17,6 @@ class ReaderCardController {
     }
 
     def show(Long id) {
-//        respond readerCardService.get(id)
         def rentBookItems
         def readerCard
         def bookList = []
@@ -26,36 +25,38 @@ class ReaderCardController {
         for (int i = 0; i < (int) rentBookItems.toArray().length; i++) {
             def bookItem = BookItem.findById(rentBookItems[i].bookItem.id)
             def book = Book.findById(bookItem.book.id)
-            bookList << [title: book.title, bookSerialNumber: bookItem.bookSerialNumber, rentDate: rentBookItems[i].rentDate, returnBeforeDate: rentBookItems[i].returnBeforeDate]
+            bookList << [title: book.title, bookSerialNumber: bookItem.bookSerialNumber, rentDate: rentBookItems[i].rentDate, returnBeforeDate: rentBookItems[i].returnBeforeDate, isReturn: rentBookItems[i].isReturn]
         }
-//        [rentBookItems: rentBookItems]
-        respond(view: 'show', [readerCard: readerCardService.get(id), bookList: bookList])
-//        respond bookList, formats: ['json']
+        [readerCard: readerCardService.get(id), bookList: bookList]
     }
 
     def showAllNotReturnedBooks(Long id) {
         def rentBookItems
         def readerCard
-        readerCard = ReaderCard.findById(id)
-        rentBookItems = RentBook.findAllByReaderCardAndIsReturn(readerCard, false)
-        [rentBookItems: rentBookItems]
-    }
-
-    def showAllGivenBooks(Long id) {
-        def rentBookItems
-        def readerCard
         def bookList = []
         readerCard = ReaderCard.findById(id)
-        rentBookItems = RentBook.findAllByReaderCard(readerCard)
+        rentBookItems = RentBook.findAllByReaderCardAndIsReturn(readerCard, false)
         for (int i = 0; i < (int) rentBookItems.toArray().length; i++) {
             def bookItem = BookItem.findById(rentBookItems[i].bookItem.id)
             def book = Book.findById(bookItem.book.id)
-            bookList << [title: book.title, bookSerialNumber: bookItem.bookSerialNumber, rentDate: rentBookItems[i].rentDate, returnBeforeDate: rentBookItems[i].returnBeforeDate]
+            bookList << [title: book.title, bookSerialNumber: bookItem.bookSerialNumber, rentDate: rentBookItems[i].rentDate, returnBeforeDate: rentBookItems[i].returnBeforeDate, isReturn: rentBookItems[i].isReturn]
         }
-//        [rentBookItems: rentBookItems]
         respond(view: 'show', [readerCard: readerCardService.get(id), bookList: bookList])
-//        respond bookList, formats: ['json']
     }
+
+//    def showAllGivenBooks(Long id) {
+//        def rentBookItems
+//        def readerCard
+//        def bookList = []
+//        readerCard = ReaderCard.findById(id)
+//        rentBookItems = RentBook.findAllByReaderCard(readerCard)
+//        for (int i = 0; i < (int) rentBookItems.toArray().length; i++) {
+//            def bookItem = BookItem.findById(rentBookItems[i].bookItem.id)
+//            def book = Book.findById(bookItem.book.id)
+//            bookList << [title: book.title, bookSerialNumber: bookItem.bookSerialNumber, rentDate: rentBookItems[i].rentDate, returnBeforeDate: rentBookItems[i].returnBeforeDate]
+//        }
+//        respond(view: 'show', [readerCard: readerCardService.get(id), bookList: bookList])
+//    }
 
     def create() {
         respond new ReaderCard(params)

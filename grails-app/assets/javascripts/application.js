@@ -11,6 +11,7 @@
 //= require bootstrap-datepicker
 //= require_tree .
 //= require_self
+//= require jquery.preload.min
 
 if (typeof jQuery !== 'undefined') {
     (function($) {
