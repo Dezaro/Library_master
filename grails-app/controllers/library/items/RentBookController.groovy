@@ -3,6 +3,7 @@ package library.items
 import grails.plugin.springsecurity.annotation.Secured
 import grails.validation.ValidationException
 import static org.springframework.http.HttpStatus.*
+import groovy.time.TimeCategory
 
 @Secured(['ROLE_ADMIN'])
 class RentBookController {
@@ -14,6 +15,7 @@ class RentBookController {
 
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
+     //   respond rentBookService.list(params), formats: ['json']
         respond rentBookService.list(params), model:[rentBookCount: rentBookService.count()]
     }
 
@@ -24,7 +26,22 @@ class RentBookController {
     def showAllNotReturned(Integer max) {
         def notReturnedList
         notReturnedList = RentBook.findAllByIsReturn(false,[sort: "returnBeforeDate", order: "asc"]);
-        [notReturnedList: notReturnedList]
+//        [rentBookList: notReturnedList]
+        respond(view: 'index', [rentBookList: notReturnedList])
+    }
+
+    def giveBook(){
+        def rentBook
+        rentBook = new RentBook()
+        rentBook.readerCard = params.readerCardId
+        rentBook.bookItem = params.bookItemId
+        rentBook.rentDate = new Date()
+        rentBook.isReturn = Boolean.FALSE
+        use(TimeCategory) {
+            rentBook.returnBeforeDate = new Date() + 2.month
+        }
+        RentBookService.save(rentBook)
+        respond rentBook
     }
 
     def returnBook(Long id){
