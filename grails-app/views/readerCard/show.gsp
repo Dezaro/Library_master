@@ -32,7 +32,6 @@
         <g:if test="${flash.message}">
             <div class="message" role="status">${flash.message}</div>
         </g:if>
-    %{--<f:display bean="readerCard" style="float: right;"/>--}%
         <div class="row">
             <div class="col-sm-6">
                 <div style="margin-top: 15px;">Card Number</div>
@@ -115,16 +114,6 @@
     </div>
 
     <div class="col-sm-8">
-        <script>
-            $('#given_books_table_id').on('click', 'tbody tr', function (event) {
-                console.log('asdasd');
-//                if($(this).hasClass('active')){
-//                    $(this).removeClass('active');
-//                } else {
-//                    $(this).addClass('active').siblings().removeClass('active');
-//                }
-            });
-        </script>
         <table class="table table-condensed table-striped table-hover" id="#given_books_table_id">
             <thead>
             <tr>
@@ -167,14 +156,13 @@
                     url: '/emailSender/send',
                     data: params
                 }).done(function (response) {
-                    $('body').preloader('remove')
+                    $('body').preloader('remove');
                     $('#sendMailInfo').modal('show');
                     $('.modal-body').text(response.message);
                 }).fail(function () {
                     console.log("Something went wrong!");
-                }).always(function () {
-
-                });
+                    $('body').preloader('remove');
+                })
             }
         </script>
 
@@ -192,8 +180,9 @@
                     </div>
 
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-info pull-left" data-dismiss="modal"><i
+                        <button type="button" class="btn btn-info center-block" data-dismiss="modal"><i
                                 class="fa fa-lg fa-info-circle"></i> Accept</button>
+
                     </div>
                 </div><!-- /.modal-content -->
             </div><!-- /.modal-dialog -->
