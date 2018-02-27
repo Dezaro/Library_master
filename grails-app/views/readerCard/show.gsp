@@ -235,13 +235,13 @@
                     <div class="modal-body" style="height: 300px;">
                         <div class="col-sm-4">
                             %{--<img class="poster fade1-show lazyloaded" src="${book.pictureUrl == null ? '/assets/no-photo-6.jpg' : book.pictureUrl.toString()}">--}%
-                            <img height="250" width="200" src="">
+                            <img height="250" width="200" id="info_picture_id" src="">
                         </div>
 
                         <div class="col-sm-8">
                             %{--<g:each var="book" in="${bookList}"></g:each>--}%
                             <div class="form-group">
-                                <label for="author_id" class="col-sm-4 control-label">
+                                <label for="give_book_id" class="col-sm-4 control-label">
                                     Book Item <span class="red-star">*</span>
                                 </label>
 
@@ -249,14 +249,24 @@
                                     <select class="form-control" name="bookItem" id="give_book_id" required>
                                         <g:each var="bookItem"
                                                 in="${library.items.BookItem.findAllByIsAvailable(true)}">
+                                            <g:set var="book"
+                                                   value="${library.items.Book.findById(bookItem.book.id)}"></g:set>
                                             <option value="${bookItem.id}"
-                                                    data1="${library.items.Book.findById(bookItem.book.id)}">${library.items.Book.findById(bookItem.book.id).title}</option>
+                                                    data-book='{"pictureUrl": "${book.pictureUrl}", "description": "${book.description}"}'
+                                                    data-description="${book.description}"
+                                                    data-publisher="${book.publisher}"
+                                                    data-publishedDate="${book.publishedDate}"
+                                                    data-pictureUrl="${book.pictureUrl}">${book.title}</option>
                                         </g:each>
                                         <script>
                                             $('#give_book_id').on('change', function (e) {
                                                 var optionSelected = $('option:selected', this),
-                                                    valueSelected = this.value;
-                                                console.log(this.data1);
+                                                    valueSelected = this.value,
+//                                                    book = JSON.parse(optionSelected.data('book')),
+                                                    text = optionSelected.text();
+//                                                $("#info_picture_id").attr('src', optionSelected.data('pictureUrl'));
+//                                                console.log(book);
+                                                console.log(optionSelected.data('book').pictureUrl);
                                             });
                                         </script>
                                     </select>
