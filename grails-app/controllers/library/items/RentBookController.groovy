@@ -27,6 +27,15 @@ class RentBookController {
         [notReturnedList: notReturnedList]
     }
 
+    def returnBook(Long id){
+        def rentBook
+        rentBook = RentBook.findById(id)
+        rentBook.isReturn = Boolean.TRUE
+        rentBook.returnDate = new Date()
+        rentBookService.save(rentBook)
+        redirect(controller: "readerCard", action: "show", id: rentBook.readerCard.id)
+    }
+
     def create() {
         respond new RentBook(params)
     }

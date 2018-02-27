@@ -31,6 +31,8 @@
                 <th>Title</th>
                 <th>Published date</th>
                 <th>ISBN</th>
+                <th>Author</th>
+                <th>Category</th>
                 <th>Description</th>
                 <th>Publisher</th>
                 <th>Page number</th>
@@ -45,12 +47,21 @@
                             src="${book.pictureUrl == null ? '/assets/no-photo-6.jpg' : book.pictureUrl.toString()}"
                             height="45" width="45" class="avatar"
                             alt="Avatar"/> ${book.title}</g:link></td>
-                    <td>${book.publishedDate}</td>
+                    <td><g:formatDate date="${book.publishedDate}" type="date" style="MEDIUM"/></td>
                     <td>${book.isbn}</td>
+                    <td>${book.author.authorName}</td>
+                    <td>${book.category.categoryName}</td>
                     <td>${book.description}</td>
                     <td>${book.publisher}</td>
                     <td>${book.pageNumber}</td>
-                    <td><span class="status text-success">&bull;</span> Active</td>
+                    <td>
+                        <g:if test="${book.availability > 0}">
+                        <span class="status text-success">&bull;</span> Available
+                        </g:if>
+                        <g:else>
+                            <span class="status text-danger">&bull;</span> Not Available
+                        </g:else>
+                    </td>
                     <td>
                         <g:link action="edit" id="${book.id}" class="settings" title="Settings" data-toggle="tooltip"><i
                                 class="material-icons">&#xE8B8;</i></g:link>
