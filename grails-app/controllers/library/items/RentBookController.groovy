@@ -130,14 +130,18 @@ class RentBookController {
 
     def delete(Long id) {
         def rentBook
+
         if (id == null) {
             notFound()
             return
         }
 
-        rentBookService.delete(id)
         rentBook = RentBook.findById(id)
+        rentBook.setIsReturn(true)
+        rentBookService.save(rentBook)
         changeAvailability(rentBook)
+
+        rentBookService.delete(id)
 
         request.withFormat {
             form multipartForm {

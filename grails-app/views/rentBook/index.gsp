@@ -93,7 +93,7 @@
                            data-rentBook-id="${rentBook.id}"><i
                                 class="material-icons">&#xE5C9;</i></a>
 
-                        <form id="form_${rentBook.id}" action="/rentBook/delete/${rentBook.id}" method="post">
+                        <form id="form_${rentBook.id}" action="/rentBook/delete/${rentBook.id}" method="POST">
                             <input type="hidden" name="_method" value="DELETE" id="_method_${rentBook.id}">
                         </form>
                     </td>
@@ -107,61 +107,6 @@
         </div>
     </div>
 </div>
-<g:javascript library='jquery'>
-    (function ($) {
-        $(document).ready(function () {
-            $('#deleteModal').on('show.bs.modal', function (e) {
-                var rentBook_id = $(e.relatedTarget).data('rentBook-id');
-                $(e.currentTarget).find('input[name="rentBook_id"]').val(rentBook_id);
-            });
-        });
-
-    })(jQuery);
-</g:javascript>
-<script>
-    function ajaxInfoModal(valid) {
-        var header = $("#modal_header_id"),
-            btn = $("#modal_btn_id"),
-            header_info_cls = 'modal-header-info',
-            header_danger_cls = 'modal-header-danger',
-            btn_info_cls = 'btn-info',
-            btn_danger_cls = 'btn-danger';
-        if (valid) {
-            header.removeClass(header_danger_cls);
-            header.addClass(header_info_cls);
-            btn.removeClass(btn_danger_cls);
-            btn.addClass(btn_info_cls);
-        } else {
-            header.removeClass(header_info_cls);
-            header.addClass(header_danger_cls);
-            btn.removeClass(btn_info_cls);
-            btn.addClass(btn_danger_cls);
-        }
-    }
-    function onSendMail(params) {
-        $('body').preloader();
-        $.ajax({
-            method: 'POST',
-            url: '/emailSender/send',
-            data: params
-        }).done(function (response) {
-            $('body').preloader('remove');
-            $('#sendMailInfo').modal('show');
-            ajaxInfoModal(true);
-            $('.modal-body').text(response.message);
-        }).fail(function () {
-            $('body').preloader('remove');
-            $('#sendMailInfo').modal('show');
-            ajaxInfoModal(false);
-            $('.modal-body').text('Something went wrong!');
-        })
-    }
-    function submitForm() {
-        var rentBook_id = document.getElementsByName('rentBook_id')[0].value,
-            rentBook_form = document.getElementById('form_' + rentBook_id);
-        rentBook_form.submit();
-    }
-</script>
 
 <div class="modal fade" id="sendMailInfo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
      aria-hidden="true">
@@ -208,5 +153,53 @@
         </div>
     </div>
 </div>
+<script>
+    $('#deleteModal').on('show.bs.modal', function (e) {
+        var rentBook_id = $(e.relatedTarget).data('rentbook-id');
+        $(e.currentTarget).find('input[name="rentBook_id"]').val(rentBook_id);
+    });
+    function ajaxInfoModal(valid) {
+        var header = $("#modal_header_id"),
+            btn = $("#modal_btn_id"),
+            header_info_cls = 'modal-header-info',
+            header_danger_cls = 'modal-header-danger',
+            btn_info_cls = 'btn-info',
+            btn_danger_cls = 'btn-danger';
+        if (valid) {
+            header.removeClass(header_danger_cls);
+            header.addClass(header_info_cls);
+            btn.removeClass(btn_danger_cls);
+            btn.addClass(btn_info_cls);
+        } else {
+            header.removeClass(header_info_cls);
+            header.addClass(header_danger_cls);
+            btn.removeClass(btn_info_cls);
+            btn.addClass(btn_danger_cls);
+        }
+    }
+    function onSendMail(params) {
+        $('body').preloader();
+        $.ajax({
+            method: 'POST',
+            url: '/emailSender/send',
+            data: params
+        }).done(function (response) {
+            $('body').preloader('remove');
+            $('#sendMailInfo').modal('show');
+            ajaxInfoModal(true);
+            $('.modal-body').text(response.message);
+        }).fail(function () {
+            $('body').preloader('remove');
+            $('#sendMailInfo').modal('show');
+            ajaxInfoModal(false);
+            $('.modal-body').text('Something went wrong!');
+        })
+    }
+    function submitForm() {
+        var rentBook_id = document.getElementsByName('rentBook_id')[0].value,
+            rentBook_form = document.getElementById('form_' + rentBook_id);
+           rentBook_form.submit();
+    }
+</script>
 </body>
 </html>
