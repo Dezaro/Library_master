@@ -67,26 +67,28 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="rent_date_id" class="col-sm-4 control-label">
+                    <label for="rentDate" class="col-sm-4 control-label">
                         Given on date
                     </label>
 
                     <div class="col-sm-10">
-                        <input type="date" min="01-01-1800" id="rent_date_id" name="rentDate"
-                               class="form-control"
-                               value="${rentBook.rentDate}"/>
+                        %{--<input type="date" min="01-01-1800" id="rent_date_id" name="rentDate"--}%
+                               %{--class="form-control"--}%
+                               %{--value="${rentBook.rentDate}"/>--}%
+                        <g:datePicker name="rentDate" precision="day" value="${rentBook.rentDate}"/>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label for="return_before_date_id" class="col-sm-4 control-label">
+                    <label for="returnBeforeDate" class="col-sm-4 control-label">
                         To be return before date
                     </label>
 
                     <div class="col-sm-10">
-                        <input type="date" min="01-01-1800" id="return_before_date_id" name="rentDate"
-                               class="form-control"
-                               value="${rentBook.returnBeforeDate}"/>
+                        %{--<input type="date" min="01-01-1800" id="return_before_date_id" name="rentDate"--}%
+                               %{--class="form-control"--}%
+                               %{--value="${rentBook.returnBeforeDate}"/>--}%
+                        <g:datePicker name="returnBeforeDate" precision="day" value="${rentBook.returnBeforeDate}"/>
                     </div>
                 </div>
 
@@ -101,14 +103,15 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="return_date_id" class="col-sm-4 control-label">
+                    <label for="returnDate" class="col-sm-4 control-label">
                         Returned on
                     </label>
 
                     <div class="col-sm-10">
-                        <input type="date" min="01-01-1800" id="return_date_id" name="rentDate"
-                               class="form-control"
-                               value="${rentBook.returnDate}"/>
+                        %{--<input type="date" min="01-01-1800" id="return_date_id" name="rentDate"--}%
+                               %{--class="form-control"--}%
+                               %{--value="${rentBook.returnDate}"/>--}%
+                        <g:datePicker name="returnDate" precision="day" value="${rentBook.returnDate}"/>
                     </div>
                 </div>
 

@@ -119,13 +119,7 @@ class RentBookController {
             return
         }
 
-        request.withFormat {
-            form multipartForm {
-                flash.message = message(code: 'default.updated.message', args: [message(code: 'rentBook.label', default: 'RentBook'), rentBook.id])
-                redirect rentBook
-            }
-            '*' { respond rentBook, [status: OK] }
-        }
+        redirect(action: 'index')
     }
 
     def delete(Long id) {

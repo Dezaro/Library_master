@@ -64,13 +64,21 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="publish_date_id" class="col-sm-4 control-label">
+                    <label for="publishedDate" class="col-sm-4 control-label">
                         Published Date
                     </label>
 
                     <div class="col-sm-10">
-                        <input type="date" min="01-01-1800"  id="publish_date_id" name="publishedDate" class="form-control"
-                               value="${book.publishedDate}"/>
+                        %{--publish_date_id:date.struct--}%
+                        %{--publish_date_id_day:28--}%
+                        %{--publish_date_id_month:2--}%
+                        %{--publish_date_id_year:2018--}%
+                        %{--<input type="date" min="01-01-1800"  id="publish_date_id" name="publishedDate" class="form-control"--}%
+                               %{--value="${book.publishedDate}"/>--}%
+                        <g:datePicker name="publishedDate" precision="day" value="${book.publishedDate}"/>
+                        <script>
+
+                        </script>
                     </div>
                 </div>
 

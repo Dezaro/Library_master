@@ -32,8 +32,8 @@
 
                 <div class="col-sm-7">
                     %{--<g:link class="btn btn-primary" action="create"><i--}%
-                            %{--class="material-icons">&#xE147;</i><span><g:message code="default.new.label"--}%
-                                                                                %{--args="[entityName]"/></span></g:link>--}%
+                    %{--class="material-icons">&#xE147;</i><span><g:message code="default.new.label"--}%
+                    %{--args="[entityName]"/></span></g:link>--}%
                 </div>
             </div>
         </div>
@@ -54,13 +54,15 @@
             <g:each var="rentBook" in="${rentBookList}">
                 <tr>
                     <td><g:link controller="readerCard" action="show" id="${rentBook.readerCard.id}"><img
-                            src="/assets/card_reader.png"
+                            src="${library.items.Book.findById(BookItem.findById(rentBook.bookItem.id).book.id).pictureUrl == null ? '/assets/no-photo-6.jpg' : library.items.Book.findById(BookItem.findById(rentBook.bookItem.id).book.id).pictureUrl}"
                             height="45" width="45" class="avatar"
                             alt="avatar"/> ${library.items.ReaderCard.findById(rentBook.readerCard.id).cardNumber} - ${library.items.ReaderCard.findById(rentBook.readerCard.id).readerNames}</g:link>
                     </td>
                     <td>${library.items.Book.findById(BookItem.findById(rentBook.bookItem.id).book.id).title}</td>
                     <td>${library.items.BookItem.findById(rentBook.bookItem.id).bookSerialNumber}</td>
-                    <td><g:formatDate date="${rentBook.rentDate}" type="date" style="MEDIUM"/></td>
+                    <td>
+                        <g:formatDate value="${rentBook.rentDate}" type="date" style="MEDIUM"/>
+                    </td>
                     <td><g:formatDate date="${rentBook.returnBeforeDate}" type="date" style="MEDIUM"/></td>
                     <td><g:formatDate date="${rentBook.returnDate}" type="date" style="MEDIUM"/></td>
                     <td style="padding: 0 !important;"><span
@@ -129,6 +131,7 @@
         </div>
     </div>
 </div>
+
 <div id="deleteModal" class="modal fade">
     <div class="modal-dialog modal-confirm">
         <div class="modal-content">
@@ -198,7 +201,7 @@
     function submitForm() {
         var rentBook_id = document.getElementsByName('rentBook_id')[0].value,
             rentBook_form = document.getElementById('form_' + rentBook_id);
-           rentBook_form.submit();
+        rentBook_form.submit();
     }
 </script>
 </body>
