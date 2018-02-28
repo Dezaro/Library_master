@@ -15,8 +15,8 @@ class RentBookController {
 
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
-     //   respond rentBookService.list(params), formats: ['json']
-        respond rentBookService.list(params), model:[rentBookCount: rentBookService.count()]
+        //   respond rentBookService.list(params), formats: ['json']
+        respond rentBookService.list(params), model: [rentBookCount: rentBookService.count()]
     }
 
     def show(Long id) {
@@ -25,48 +25,48 @@ class RentBookController {
 
     def showAllNotReturned(Integer max) {
         def notReturnedList
-        notReturnedList = RentBook.findAllByIsReturn(false,[sort: "returnBeforeDate", order: "asc"]);
+        notReturnedList = RentBook.findAllByIsReturn(false, [sort: "returnBeforeDate", order: "asc"]);
 //        [rentBookList: notReturnedList]
         respond(view: 'index', [rentBookList: notReturnedList])
     }
 
-    def giveBook(){
+    def giveBook() {
         def rentBook
         def readerCard
         def bookItem
         rentBook = new RentBook()
-        readerCard = ReaderCard.findById((Long) params.readerCardId)
-        bookItem = BookItem.findById((Long) params.bookItemId)
-        rentBook.readerCard.id = readerCard.id
-        rentBook.bookItem.id = bookItem.id
-        rentBook.rentDate = new Date()
-        rentBook.isReturn = Boolean.FALSE
+        readerCard = ReaderCard.findById(params.readerCardId.toLong())
+        bookItem = BookItem.findById(params.bookItemId.toLong())
+        rentBook.setReaderCard(readerCard)
+        rentBook.setBookItem(bookItem)
+        rentBook.setRentDate(new Date())
+        rentBook.setIsReturn(false)
         use(TimeCategory) {
-            rentBook.returnBeforeDate = new Date() + 2.month
+            rentBook.setReturnBeforeDate(new Date() + 2.month)
         }
         rentBookService.save(rentBook)
         changeAvailability(rentBook)
-        redirect(controller: "readerCard", action: "show", id: readerCard.id)
+        redirect(controller: "readerCard", action: "show", id: params.readerCardId)
     }
 
-    def returnBook(Long id){
+    def returnBook(Long id) {
         def rentBook
         rentBook = RentBook.findById(id)
         rentBook.isReturn = Boolean.TRUE
         rentBook.returnDate = new Date()
         rentBookService.save(rentBook)
         changeAvailability(rentBook)
-        if(params.view == 'rent'){
+        if (params.view == 'rent') {
             redirect(action: "index")
-        }else {
+        } else {
             redirect(controller: "readerCard", action: "show", id: rentBook.readerCard.id)
         }
     }
 
-    def void changeAvailability(RentBook rentBook){
+    void changeAvailability(RentBook rentBook) {
         def bookItem
         bookItem = BookItem.findById(rentBook.bookItem.id)
-        if (rentBook.isReturn == true) {
+        if (rentBook.isReturn) {
             bookItem.isAvailable = Boolean.TRUE
         } else {
             bookItem.isAvailable = Boolean.FALSE
@@ -88,7 +88,7 @@ class RentBookController {
             rentBookService.save(rentBook)
             changeAvailability(rentBook)
         } catch (ValidationException e) {
-            respond rentBook.errors, view:'create'
+            respond rentBook.errors, view: 'create'
             return
         }
 
@@ -115,7 +115,7 @@ class RentBookController {
             rentBookService.save(rentBook)
             changeAvailability(rentBook)
         } catch (ValidationException e) {
-            respond rentBook.errors, view:'edit'
+            respond rentBook.errors, view: 'edit'
             return
         }
 
@@ -124,7 +124,7 @@ class RentBookController {
                 flash.message = message(code: 'default.updated.message', args: [message(code: 'rentBook.label', default: 'RentBook'), rentBook.id])
                 redirect rentBook
             }
-            '*'{ respond rentBook, [status: OK] }
+            '*' { respond rentBook, [status: OK] }
         }
     }
 
@@ -142,9 +142,9 @@ class RentBookController {
         request.withFormat {
             form multipartForm {
                 flash.message = message(code: 'default.deleted.message', args: [message(code: 'rentBook.label', default: 'RentBook'), id])
-                redirect action:"index", method:"GET"
+                redirect action: "index", method: "GET"
             }
-            '*'{ render status: NO_CONTENT }
+            '*' { render status: NO_CONTENT }
         }
     }
 
@@ -154,7 +154,7 @@ class RentBookController {
                 flash.message = message(code: 'default.not.found.message', args: [message(code: 'rentBook.label', default: 'RentBook'), params.id])
                 redirect action: "index", method: "GET"
             }
-            '*'{ render status: NOT_FOUND }
+            '*' { render status: NOT_FOUND }
         }
     }
 }

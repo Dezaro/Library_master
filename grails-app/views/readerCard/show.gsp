@@ -222,69 +222,140 @@
             </div>
         </div>
 
-        <div class="modal fade" id="giveBookItem" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-             aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered ">
-                <div class="modal-content modal-lg">
-                    <div class="modal-header modal-header-warning">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    </div>
+</div>
+</div>
 
-                        <h1><i class="fa fa-lg fa-book"></i> Give New Book</h1>
-                    </div>
+<div class="modal fade modal-backdrop1" id="giveBookItem" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered ">
+        <div class="modal-content modal-lg">
+            <div class="modal-header modal-header-warning">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
 
-                    <div class="modal-body" style="height: 300px;">
-                        <div class="col-sm-4">
-                            %{--<img class="poster fade1-show lazyloaded" src="${book.pictureUrl == null ? '/assets/no-photo-6.jpg' : book.pictureUrl.toString()}">--}%
-                            <img height="250" width="200" id="info_picture_id" src="">
-                        </div>
+                <h1><i class="fa fa-lg fa-book"></i> Give New Book</h1>
+            </div>
 
-                        <div class="col-sm-8">
-                            %{--<g:each var="book" in="${bookList}"></g:each>--}%
-                            <div class="form-group">
-                                <label for="give_book_id" class="col-sm-4 control-label">
-                                    Book Item <span class="red-star">*</span>
-                                </label>
+            <div class="modal-body" style="height: 350px;">
+                <div class="col-sm-4">
+                    %{--<img class="poster fade1-show lazyloaded" src="${book.pictureUrl == null ? '/assets/no-photo-6.jpg' : book.pictureUrl.toString()}">--}%
+                    <img height="300" width="250" id="info_picture_id" src="/assets/no-photo-6.jpg">
+                </div>
 
-                                <div class="col-sm-10">
-                                    <select class="form-control" name="bookItem" id="give_book_id" required>
-                                        <g:each var="bookItem"
-                                                in="${library.items.BookItem.findAllByIsAvailable(true)}">
-                                            <g:set var="book"
-                                                   value="${library.items.Book.findById(bookItem.book.id)}"></g:set>
-                                            <option value="${bookItem.id}"
-                                                    data-book='{"pictureUrl": "${book.pictureUrl}", "description": "${book.description}"}'
-                                                    data-description="${book.description}"
-                                                    data-publisher="${book.publisher}"
-                                                    data-publishedDate="${book.publishedDate}"
-                                                    data-pictureUrl="${book.pictureUrl}">${book.title}</option>
-                                        </g:each>
-                                        <script>
-                                            $('#give_book_id').on('change', function (e) {
-                                                var optionSelected = $('option:selected', this),
-                                                    valueSelected = this.value,
-//                                                    book = JSON.parse(optionSelected.data('book')),
-                                                    text = optionSelected.text();
-//                                                $("#info_picture_id").attr('src', optionSelected.data('pictureUrl'));
-//                                                console.log(book);
-                                                console.log(optionSelected.data('book').pictureUrl);
-                                            });
-                                        </script>
-                                    </select>
+                <div class="col-sm-8">
+                    %{--<g:each var="book" in="${bookList}"></g:each>--}%
+                    <div>
+                        <label for="give_book_id" class="col-sm-4 control-label">
+                            Book Item <span class="red-star">*</span>
+                        </label>
+
+                        <div class="col-sm-12">
+                            <select class="form-control" name="bookItem" id="give_book_id" required>
+                                <option value="default">-- Select book to give --</option>
+                                <g:each var="bookItem"
+                                        in="${library.items.BookItem.findAllByIsAvailable(true)}">
+                                    <g:set var="book"
+                                           value="${library.items.Book.findById(bookItem.book.id)}"></g:set>
+                                    <option value="${bookItem.id}"
+                                            data-book='{"title": "${book.title}",
+                                                     "description": "${book.description}",
+                                                     "publisher": "${book.publisher}",
+                                                     "publishedDate": "${book.publishedDate}",
+                                                     "pictureUrl": "${book.pictureUrl}"}'>${book.title}</option>
+                                </g:each>
+                            </select>
+
+                            <div class="col-sm-12">
+                                <div class="row">
+                                    <div class="text-color-blues col-sm-12"
+                                         style="float:left;display: inline-block; margin-top: 20px;">
+                                        <h1>Selected Book</h1>
+                                    </div>
+                                </div>
+                                <hr/>
+
+                                <div class="row" style="margin-top: 10px;">
+                                    <div class="col-sm-4">Title</div>
+
+                                    <div class="col-sm-8 text-warning1" id="give_title_id"></div>
+                                </div>
+
+                                <div class="row" style="margin-top: 10px;">
+                                    <div class="col-sm-4">Publisher</div>
+
+                                    <div class="col-sm-8 text-warning1" id="give_publisher_id"></div>
+                                </div>
+
+                                <div class="row" style="margin-top: 10px;">
+                                    <div class="col-sm-4">Published Date</div>
+
+                                    <div class="col-sm-8 text-warning1" id="give_published_date_id"></div>
+                                </div>
+
+                                <div class="row" style="margin-top: 10px;">
+                                    <div class="col-sm-4">Description</div>
+
+                                    <div class="col-sm-8 text-warning1" id="give_description_id"
+                                         style="max-height: 100px; overflow: auto;"></div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
 
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-warning center-block" data-dismiss="modal"><i
-                                class="fa fa-lg fa-book"></i> Give</button>
+                            <script>
+                                //                                $('#giveBookItem').on('show.bs.modal', function (e) {
+                                //                                    $('.modal-backdrop1').appendTo('body');
+                                //                                });
+
+                                $('body').on('click', '#give_btn_id', function () {
+                                    var optionSelected = $('#give_book_id').find('option:selected'),
+                                        valueSelected = optionSelected.val(),
+                                        book = optionSelected.data('book');
+                                    console.log(valueSelected, book);
+//                                    $("#give_title_id").text(book['title']);
+                                });
+
+                                $('#give_book_id').on('change', function (e) {
+                                    var optionSelected = $('option:selected', this),
+                                        valueSelected = this.value,
+                                        book = optionSelected.data('book');
+                                    if (valueSelected !== 'default') {
+                                        $("#give_btn_id").prop('disabled', false);
+                                        $("#book_item_id").val(valueSelected);
+                                        $("#info_picture_id").attr('src', book['pictureUrl'] !== '' ? book['pictureUrl'] : '/assets/no-photo-6.jpg');
+                                        $("#give_title_id").text(book['title']);
+                                        $("#give_publisher_id").text(book['publisher']);
+                                        $("#give_published_date_id").text(book['publishedDate']);
+                                        $("#give_description_id").text(book['description']);
+                                    } else {
+                                        $("#give_btn_id").prop('disabled', true);
+                                        $("#book_item_id").val('');
+                                        $("#info_picture_id").attr('src', '/assets/no-photo-6.jpg');
+                                        $("#give_title_id").text('');
+                                        $("#give_publisher_id").text('');
+                                        $("#give_published_date_id").text('');
+                                        $("#give_description_id").text('');
+                                    }
+                                });
+                            </script>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
+            <div class="modal-footer">
+                <form action="/rentBook/giveBook" method="post">
+                    <input type="hidden" name="readerCardId" id="reader_card_id" value="${readerCard.id}">
+                    <input type="hidden" name="bookItemId" id="book_item_id">
+
+                    %{--<div class="form-group">--}%
+                    <button type="submit" id="give_btn_id" class="btn btn-warning " disabled><i
+                            class="fa fa-lg fa-book"></i> Give</button>
+                    <button type="button" class="btn btn-default " data-dismiss="modal"><i
+                            class="fa fa-lg fa-close"></i> Cancel</button>
+                    %{--</div>--}%
+                </form>
+            </div>
+        </div>
     </div>
-</div>
 </div>
 
 </body>
