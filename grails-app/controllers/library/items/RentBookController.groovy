@@ -32,16 +32,21 @@ class RentBookController {
 
     def giveBook(){
         def rentBook
+        def readerCard
+        def bookItem
         rentBook = new RentBook()
-        rentBook.readerCard = params.readerCardId
-        rentBook.bookItem = params.bookItemId
+        readerCard = ReaderCard.findById((Long) params.readerCardId)
+        bookItem = BookItem.findById((Long) params.bookItemId)
+        rentBook.readerCard.id = readerCard.id
+        rentBook.bookItem.id = bookItem.id
         rentBook.rentDate = new Date()
         rentBook.isReturn = Boolean.FALSE
         use(TimeCategory) {
             rentBook.returnBeforeDate = new Date() + 2.month
         }
         rentBookService.save(rentBook)
-        respond rentBook
+        changeAvailability(rentBook)
+        redirect(controller: "readerCard", action: "show", id: readerCard.id)
     }
 
     def returnBook(Long id){
@@ -50,13 +55,14 @@ class RentBookController {
         rentBook.isReturn = Boolean.TRUE
         rentBook.returnDate = new Date()
         rentBookService.save(rentBook)
+        changeAvailability(rentBook)
         if(params.view == 'rent'){
             redirect(action: "index")
         }else {
             redirect(controller: "readerCard", action: "show", id: rentBook.readerCard.id)
         }
     }
-    // TODO fix bug with book item availability
+
     def void changeAvailability(RentBook rentBook){
         def bookItem
         bookItem = BookItem.findById(rentBook.bookItem.id)
@@ -80,6 +86,7 @@ class RentBookController {
 
         try {
             rentBookService.save(rentBook)
+            changeAvailability(rentBook)
         } catch (ValidationException e) {
             respond rentBook.errors, view:'create'
             return
@@ -106,6 +113,7 @@ class RentBookController {
 
         try {
             rentBookService.save(rentBook)
+            changeAvailability(rentBook)
         } catch (ValidationException e) {
             respond rentBook.errors, view:'edit'
             return
@@ -121,12 +129,15 @@ class RentBookController {
     }
 
     def delete(Long id) {
+        def rentBook
         if (id == null) {
             notFound()
             return
         }
 
         rentBookService.delete(id)
+        rentBook = RentBook.findById(id)
+        changeAvailability(rentBook)
 
         request.withFormat {
             form multipartForm {
