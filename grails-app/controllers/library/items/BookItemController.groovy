@@ -45,9 +45,9 @@ class BookItemController {
         request.withFormat {
             form multipartForm {
                 flash.message = message(code: 'default.created.message', args: [message(code: 'bookItem.label', default: 'BookItem'), bookItem.id])
-                redirect bookItem
+                redirect(view: 'index')
             }
-            '*' { respond bookItem, [status: CREATED] }
+            '*' { respond view: 'index', [status: CREATED] }
         }
     }
 
@@ -84,15 +84,16 @@ class BookItemController {
             notFound()
             return
         }
-
-        bookItemService.delete(id)
         bookItem = BookItem.findById(id)
         book = Book.findById(bookItem.book.id)
-        book.availability = book.availability - 1;
+        book.setAvailability(book.availability - 1)
         if (book.availability < 0) {
-            book.availability = 0;
+            book.setAvailability(0)
         }
-        bookService.save(book);
+        bookService.save(book)
+
+        bookItemService.delete(id)
+
 
         request.withFormat {
             form multipartForm {
