@@ -261,7 +261,7 @@
                                                      "description": "${book.description}",
                                                      "publisher": "${book.publisher}",
                                                      "publishedDate": "${book.publishedDate}",
-                                                     "pictureUrl": "${book.pictureUrl}"}'>${book.title}</option>
+                                                     "pictureUrl": "${book.pictureUrl}"}'>${book.title} - ${bookItem.bookSerialNumber}</option>
                                 </g:each>
                             </select>
 
