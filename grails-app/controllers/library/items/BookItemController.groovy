@@ -71,9 +71,9 @@ class BookItemController {
         request.withFormat {
             form multipartForm {
                 flash.message = message(code: 'default.updated.message', args: [message(code: 'bookItem.label', default: 'BookItem'), bookItem.id])
-                redirect bookItem
+                redirect(view: 'index')
             }
-            '*'{ respond bookItem, [status: OK] }
+            '*'{ respond view: 'index', [status: OK] }
         }
     }
 

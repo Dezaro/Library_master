@@ -9,6 +9,7 @@ class UserController {
 
     UserService userService
 
+
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
     def index(Integer max) {
@@ -32,6 +33,7 @@ class UserController {
 
         try {
             userService.save(user)
+            UserSecurityRole.create(user, SecurityRole.findById(params.userRole.toLong()), true)
         } catch (ValidationException e) {
             respond user.errors, view:'create'
             return
@@ -40,7 +42,7 @@ class UserController {
         request.withFormat {
             form multipartForm {
                 flash.message = message(code: 'default.created.message', args: [message(code: 'user.label', default: 'User'), user.id])
-                redirect user
+                redirect action:"index", method:"GET"
             }
             '*' { respond user, [status: CREATED] }
         }
@@ -58,6 +60,7 @@ class UserController {
 
         try {
             userService.save(user)
+            UserSecurityRole.create(user, SecurityRole.findById(params.userRole.toLong()), true)
         } catch (ValidationException e) {
             respond user.errors, view:'edit'
             return
@@ -66,18 +69,20 @@ class UserController {
         request.withFormat {
             form multipartForm {
                 flash.message = message(code: 'default.updated.message', args: [message(code: 'user.label', default: 'User'), user.id])
-                redirect user
+                redirect action:"index", method:"GET"
             }
             '*'{ respond user, [status: OK] }
         }
     }
 
     def delete(Long id) {
+        def user
         if (id == null) {
             notFound()
             return
         }
-
+        user = User.findById(id)
+        UserSecurityRole.removeAll(user)
         userService.delete(id)
 
         request.withFormat {
