@@ -57,10 +57,9 @@
 
                         <div class="col-sm-10">
                             <select class="form-control" name="userRole" id="user_role_id" required>
-                                <option value="${library.items.SecurityRole.findById(library.items.UserSecurityRole.findById(user.id).securityRole.id).id}">${library.items.SecurityRole.findById(library.items.UserSecurityRole.findById(user.id).securityRole.id).authority}</option>
+                                <option value="${library.items.UserSecurityRole.findByUser(user).securityRole.id}">${library.items.SecurityRole.findById(library.items.UserSecurityRole.findByUser(user).securityRole.id).authority}</option>
                                 <g:each var="securityRole" in="${library.items.SecurityRole.getAll()}">
-                                    // Todo Оправи го
-                                    <g:if test="${!book.author.toString().equals(securityRole.authority.toString())}">
+                                    <g:if test="${!library.items.SecurityRole.findById(library.items.UserSecurityRole.findByUser(user).securityRole.id).authority.toString().equals(securityRole.authority.toString())}">
                                         <option value="${securityRole.id}">${securityRole.authority}</option>
                                     </g:if>
                                 </g:each>
