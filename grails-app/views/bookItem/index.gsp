@@ -15,7 +15,7 @@
                 </div>
 
                 <div class="col-sm-7">
-                    <a data-toggle="modal" href="#createBookItem" type="button" class="btn btn-warning"
+                    <a data-toggle="modal" href="#createBookItem" type="button" name="new_book_item" class="btn btn-warning"
                        style="cursor: pointer;"><i class="material-icons">&#xE147;</i> New Book Item</a>
                     %{--<g:link class="btn btn-primary" id="create_book_item_id" action="create"><i--}%
                     %{--class="material-icons">&#xE147;</i><span><g:message code="default.new.label"--}%

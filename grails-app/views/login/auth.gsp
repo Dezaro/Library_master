@@ -33,7 +33,7 @@
         </div>
 
         <div class="form-group">
-            <button type="submit" class="btn btn-primary login-btn btn-block">Sign in</button>
+            <button type="submit" id="login_btn_id" class="btn btn-primary login-btn btn-block">Sign in</button>
         </div>
 
         <div class="clearfix">
