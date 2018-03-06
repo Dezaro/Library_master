@@ -34,9 +34,9 @@
                 </div>
 
                 <div class="col-sm-7">
-                    <g:link class="btn btn-primary" action="create"><i
-                            class="material-icons">&#xE147;</i><span><g:message code="default.new.label"
-                                                                                args="[entityName]"/></span></g:link>
+                    <g:link class="btn btn-primary" action="create" name="new_reader_card"><i
+                            class="material-icons">&#xE147;</i><g:message code="default.new.label"
+                                                                                args="[entityName]"/></g:link>
                 </div>
             </div>
         </div>

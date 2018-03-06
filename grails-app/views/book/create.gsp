@@ -69,7 +69,7 @@
 
                                     <div class="col-sm-10">
                                         %{--<input type="date" id="publish_date_id" name="publishedDate" class="form-control"/>--}%
-                                        <g:datePicker name="publish_date_id" precision="day"/>
+                                        <g:datePicker name="publishedDate" id="publish_date_id" precision="day"/>
                                     </div>
                                 </div>
 

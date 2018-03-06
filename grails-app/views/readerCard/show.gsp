@@ -20,7 +20,7 @@
                    class="btn btn-primary ${actionName == 'show' ? 'active' : ''}">All Given</a>
                 <a href="/readerCard/showAllNotReturnedBooks/${readerCard.id}"
                    class="btn btn-danger ${actionName == 'showAllNotReturnedBooks' ? 'active' : ''}">Not Returned</a>
-                <a data-toggle="modal" href="#giveBookItem" type="button" class="btn btn-warning"
+                <a data-toggle="modal" href="#giveBookItem" type="button" class="btn btn-warning" name="give_book"
                    style="cursor: pointer;"><i class="fa fa-lg fa-book"></i> Give Book</a>
             </div>
         </div>
@@ -126,6 +126,8 @@
             </tr>
             </thead>
             <tbody>
+            <g:set var="nameAsId"
+                   value="0"></g:set>
             <g:each var="rentBook" in="${bookList}">
                 <tr class='clickable-row'>
                     <td style="padding: 0 !important;"><span
@@ -146,7 +148,9 @@
                             <a href="/rentBook/returnBook/${rentBook.rentBookId}" title="Mark as returned"
                                style="cursor: pointer;"><i
                                     class="material-icons hover-success">&#xE065;</i></a>
-                            <a onclick="onSendMail({
+                            <g:set var="nameAsId"
+                                   value="${nameAsId.toInteger() + 1}"></g:set>
+                            <a name="name_${nameAsId}" onclick="onSendMail({
                                 email: '${readerCard.email}',
                                 book: '${rentBook.title}',
                                 returnBeforeDate: '${rentBook.returnBeforeDate}',
@@ -223,7 +227,6 @@
         </div>
 
     </div>
-</div>
 </div>
 
 <div class="modal fade modal-backdrop1" id="giveBookItem" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"

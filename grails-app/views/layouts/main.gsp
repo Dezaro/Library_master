@@ -163,7 +163,7 @@
         <div class="col-md-3 footer-grid wow fadeInLeft animated" data-wow-delay=".5s">
             <h3>Get in Touch</h3>
 
-            <h2>Eduma</h2>
+            <h2>Library</h2>
             <ul>
                 <li>2144 - 007 - 1566</li>
                 <li>No 48, Season street,</li>
@@ -193,7 +193,7 @@
         <div class="clearfix"></div>
 
         <div class="copy-right">
-            <p>&copy; 2016 Eduma. All Rights Reserved | Design by  <a href="http://w3layouts.com/">W3layouts</a></p>
+            <p>&copy; 2018 Library. All Rights Reserved | Creators by Library</p>
         </div>
     </div>
 </div>
