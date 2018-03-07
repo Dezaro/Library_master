@@ -76,7 +76,7 @@
                                 class="material-icons">&#xE8B8;</i></g:link>
 
                         <a href="#deleteModal" data-toggle="modal" class=" delete" title="Delete"
-                           data-readerCard-id="${readerCard.id}"><i
+                           data-readercard-id="${readerCard.id}"><i
                                 class="material-icons">&#xE5C9;</i></a>
 
                         <form id="form_${readerCard.id}" action="/readerCard/delete/${readerCard.id}" method="post">
@@ -99,7 +99,7 @@
     (function ($) {
         $(document).ready(function () {
             $('#deleteModal').on('show.bs.modal', function (e) {
-                var readerCard_id = $(e.relatedTarget).data('readerCard-id');
+                var readerCard_id = $(e.relatedTarget).data('readercard-id');
                 $(e.currentTarget).find('input[name="readerCard_id"]').val(readerCard_id);
             });
         });

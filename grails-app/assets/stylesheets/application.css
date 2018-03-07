@@ -383,9 +383,9 @@ html, body {
     will-change: opacity;
     opacity: 0;
     transition: opacity 200ms;
-    margin-top: 25%;
-    height: 400px;
-    width: 300px;
+    margin-top: 10%;
+    height: 450px;
+    width: 330px;
 }
 
 .fade1-show.lazyloaded {

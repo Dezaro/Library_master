@@ -145,11 +145,11 @@
                                     class="material-icons ">&#xE554;</i></span>
                         </g:if>
                         <g:else>
-                            <a href="/rentBook/returnBook/${rentBook.rentBookId}" title="Mark as returned"
-                               style="cursor: pointer;"><i
-                                    class="material-icons hover-success">&#xE065;</i></a>
                             <g:set var="nameAsId"
                                    value="${nameAsId.toInteger() + 1}"></g:set>
+                            <a href="/rentBook/returnBook/${rentBook.rentBookId}" name="return_${nameAsId}" title="Mark as returned"
+                               style="cursor: pointer;"><i
+                                    class="material-icons hover-success">&#xE065;</i></a>
                             <a name="name_${nameAsId}" onclick="onSendMail({
                                 email: '${readerCard.email}',
                                 book: '${rentBook.title}',
@@ -194,12 +194,12 @@
                     $('body').preloader('remove');
                     $('#sendMailInfo').modal('show');
                     ajaxInfoModal(true);
-                    $('.modal-body').text(response.message);
+                    $('#modal_body_info').text(response.message);
                 }).fail(function () {
                     $('body').preloader('remove');
                     $('#sendMailInfo').modal('show');
                     ajaxInfoModal(false);
-                    $('.modal-body').text('Something went wrong!');
+                    $('#modal_body_info').text('Something went wrong!');
                 })
             }
         </script>
@@ -214,7 +214,7 @@
                         <h1><i class="fa fa-lg fa-info-circle"></i> Mail Info</h1>
                     </div>
 
-                    <div class="modal-body">
+                    <div class="modal-body" id="modal_body_info">
                     </div>
 
                     <div class="modal-footer">

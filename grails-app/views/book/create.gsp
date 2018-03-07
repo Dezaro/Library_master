@@ -172,11 +172,11 @@
 
 <script>
     function submitForm() {
+        $('body').preloader();
         var authorSelect = document.getElementById("author_id"),
             author = authorSelect.options[authorSelect.selectedIndex].text,
             apiKey = "AIzaSyAeeTMNTGN5AHk2RH2DLWCY0xeS1mwmsDA",
-            url = "https://www.googleapis.com/books/v1/volumes?q=" + document.getElementById('title_id').value + '+inauthor:' + author + "&maxResults=1&filter=ebooks&printType=books&projection=lite&key=" + apiKey;
-
+            url = "https://www.googleapis.com/books/v1/volumes?q=" + document.getElementById('title_id').value + '+inauthor:' + author + "&maxResults=1&printType=books&projection=lite&key=" + apiKey;
         $.ajax({
             method: "GET",
             url: url,
@@ -190,7 +190,8 @@
         }).fail(function () {
             console.log("Something went wrong!");
         }).always(function () {
-            document.getElementsByName("createBookForm")[0].submit()
+            document.getElementsByName("createBookForm")[0].submit();
+//            $('body').preloader('remove');
         });
     }
 </script>
