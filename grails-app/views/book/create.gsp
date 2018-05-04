@@ -3,13 +3,13 @@
 <head>
     <meta name="layout" content="main"/>
     <g:set var="entityName" value="${message(code: 'book.label', default: 'Book')}"/>
-    <title><g:message code="default.create.label" args="[entityName]"/></title>
+    <title><g:message code="create.book.label"/></title>
 </head>
 
 <body>
 
 <div class="nav text-color-blues" role="navigation">
-                    <h1>Book Create</h1>
+                    <h1><g:message code="create.book.label"/></h1>
                     <hr/>
                 </div>
 
@@ -34,7 +34,7 @@
                             <g:form class="comment-form-left" name="createBookForm" resource="${this.book}" method="POST">
                                 <div class="form-group">
                                     <label for="title_id" class="col-sm-4 control-label">
-                                        Title <span class="red-star">*</span>
+                                        <g:message code="book.title.label"/> <span class="red-star">*</span>
                                     </label>
 
                                     <div class="col-sm-10">
@@ -54,7 +54,7 @@
 
                                 <div class="form-group">
                                     <label for="page_number_id" class="col-sm-4 control-label">
-                                        Page Number <span class="red-star">*</span>
+                                        <g:message code="book.page.number.label"/> <span class="red-star">*</span>
                                     </label>
 
                                     <div class="col-sm-10">
@@ -64,7 +64,7 @@
 
                                 <div class="form-group">
                                     <label for="publish_date_id" class="col-sm-4 control-label">
-                                        Published Date
+                                        <g:message code="book.published.date.label"/>
                                     </label>
 
                                     <div class="col-sm-10">
@@ -75,7 +75,7 @@
 
                                 <div class="form-group">
                                     <label for="description_id" class="col-sm-4 control-label">
-                                        Description
+                                        <g:message code="book.description.label"/>
                                     </label>
 
                                     <div class="col-sm-10">
@@ -85,7 +85,7 @@
 
                                 <div class="form-group">
                                     <label for="publisher_id" class="col-sm-4 control-label">
-                                        Publisher
+                                        <g:message code="book.publisher.label"/>
                                     </label>
 
                                     <div class="col-sm-10">
@@ -95,7 +95,7 @@
 
                                 <div class="form-group">
                                     <label for="cover_id" class="col-sm-4 control-label">
-                                        Cover <span class="red-star">*</span>
+                                        <g:message code="book.cover.label"/> <span class="red-star">*</span>
                                     </label>
 
                                     <div class="col-sm-10">
@@ -111,7 +111,7 @@
 
                                 <div class="form-group">
                                     <label for="picture_url_id" class="col-sm-4 control-label">
-                                        Picture Url
+                                        <g:message code="book.picture.label"/> Url
                                     </label>
 
                                     <div class="col-sm-10">
@@ -121,7 +121,7 @@
 
                 <div class="form-group">
                     <label for="category_id" class="col-sm-4 control-label">
-                        Category <span class="red-star">*</span>
+                        <g:message code="book.category.label"/> <span class="red-star">*</span>
                     </label>
 
                     <div class="col-sm-10">
@@ -135,7 +135,7 @@
 
                 <div class="form-group">
                     <label for="author_id" class="col-sm-4 control-label">
-                        Author <span class="red-star">*</span>
+                        <g:message code="book.author.label"/> <span class="red-star">*</span>
                     </label>
 
                     <div class="col-sm-10">
@@ -157,7 +157,7 @@
                         %{--</button>--}%
                         <button id="#createBtn" type="button" class="btn btn-success" onclick="submitForm()"
                                 style="margin-top: 15px;margin-bottom: 15px;">
-                            <span class="fa fa-lg fa-plus-circle"></span> Create</button>
+                            <span class="fa fa-lg fa-plus-circle"></span> <g:message code="create.button"/></button>
                     </div>
 
                     <div class="col-sm-4"></div>

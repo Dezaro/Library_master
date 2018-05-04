@@ -3,12 +3,12 @@
     <head>
         <meta name="layout" content="main" />
         <g:set var="entityName" value="${message(code: 'readerCard.label', default: 'ReaderCard')}" />
-        <title><g:message code="default.create.label" args="[entityName]" /></title>
+        <title><g:message code="readerCard.create.label"/></title>
     </head>
     <body>
 
     <div class="nav text-color-blues" role="navigation">
-        <h1>Reader card Create</h1>
+        <h1><g:message code="readerCard.create.label"/></h1>
         <hr/>
     </div>
 
@@ -33,7 +33,7 @@
                 <g:form class="comment-form-left" name="createReaderCardForm" resource="${this.readerCard}" method="POST">
                     <div class="form-group">
                         <label for="card_number_id" class="col-sm-4 control-label">
-                            Card Number <span class="red-star">*</span>
+                            <g:message code="readerCard.number.label"/> <span class="red-star">*</span>
                         </label>
 
                         <div class="col-sm-10">
@@ -43,7 +43,7 @@
 
                     <div class="form-group">
                         <label for="reader_names_id" class="col-sm-4 control-label">
-                            Reader Names <span class="red-star">*</span>
+                            <g:message code="readerCard.reader.names.label"/><span class="red-star">*</span>
                         </label>
 
                         <div class="col-sm-10">
@@ -53,7 +53,7 @@
 
                     <div class="form-group">
                         <label for="person_number_id" class="col-sm-4 control-label">
-                            Person Number
+                            <g:message code="readerCard.person.number.label"/>
                         </label>
 
                         <div class="col-sm-10">
@@ -63,7 +63,7 @@
 
                     <div class="form-group">
                         <label for="phone_id" class="col-sm-4 control-label">
-                            Phone <span class="red-star">*</span>
+                            <g:message code="readerCard.phone.label"/> <span class="red-star">*</span>
                         </label>
 
                         <div class="col-sm-10">
@@ -73,7 +73,7 @@
 
                     <div class="form-group">
                         <label for="registerDate" class="col-sm-4 control-label">
-                            Register Date <span class="red-star">*</span>
+                            <g:message code="readerCard.register.date.label"/><span class="red-star">*</span>
                         </label>
 
                         <div class="col-sm-10">
@@ -93,7 +93,7 @@
 
                     <div class="form-group">
                         <label for="address_id" class="col-sm-4 control-label">
-                            Address
+                            <g:message code="readerCard.address.label"/>
                         </label>
                         <div class="col-sm-10">
                             <input type="text" class="form-control" name="address" id="address_id"/>
@@ -102,7 +102,7 @@
 
                     <div class="form-group">
                         <label for="isActive" class="col-sm-4 control-label">
-                            Is Active
+                            <g:message code="readerCard.isActive.label"/>
                         </label>
 
                         <div class="col-sm-10">
@@ -116,7 +116,7 @@
                         <div class="col-sm-4">
                             <button id="#createBtn" type="submit" class="btn btn-success"
                                     style="margin-top: 15px;margin-bottom: 15px;">
-                                <span class="fa fa-lg fa-plus-circle"></span> Create</button>
+                                <span class="fa fa-lg fa-plus-circle"></span> <g:message code="create.button"/></button>
                         </div>
 
                         <div class="col-sm-4"></div>

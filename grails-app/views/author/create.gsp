@@ -3,12 +3,12 @@
     <head>
         <meta name="layout" content="main" />
         <g:set var="entityName" value="${message(code: 'author.label', default: 'Author')}" />
-        <title><g:message code="default.create.label" args="[entityName]" /></title>
+        <title><g:message code="create.author.label"/></title>
     </head>
     <body>
 
     <div class="nav text-color-blues" role="navigation">
-        <h1>Author Create</h1>
+        <h1><g:message code="create.author.label"/></h1>
         <hr/>
     </div>
 
@@ -33,7 +33,7 @@
                 <g:form class="comment-form-left" name="createAuthorForm" resource="${this.author}" method="POST">
                     <div class="form-group">
                         <label for="author_name_id" class="col-sm-4 control-label">
-                            Author Name <span class="red-star">*</span>
+                            <g:message code="author.name.label"/> <span class="red-star">*</span>
                         </label>
 
                         <div class="col-sm-10">
@@ -47,7 +47,7 @@
                         <div class="col-sm-4">
                             <button id="#createBtn" type="submit" class="btn btn-success" 
                                     style="margin-top: 15px;margin-bottom: 15px;">
-                                <span class="fa fa-lg fa-plus-circle"></span> Create</button>
+                                <span class="fa fa-lg fa-plus-circle"></span> <g:message code="create.button"/></button>
                         </div>
 
                         <div class="col-sm-4"></div>

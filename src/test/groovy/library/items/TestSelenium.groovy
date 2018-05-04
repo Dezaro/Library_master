@@ -29,7 +29,7 @@ class TestSelenium {
     @Before
     void setup() {
         if (driver == null) {
-            System.setProperty('webdriver.chrome.driver', 'E:\\chromedriver.exe')
+            System.setProperty('webdriver.chrome.driver', 'D:\\chromedriver.exe')
             driver = new ChromeDriver()
             driver.manage().window().maximize()
             driver.get(baseUrl)

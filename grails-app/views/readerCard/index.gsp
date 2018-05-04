@@ -3,7 +3,7 @@
 <head>
     <meta name="layout" content="main"/>
     <g:set var="entityName" value="${message(code: 'readerCard.label', default: 'ReaderCard')}"/>
-    <title><g:message code="default.list.label" args="[entityName]"/></title>
+    <title><g:message code="readerCard.list.label"/></title>
 </head>
 
 <body>
@@ -30,7 +30,7 @@
         <div class="table-title">
             <div class="row">
                 <div class="col-sm-5">
-                    <h2>Readers cards <b>Management</b></h2>
+                    <h2><b><g:message code="readerCard.management.label"/></b></h2>
                 </div>
 
                 <div class="col-sm-7">
@@ -43,15 +43,15 @@
         <table class="table table-condensed table-striped table-hover">
             <thead>
             <tr>
-                <th>Reader card number</th>
-                <th>Reader name</th>
-                <th>Personal number</th>
-                <th>address</th>
-                <th>phone</th>
-                <th>Register date</th>
+                <th><g:message code="readerCard.number.label"/></th>
+                <th><g:message code="readerCard.reader.names.label"/></th>
+                <th><g:message code="readerCard.person.number.label"/></th>
+                <th><g:message code="readerCard.address.label"/></th>
+                <th><g:message code="readerCard.phone.label"/></th>
+                <th><g:message code="readerCard.register.date.label"/></th>
                 <th>Email</th>
-                <th>Status</th>
-                <th>Action</th>
+                <th><g:message code="status.label"/></th>
+                <th><g:message code="action.label"/></th>
             </tr>
             </thead>
             <tbody>
@@ -67,15 +67,15 @@
                     <td>${readerCard.phone}</td>
                     <td>${readerCard.registerDate}</td>
                     <td>${readerCard.email}</td>
-                    <td><span class="status text-success">&bull;</span> Active</td>
+                    <td><span class="status text-success">&bull;</span> <g:message code="active.label"/></td>
                     <td>
                         <g:link action="show" id="${readerCard.id}" title="Setting"><i class="material-icons">&#xE3B1;</i></g:link>
 
-                        <g:link action="edit" id="${readerCard.id}" class="settings" title="Edit"
+                        <g:link action="edit" id="${readerCard.id}" class="settings" title="${g.message(code: 'edit', default: 'Edit...')}"
                                 data-toggle="tooltip"><i
                                 class="material-icons">&#xE8B8;</i></g:link>
 
-                        <a href="#deleteModal" data-toggle="modal" class=" delete" title="Delete"
+                        <a href="#deleteModal" data-toggle="modal" class=" delete" title="${g.message(code: 'delete.button', default: 'Delete...')}"
                            data-readercard-id="${readerCard.id}"><i
                                 class="material-icons">&#xE5C9;</i></a>
 
@@ -121,19 +121,19 @@
                 <div class="icon-box">
                     <i class="material-icons">&#xE92B;</i>
                 </div>
-                <h4 class="modal-title">Are you sure?</h4>
+                <h4 class="modal-title"><g:message code="sure.question"/></h4>
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
             </div>
 
             <div class="modal-body">
-                <p>Do you really want to delete these records? This process cannot be undone.</p>
+                <p><g:message code="delete.question"/></p>
             </div>
             <g:form id="#deleteForm" resource="" method="POST">
                 <g:hiddenField name="readerCard_id" value=""/>
             </g:form>
             <div class="modal-footer">
-                <button id="#deleteBtn" type="button" onclick="submitForm()" class="btn btn-danger">Delete</button>
-                <button type="button" class="btn btn-info" data-dismiss="modal">Cancel</button>
+                <button id="#deleteBtn" type="button" onclick="submitForm()" class="btn btn-danger"><g:message code="delete.button"/></button>
+                <button type="button" class="btn btn-info" data-dismiss="modal"><g:message code="cancel.button"/></button>
             </div>
         </div>
     </div>

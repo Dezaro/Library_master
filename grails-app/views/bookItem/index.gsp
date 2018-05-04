@@ -4,19 +4,19 @@
     <head>
         <meta name="layout" content="main" />
 <g:set var="entityName" value="${message(code: 'bookItem.label', default: 'BookItem')}"/>
-<title><g:message code="default.list.label" args="[entityName]"/></title>
+<title><g:message code="book.list.label"/></title>
 </head>
 <div class="container" style="width: 100%;">
     <div class="table-wrapper" style="width: 100%;">
         <div class="table-title">
             <div class="row">
                 <div class="col-sm-5">
-                    <h2>Book Items <b>Management</b></h2>
+                    <h2><b><g:message code="bookItem.management.label"/></b></h2>
                 </div>
 
                 <div class="col-sm-7">
                     <a data-toggle="modal" href="#createBookItem" type="button" name="new_book_item" class="btn btn-warning"
-                       style="cursor: pointer;"><i class="material-icons">&#xE147;</i> New Book Item</a>
+                       style="cursor: pointer;"><i class="material-icons">&#xE147;</i> <g:message code="bookItem.new.label"/></a>
                     %{--<g:link class="btn btn-primary" id="create_book_item_id" action="create"><i--}%
                     %{--class="material-icons">&#xE147;</i><span><g:message code="default.new.label"--}%
                     %{--args="[entityName]"/></span></a></g:link>--}%
@@ -26,12 +26,12 @@
         <table class="table table-striped table-hover">
             <thead>
             <tr>
-                <th>Book</th>
-                <th>Author</th>
-                <th>Category</th>
-                <th>Book serial number</th>
-                <th>Status</th>
-                <th>Action</th>
+                <th><g:message code="book.label"/></th>
+                <th><g:message code="author.label"/></th>
+                <th><g:message code="book.category.label"/></th>
+                <th><g:message code="bookItem.serial.number.label"/></th>
+                <th><g:message code="status.label"/></th>
+                <th><g:message code="action.label"/></th>
             </tr>
             </thead>
             <tbody>
@@ -48,10 +48,10 @@
                             class="status ${bookItem.isAvailable ? 'text-success' : 'text-danger'}">&bull;</span> ${bookItem.isAvailable ? 'Available' : 'Not Available'}
                     </td>
                     <td>
-                        <g:link action="edit" id="${bookItem.id}" class="settings" title="Settings"
+                        <g:link action="edit" id="${bookItem.id}" class="settings" title="${g.message(code: 'edit', default: 'Edit...')}"
                                 data-toggle="tooltip"><i
                                 class="material-icons">&#xE8B8;</i></g:link>
-                        <a href="#deleteModal" data-toggle="modal" class=" delete" title="Delete"
+                        <a href="#deleteModal" data-toggle="modal" class=" delete" title="${g.message(code: 'delete.button', default: 'Delete...')}"
                            data-bookitem-id="${bookItem.id}"><i
                                 class="material-icons">&#xE5C9;</i></a>
 
@@ -96,19 +96,19 @@
                 <div class="icon-box">
                     <i class="material-icons">&#xE92B;</i>
                 </div>
-                <h4 class="modal-title">Are you sure?</h4>
+                <h4 class="modal-title"><g:message code="sure.question"/></h4>
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
             </div>
 
             <div class="modal-body">
-                <p>Do you really want to delete these record? This process cannot be undone.</p>
+                <p><g:message code="delete.question"/></p>
             </div>
             <g:form id="#deleteForm" resource="" method="POST">
                 <g:hiddenField name="bookItem_id" value=""/>
             </g:form>
             <div class="modal-footer">
-                <button id="#deleteBtn" type="button" onclick="submitForm()" class="btn btn-danger">Delete</button>
-                <button type="button" class="btn btn-info" data-dismiss="modal">Cancel</button>
+                <button id="#deleteBtn" type="button" onclick="submitForm()" class="btn btn-danger"><g:message code="delete.button"/></button>
+                <button type="button" class="btn btn-info" data-dismiss="modal"><g:message code="cancel.button"/></button>
             </div>
         </div>
     </div>
@@ -121,7 +121,7 @@
             <div class="modal-header modal-header-success">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
 
-                <h1><i class="fa fa-lg fa-book"></i> Create Book Item</h1>
+                <h1><i class="fa fa-lg fa-book"></i> <g:message code="bookItem.create.label"/></h1>
             </div>
 
             <div class="modal-body" style="height: 350px;">
@@ -132,13 +132,13 @@
                 <div class="col-sm-8">
                     <div>
                         <label for="book_id" class="col-sm-4 control-label">
-                            Book <span class="red-star">*</span>
+                            <g:message code="book.label"/> <span class="red-star">*</span>
                         </label>
 
                         <div class="col-sm-12">
 
                             <select class="form-control" name="book" id="book_id" required>
-                                <option value="default">-- Select book --</option>
+                                <option value="default">-- <g:message code="bookItem.select.book.label"/> --</option>
                                 <g:each var="book"
                                         in="${library.items.Book.getAll()}">
                                     <option value="${book.id}"
@@ -152,7 +152,7 @@
                         </div>
 
                         <label for="serial_number_id" class="col-sm-4 control-label">
-                            Serial number <span class="red-star">*</span>
+                            <g:message code="bookItem.serial.number.label"/> <span class="red-star">*</span>
                         </label>
 
                         <div class="col-sm-12">
@@ -162,31 +162,31 @@
                                 <div class="row">
                                     <div class="text-color-blues col-sm-12"
                                          style="float:left;display: inline-block; margin-top: 20px;">
-                                        <h1>Selected Book</h1>
+                                        <h1><g:message code="selected.book.label"/></h1>
                                     </div>
                                 </div>
                                 <hr/>
 
                                 <div class="row" style="margin-top: 10px;">
-                                    <div class="col-sm-4">Title</div>
+                                    <div class="col-sm-4"><g:message code="book.title.label"/></div>
 
                                     <div class="col-sm-8 text-warning1" id="give_title_id"></div>
                                 </div>
 
                                 <div class="row" style="margin-top: 10px;">
-                                    <div class="col-sm-4">Publisher</div>
+                                    <div class="col-sm-4"><g:message code="book.publisher.label"/></div>
 
                                     <div class="col-sm-8 text-warning1" id="give_publisher_id"></div>
                                 </div>
 
                                 <div class="row" style="margin-top: 10px;">
-                                    <div class="col-sm-4">Published Date</div>
+                                    <div class="col-sm-4"><g:message code="book.published.date.label"/></div>
 
                                     <div class="col-sm-8 text-warning1" id="give_published_date_id"></div>
                                 </div>
 
                                 <div class="row" style="margin-top: 10px;">
-                                    <div class="col-sm-4">Description</div>
+                                    <div class="col-sm-4"><g:message code="book.description.label"/></div>
 
                                     <div class="col-sm-8 text-warning1" id="give_description_id"
                                          style="max-height: 100px; overflow: auto;"></div>
@@ -254,9 +254,9 @@
                     <input type="hidden" name="book" id="book">
                     <input type="hidden" name="bookSerialNumber" id="bookSerialNumber">
                     <button type="submit" id="create_btn_id" class="btn btn-success" disabled><i
-                            class="fa fa-lg fa-plus-circle"></i> Create</button>
+                            class="fa fa-lg fa-plus-circle"></i> <g:message code="create.button"/></button>
                     <button type="button" class="btn btn-default " data-dismiss="modal"><i
-                            class="fa fa-lg fa-close"></i> Cancel</button>
+                            class="fa fa-lg fa-close"></i> <g:message code="cancel.button"/></button>
                 </form>
             </div>
         </div>

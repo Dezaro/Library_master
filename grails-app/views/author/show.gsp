@@ -3,13 +3,13 @@
     <head>
         <meta name="layout" content="main" />
         <g:set var="entityName" value="${message(code: 'author.label', default: 'Author')}" />
-        <title><g:message code="default.show.label" args="[entityName]" /></title>
+        <title><g:message code="show.author.label" /></title>
     </head>
     <body>
 
     <div id="show-author" role="main" class="text-color-blues">
         <div class="text-color-blues">
-            <h1>Author Overview</h1>
+            <h1><g:message code="author.overview.label" /></h1>
             <hr/>
         </div>
 

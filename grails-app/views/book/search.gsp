@@ -3,7 +3,7 @@
 <head>
     <meta name="layout" content="main"/>
     <g:set var="entityName" value="${message(code: 'book.label', default: 'Book')}"/>
-    <title><g:message code="default.list.label" args="[entityName]"/></title>
+    <title><g:message code="book.list.label"/></title>
 </head>
 
 <body>
@@ -17,9 +17,9 @@
         <fieldset class="form">
             <g:form action="search" method="GET">
                 <div class="fieldcontain">
-                    <label for="title">Search for book:</label>
+                    <label for="title"><g:message code="book.search.for.label"/>:</label>
                     <g:textField name="title" value="${params.title}"/>
-                    <input class="search" type="submit" value="Търси" />
+                    <input class="search" type="submit" value="${g.message(code: 'search.label', default: 'Search...')}" />
                 </div>
             </g:form>
         </fieldset>

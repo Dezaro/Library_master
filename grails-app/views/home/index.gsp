@@ -3,8 +3,8 @@
 <!doctype html>
 <html>
 <head>
-    <meta name="layout" content="main"/>
-    <title>Library</title>
+    <meta name="layout" content="main" charset="UTF-8"/>
+    <title><g:message code="library.title"/></title>
 </head>
 
 <body>
@@ -19,13 +19,13 @@
             <div class="row" id="search">
                 <g:form action="search" method="GET" enctype="multipart/form-data">
                     <div class="form-group col-xs-9">
-                        <g:textField class="form-control" type="text" placeholder="Search by title or author"
+                        <g:textField class="form-control" type="text" placeholder="${g.message(code: 'search.by.author.and.title', default: 'Search by title or author')}"
                                      name="searchFor"
                                      value="${params.searchFor}"/>
                     </div>
 
                     <div class="form-group col-xs-3">
-                        <button type="submit" class="btn btn-block btn-primary">Search</button>
+                        <button type="submit" class="btn btn-block btn-primary"><g:message code="library.button.search.label"/></button>
                     </div>
                 </g:form>
             </div>
@@ -37,7 +37,7 @@
                                   optionValue="categoryName"
                                   name="category"
                                   from="${Category.list()}"
-                                  noSelection="${['null': 'All Categories...']}"
+                                  noSelection="${['null': "${g.message(code: 'all.categories.option', default: 'All categories...')}"]}"
                                   onchange="this.form.submit()" data-filter="make"
                                   class="filter-make filter form-control"
                                   value="${params.category}">
@@ -49,7 +49,7 @@
                                   optionValue="authorName"
                                   name="author"
                                   from="${Author.list()}"
-                                  noSelection="${['null': 'All Authors...']}"
+                                  noSelection="${['null': "${g.message(code: 'all.authors.option', default: 'All authors...')}"]}"
                                   onchange="this.form.submit()" data-filter="make"
                                   class="filter-make filter form-control"
                                   value="${params.author}">

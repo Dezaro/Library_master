@@ -3,23 +3,23 @@
 <head>
     <meta name="layout" content="main"/>
     <g:set var="entityName" value="${message(code: 'readerCard.label', default: 'ReaderCard')}"/>
-    <title><g:message code="default.show.label" args="[entityName]"/></title>
+    <title><g:message code="readerCard.overview.label"/></title>
 </head>
 
 <body>
 <div id="show-book" role="main" class="text-color-blues">
     <div class="row">
         <div class="text-color-blues col-sm-4" style="float:left;display: inline-block;">
-            <h1>Reader Card Overview</h1>
+            <h1><g:message code="readerCard.overview.label"/></h1>
         </div>
 
         <div class="col-sm-8" style="float: right; display: inline-block;">
             <div class="btn-group">
                 %{--<button type="button" class="btn btn-default">Apple</button>--}%
                 <a href="/readerCard/show/${readerCard.id}" type="button"
-                   class="btn btn-primary ${actionName == 'show' ? 'active' : ''}">All Given</a>
+                   class="btn btn-primary ${actionName == 'show' ? 'active' : ''}"><g:message code="readerCard.allGiven.label"/></a>
                 <a href="/readerCard/showAllNotReturnedBooks/${readerCard.id}"
-                   class="btn btn-danger ${actionName == 'showAllNotReturnedBooks' ? 'active' : ''}">Not Returned</a>
+                   class="btn btn-danger ${actionName == 'showAllNotReturnedBooks' ? 'active' : ''}"><g:message code="readerCard.notReturned.label"/></a>
                 <a data-toggle="modal" href="#giveBookItem" type="button" class="btn btn-warning" name="give_book"
                    style="cursor: pointer;"><i class="fa fa-lg fa-book"></i> Give Book</a>
             </div>
@@ -34,7 +34,7 @@
         </g:if>
         <div class="row">
             <div class="col-sm-6">
-                <div style="margin-top: 15px;">Card Number</div>
+                <div style="margin-top: 15px;"><g:message code="readerCard.number.label"/></div>
             </div>
 
             <div class="col-sm-6">
@@ -44,7 +44,7 @@
 
         <div class="row">
             <div class="col-sm-6">
-                <div style="margin-top: 15px;">Reader Names</div>
+                <div style="margin-top: 15px;"><g:message code="readerCard.reader.names.label"/></div>
             </div>
 
             <div class="col-sm-6">
@@ -54,7 +54,7 @@
 
         <div class="row">
             <div class="col-sm-6">
-                <div style="margin-top: 15px;">Person Number</div>
+                <div style="margin-top: 15px;"><g:message code="readerCard.person.number.label"/></div>
             </div>
 
             <div class="col-sm-6">
@@ -64,7 +64,7 @@
 
         <div class="row">
             <div class="col-sm-6">
-                <div style="margin-top: 15px;">Phone</div>
+                <div style="margin-top: 15px;"><g:message code="readerCard.phone.label"/></div>
             </div>
 
             <div class="col-sm-6">
@@ -74,7 +74,7 @@
 
         <div class="row">
             <div class="col-sm-6">
-                <div style="margin-top: 15px;">Register Date</div>
+                <div style="margin-top: 15px;"><g:message code="readerCard.register.date.label"/></div>
             </div>
 
             <div class="col-sm-6">
@@ -94,7 +94,7 @@
 
         <div class="row">
             <div class="col-sm-6">
-                <div style="margin-top: 15px;">Address</div>
+                <div style="margin-top: 15px;"><g:message code="readerCard.address.label"/></div>
             </div>
 
             <div class="col-sm-6">
@@ -104,7 +104,7 @@
 
         <div class="row">
             <div class="col-sm-6">
-                <div style="margin-top: 15px;">Is Active</div>
+                <div style="margin-top: 15px;"><g:message code="readerCard.isActive.label"/></div>
             </div>
 
             <div class="col-sm-6">
@@ -117,12 +117,12 @@
         <table class="table table-condensed table-striped table-hover" id="#given_books_table_id">
             <thead>
             <tr>
-                <th>Status</th>
-                <th>Book Serial Number</th>
-                <th>Title</th>
-                <th>Rent Date</th>
-                <th>Return Before Date</th>
-                <th>Action</th>
+                <th><g:message code="status.label"/></th>
+                <th><g:message code="bookItem.serial.number.label"/></th>
+                <th><g:message code="book.title.label"/></th>
+                <th><g:message code="book.rent.date.label"/></th>
+                <th><g:message code="book.return.before.date.label"/></th>
+                <th><g:message code="action.label"/></th>
             </tr>
             </thead>
             <tbody>
@@ -147,7 +147,7 @@
                         <g:else>
                             <g:set var="nameAsId"
                                    value="${nameAsId.toInteger() + 1}"></g:set>
-                            <a href="/rentBook/returnBook/${rentBook.rentBookId}" name="return_${nameAsId}" title="Mark as returned"
+                            <a href="/rentBook/returnBook/${rentBook.rentBookId}" name="return_${nameAsId}" title="${g.message(code: 'book.mask.as.returned.label', default: 'Mask as returned')}"
                                style="cursor: pointer;"><i
                                     class="material-icons hover-success">&#xE065;</i></a>
                             <a name="name_${nameAsId}" onclick="onSendMail({
@@ -156,7 +156,7 @@
                                 returnBeforeDate: '${rentBook.returnBeforeDate}',
                                 name: '${readerCard.readerNames}'
                                 %{--});" title="Send remind email"><i class="fa fa-lg fa-envelope-o text-info"></i></a>--}%
-                            });" title="Send remind email" style="cursor: pointer;"><i
+                            });" title="${g.message(code: 'book.send.mail.label', default: 'Send remind email')}" style="cursor: pointer;"><i
                                     class="material-icons ">&#xE554;</i></a>
                         </g:else>
                     </td>

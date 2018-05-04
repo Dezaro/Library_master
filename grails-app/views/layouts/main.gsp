@@ -64,7 +64,7 @@
     <div class="header-nav ">
         <div class="logo wow fadeInUp animated" data-wow-delay=".5s">
             <h1>
-                <a class="link link--kumya" href="/"><i></i><span data-letters="LIBRARY" style="font-size: 36px;">LIBRARY</span></a>
+                <a class="link link--kumya" href="/"><i></i><span data-letters="LIBRARY" style="font-size: 36px;"><g:message code="library.title"/></span></a>
             </h1>
         </div>
 
@@ -75,14 +75,14 @@
             <input id="mobile_menu" type="checkbox">
             <ul class="nav">
 
-                <li><a class="${controllerName == 'home' ? 'active' : ''}" href="/">home</a></li>
-                <li><a class="${controllerName == 'courses' ? 'active' : ''}" href="/">courses</a></li>
-                <li><a class="${controllerName == 'about' ? 'active' : ''}" href="/">about</a></li>
-                <li><a class="${controllerName == 'contacts' ? 'active' : ''}" href="/">contacts</a></li>
+                <li><a class="${controllerName == 'home' ? 'active' : ''}" href="/"><g:message code="navbar.home"/></a></li>
+                %{--<li><a class="${controllerName == 'courses' ? 'active' : ''}" href="/">courses</a></li>--}%
+                <li><a class="${controllerName == 'about' ? 'active' : ''}" href="/"><g:message code="navbar.about"/></a></li>
+                <li><a class="${controllerName == 'contacts' ? 'active' : ''}" href="/"><g:message code="navbar.contacts"/></a></li>
 
                 <sec:ifNotLoggedIn>
-                    <li><a href="" data-toggle="modal" data-target="#registerModal">Register</a></li>
-                    <li><a class="${controllerName == 'login' ? 'active' : ''}" href="/login/auth">login</a></li>
+                    <li><a href="" data-toggle="modal" data-target="#registerModal"><g:message code="navbar.register"/></a></li>
+                    <li><a class="${controllerName == 'login' ? 'active' : ''}" href="/login/auth"><g:message code="navbar.login"/></a></li>
                 </sec:ifNotLoggedIn>
 
                 <sec:ifLoggedIn>
@@ -92,7 +92,7 @@
                             form_logout.submit();
                         }
                     </script>
-                    <li style="cursor: pointer;"><a onclick="logOut()">Logout</a></li>
+                    <li style="cursor: pointer;"><a onclick="logOut()"><g:message code="navbar.logout"/></a></li>
 
                     <form id="form_logout" name="logout" method="POST"
                           action="${createLink(controller: 'logout')}"></form>
@@ -113,16 +113,16 @@
         <!-- It can be fixed with bootstrap affix http://getbootstrap.com/javascript/#affix-->
             <sec:ifLoggedIn>
                 <!-- Left column -->
-                <span class="blue-static"><i class="fa fa-ln fa-wrench"></i> Management</span>
+                <span class="blue-static"><i class="fa fa-ln fa-wrench"></i> <g:message code="navbar.management.title"/></span>
                 <hr>
                 <ul class="nav nav-custom nav-pills nav-stacked">
-                    <li ><a href="/author/index" class="${controllerName == 'author' ? 'active' : ''}"><i class="glyphicon glyphicon-user"></i> Authors</a></li>
-                    <li><a href="/book/index" class="${controllerName == 'book' ? 'active' : ''}"><i class="glyphicon glyphicon-book"></i> Books</a></li>
-                    <li><a href="/bookItem/index" class="${controllerName == 'bookItems' ? 'active' : ''}"><i class="glyphicon glyphicon-tag"></i> Book Items</a></li>
-                    <li><a href="/category/index" class="${controllerName == 'category' ? 'active' : ''}"><i class="glyphicon glyphicon-list"></i> Category</a></li>
-                    <li><a href="/readerCard/index" class="${controllerName == 'readerCard' ? 'active' : ''}"><i class="glyphicon glyphicon-list-alt"></i> Readers cards</a></li>
-                    <li><a href="/rentBook/index" class="${controllerName == 'rentBook' ? 'active' : ''}"><i class="glyphicon glyphicon-download-alt"></i> Rent Books</a></li>
-                    <li><a href="/user/index" class="${controllerName == 'user' ? 'active' : ''}"><i class="fa fa-ln fa-users"></i> Users</a></li>
+                    <li ><a href="/author/index" class="${controllerName == 'author' ? 'active' : ''}"><i class="glyphicon glyphicon-user"></i> <g:message code="navbar.authors"/></a></li>
+                    <li><a href="/book/index" class="${controllerName == 'book' ? 'active' : ''}"><i class="glyphicon glyphicon-book"></i> <g:message code="navbar.books"/></a></li>
+                    <li><a href="/bookItem/index" class="${controllerName == 'bookItem' ? 'active' : ''}"><i class="glyphicon glyphicon-tag"></i> <g:message code="navbar.books.items"/></a></li>
+                    <li><a href="/bg/category/index" class="${controllerName == 'category' ? 'active' : ''}"><i class="glyphicon glyphicon-list"></i> <g:message code="navbar.categories"/></a></li>
+                    <li><a href="/readerCard/index" class="${controllerName == 'readerCard' ? 'active' : ''}"><i class="glyphicon glyphicon-list-alt"></i> <g:message code="navbar.readers.cards"/></a></li>
+                    <li><a href="/rentBook/index" class="${controllerName == 'rentBook' ? 'active' : ''}"><i class="glyphicon glyphicon-download-alt"></i> <g:message code="navbar.rent.books"/></a></li>
+                    <li><a href="/user/index" class="${controllerName == 'user' ? 'active' : ''}"><i class="fa fa-ln fa-users"></i> <g:message code="navbar.users"/></a></li>
                 </ul>
                 <hr><!-- /col-3 -->
             </sec:ifLoggedIn>
@@ -141,40 +141,34 @@
 <div class="footer">
     <div class="container">
         <div class="col-md-3 footer-grid wow fadeInRight animated" data-wow-delay=".5s">
-            <h3>About us</h3>
+            <h3><g:message code="navbar.about"/></h3>
 
-            <p>Nam libero tempore, cum soluta nobis est eligendi
-            optio cumque nihil impedit quo minus id quod maxime
-            placeat facere possimus.</p>
+            <p><g:message code="navbar.about.description"/></p>
         </div>
 
         <div class="col-md-2 footer-grid wow fadeInRight animated" data-wow-delay=".5s">
-            <h3>Navigation</h3>
+            <h3><g:message code="navbar.navigation"/></h3>
             <ul>
-                <li><a href="/">Home</a></li>
-                <li><a href="/">About</a></li>
-                <li><a href="/">Courses</a></li>
-                <li><a href="/">Shortcodes</a></li>
-                <li><a href="/">Gallery</a></li>
-                <li><a href="/">Contact</a></li>
+                <li><a href="/"><g:message code="navbar.home"/></a></li>
+                <li><a href="/"><g:message code="navbar.about"/></a></li>
+                <li><a href="/"><g:message code="navbar.contacts"/></a></li>
             </ul>
         </div>
 
         <div class="col-md-3 footer-grid wow fadeInLeft animated" data-wow-delay=".5s">
-            <h3>Get in Touch</h3>
+            <h3><g:message code="navbar.get.in.touch"/></h3>
 
-            <h2>Library</h2>
+            <h2><g:message code="library.title"/></h2>
             <ul>
-                <li>2144 - 007 - 1566</li>
-                <li>No 48, Season street,</li>
-                <li>Livingstone,</li>
-                <li>London</li>
-                <li>Email : <a href="mailto:info@example.com">info@example.com</a></li>
+                <li><g:message code="library.address"/></li>
+                <li><g:message code="library.address.country"/></li>
+                <li><g:message code="library.address.city"/></li>
+                <li>Email : <a href="mailto:info@example.com">app.library.grails@gmail.com</a></li>
             </ul>
         </div>
 
         <div class="col-md-4 social-grid wow fadeInLeft animated" data-wow-delay=".5s">
-            <h3>Connect online</h3>
+            <h3><g:message code="library.connect.online"/></h3>
             <ul>
                 <li><a class="fb1" href="#"></a></li>
                 <li><a class="fb2" href="#"></a></li>
@@ -183,7 +177,7 @@
             </ul>
 
             <form>
-                <input type="email" value="Enter your email" onfocus="this.value = '';" onblur="if (this.value == '') {
+                <input type="email" value="${g.message(code: 'enter.email', default: 'Enter email...')}" onfocus="this.value = '';" onblur="if (this.value == '') {
                     this.value = 'Enter your email';
                 }" required="">
                 <input type="submit" value=" ">
@@ -193,7 +187,7 @@
         <div class="clearfix"></div>
 
         <div class="copy-right">
-            <p>&copy; 2018 Library. All Rights Reserved | Creators by Library</p>
+            <p>&copy;<g:message code="library.all.rights.reserved"/></p>
         </div>
     </div>
 </div>
@@ -213,15 +207,15 @@
                     <div class="login">
                         <div class="login-left">
                             <ul>
-                                <li><a class="fb" href="#"><i></i>Sign in with Facebook</a></li>
-                                <li><a class="goog" href="#"><i></i>Sign in with Google</a></li>
-                                <li><a class="linkin" href="#"><i></i>Sign in with Linkedin</a></li>
+                                <li><a class="fb" href="#"><i></i><g:message code="sign.in.with.facebook"/></a></li>
+                                <li><a class="goog" href="#"><i></i><g:message code="sign.in.with.google"/></a></li>
+                                <li><a class="linkin" href="#"><i></i><g:message code="sign.in.with.linkedin"/></a></li>
                             </ul>
                         </div>
 
                         <div class="login-right">
                             <form>
-                                <h3>Signin with your account</h3>
+                                <h3><g:message code="sign.with.account"/></h3>
                                 <input type="text" value="Email" onfocus="this.value = '';"
                                        onblur="if (this.value == '') {
                                            this.value = 'Email';
@@ -230,11 +224,11 @@
                                        onblur="if (this.value == '') {
                                            this.value = 'Password';
                                        }" required="">
-                                <h4><a href="#">Forgot password</a> / <a href="#">Create new password</a></h4>
+                                <h4><a href="#"><g:message code="forgot.password"/></a> / <a href="#"><g:message code="create.new.password"/></a></h4>
 
                                 <div class="single-bottom">
                                     <input type="checkbox" id="brand" value="">
-                                    <label for="brand"><span></span>Remember Me.</label>
+                                    <label for="brand"><span></span><g:message code="remember.me"/></label>
                                 </div>
                                 <input type="submit" value="SIGNIN">
                             </form>
@@ -243,8 +237,8 @@
                         <div class="clearfix"></div>
                     </div>
 
-                    <p>By logging in you agree to our <a href="#">Terms and Conditions</a> and <a
-                            href="#">Privacy Policy</a></p>
+                    %{--<p>By logging in you agree to our <a href="#">Terms and Conditions</a> and <a--}%
+                            %{--href="#">Privacy Policy</a></p>--}%
                 </div>
             </div>
 

@@ -4,12 +4,12 @@
 <head>
     <meta name="layout" content="main"/>
     <g:set var="entityName" value="${message(code: 'bookItem.label', default: 'BookItem')}"/>
-    <title><g:message code="default.edit.label" args="[entityName]"/></title>
+    <title><g:message code="bookItem.edit.label"/></title>
 </head>
 
 <body>
 <div class="nav text-color-blues" role="navigation">
-    <h1>Book item Edit</h1>
+    <h1><g:message code="bookItem.edit.label"/></h1>
     <hr/>
 </div>
 
@@ -34,7 +34,7 @@
             <g:form class="comment-form-left" resource="${this.bookItem}" method="PUT">
                 <div class="form-group">
                     <label for="book_id" class="col-sm-4 control-label">
-                        Book <span class="red-star">*</span>
+                        <g:message code="book.label"/> <span class="red-star">*</span>
                     </label>
 
                     <div class="col-sm-10">
@@ -51,7 +51,7 @@
 
                 <div class="form-group">
                     <label for="serial_number_id" class="col-sm-4 control-label">
-                        Serial number <span class="red-star">*</span>
+                        <g:message code="bookItem.serial.number.label"/> <span class="red-star">*</span>
                     </label>
 
                     <div class="col-sm-10">
@@ -61,7 +61,7 @@
 
                 <div class="form-group">
                     <label for="isAvailable" class="col-sm-4 control-label">
-                        Is Available
+                        <g:message code="bookItem.is.available.label"/>
                     </label>
 
                     <div class="col-sm-10">
@@ -74,7 +74,7 @@
 
                     <div class="col-sm-4">
                         <button type="submit" class="btn btn-primary" style="margin-top: 15px;margin-bottom: 15px;">
-                            <span class="fa fa-lg fa-edit"></span> Update
+                            <span class="fa fa-lg fa-edit"></span> <g:message code="edit.button"/>
                         </button>
                     </div>
 

@@ -3,7 +3,7 @@
 <head>
     <meta name="layout" content="main"/>
     <g:set var="entityName" value="${message(code: 'book.label', default: 'Book')}"/>
-    <title><g:message code="default.list.label" args="[entityName]"/></title>
+    <title><g:message code="book.list.label"/></title>
 </head>
 
 <body>
@@ -12,7 +12,7 @@
         <div class="table-title">
             <div class="row">
                 <div class="col-sm-5">
-                    <h2>Books <b>Management</b></h2>
+                    <h2><b><g:message code="book.management.label"/></b></h2>
                 </div>
 
                 <div class="col-sm-7">
@@ -28,16 +28,16 @@
         <table class="table table-striped table-hover">
             <thead>
             <tr>
-                <th>Title</th>
-                <th>Published date</th>
+                <th><g:message code="book.title.label"/></th>
+                <th><g:message code="book.published.date.label"/></th>
                 <th>ISBN</th>
-                <th>Author</th>
-                <th>Category</th>
-                <th>Description</th>
-                <th>Publisher</th>
-                <th>Page number</th>
-                <th>Status</th>
-                <th>Action</th>
+                <th><g:message code="book.author.label"/></th>
+                <th><g:message code="book.category.label"/></th>
+                <th><g:message code="book.description.label"/></th>
+                <th><g:message code="book.publisher.label"/></th>
+                <th><g:message code="book.page.number.label"/></th>
+                <th><g:message code="status.label"/></th>
+                <th><g:message code="action.label"/></th>
             </tr>
             </thead>
             <tbody>
@@ -56,16 +56,16 @@
                     <td>${book.pageNumber}</td>
                     <td>
                         <g:if test="${book.availability > 0}">
-                        <span class="status text-success">&bull;</span> Available
+                        <span class="status text-success">&bull;</span> <g:message code="available.label"/>
                         </g:if>
                         <g:else>
-                            <span class="status text-danger">&bull;</span> Not Available
+                            <span class="status text-danger">&bull;</span> <g:message code="not.available.label"/>
                         </g:else>
                     </td>
                     <td>
-                        <g:link action="edit" id="${book.id}" class="settings" title="Settings" data-toggle="tooltip"><i
+                        <g:link action="edit" id="${book.id}" class="settings" title="${g.message(code: 'edit', default: 'Edit...')}" data-toggle="tooltip"><i
                                 class="material-icons">&#xE8B8;</i></g:link>
-                        <a href="#deleteModal" data-toggle="modal" class=" delete" title="Delete"
+                        <a href="#deleteModal" data-toggle="modal" class=" delete" title="${g.message(code: 'delete.button', default: 'Delete...')}"
                            data-book-id="${book.id}"><i
                                 class="material-icons">&#xE5C9;</i></a>
 
@@ -116,19 +116,19 @@
                 <div class="icon-box">
                     <i class="material-icons">&#xE92B;</i>
                 </div>
-                <h4 class="modal-title">Are you sure?</h4>
+                <h4 class="modal-title"><g:message code="sure.question"/></h4>
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
             </div>
 
             <div class="modal-body">
-                <p>Do you really want to delete these records? This process cannot be undone.</p>
+                <p><g:message code="delete.question"/></p>
             </div>
             <g:form id="#deleteForm" resource="" method="POST">
                 <g:hiddenField name="book_id" value=""/>
             </g:form>
             <div class="modal-footer">
-                <button id="#deleteBtn" type="button" onclick="submitForm()" class="btn btn-danger">Delete</button>
-                <button type="button" class="btn btn-info" data-dismiss="modal">Cancel</button>
+                <button id="#deleteBtn" type="button" onclick="submitForm()" class="btn btn-danger"><g:message code="delete.button"/></button>
+                <button type="button" class="btn btn-info" data-dismiss="modal"><g:message code="cancel.button"/></button>
             </div>
         </div>
     </div>

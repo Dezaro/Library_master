@@ -3,7 +3,7 @@
 <head>
     <meta name="layout" content="main"/>
     <g:set var="entityName" value="${message(code: 'author.label', default: 'Author')}"/>
-    <title><g:message code="default.list.label" args="[entityName]"/></title>
+    <title><g:message code="author.list.label"/></title>
 </head>
 
 <body>
@@ -33,21 +33,20 @@
         <div class="table-title">
             <div class="row">
                 <div class="col-sm-5">
-                    <h2>Authors <b>Management</b></h2>
+                    <h2><b><g:message code="authors.management"/></b></h2>
                 </div>
 
                 <div class="col-sm-7">
                     <g:link class="btn btn-primary" action="create" name="new_author_id"><i
-                            class="material-icons">&#xE147;</i><g:message code="default.new.label"
-                                                                                args="[entityName]"/></g:link>
+                            class="material-icons">&#xE147;</i><g:message code="new.author.label"/></g:link>
                 </div>
             </div>
         </div>
         <table class="table table-striped table-hover">
             <thead>
             <tr>
-                <th>Author Name</th>
-                <th>Action</th>
+                <th><g:message code="author.name.label"/></th>
+                <th><g:message code="action.label"/></th>
             </tr>
             </thead>
             <tbody>
@@ -55,10 +54,10 @@
                 <tr>
                     <td><g:link action="show" id="${author.id}">${author.authorName}</g:link></td>
                     <td>
-                        <g:link action="edit" id="${author.id}" class="settings" title="Settings"
+                        <g:link action="edit" id="${author.id}" class="settings" title="${g.message(code: 'edit', default: 'Edit...')}"
                                 data-toggle="tooltip"><i
                                 class="material-icons">&#xE8B8;</i></g:link>
-                        <a href="#deleteModal" data-toggle="modal" class=" delete" title="Delete"
+                        <a href="#deleteModal" data-toggle="modal" class=" delete" title="${g.message(code: 'delete.button', default: 'Delete...')}"
                            data-author-id="${author.id}"><i
                                 class="material-icons">&#xE5C9;</i></a>
 
@@ -109,19 +108,19 @@
                 <div class="icon-box">
                     <i class="material-icons">&#xE92B;</i>
                 </div>
-                <h4 class="modal-title">Are you sure?</h4>
+                <h4 class="modal-title"><g:message code="sure.question"/></h4>
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
             </div>
 
             <div class="modal-body">
-                <p>Do you really want to delete these records? This process cannot be undone.</p>
+                <p><g:message code="delete.question"/></p>
             </div>
             <g:form id="#deleteForm" resource="" method="POST">
                 <g:hiddenField name="author_id" value=""/>
             </g:form>
             <div class="modal-footer">
-                <button id="#deleteBtn" type="button" onclick="submitForm()" class="btn btn-danger">Delete</button>
-                <button type="button" class="btn btn-info" data-dismiss="modal">Cancel</button>
+                <button id="#deleteBtn" type="button" onclick="submitForm()" class="btn btn-danger"><g:message code="delete.button"/></button>
+                <button type="button" class="btn btn-info" data-dismiss="modal"><g:message code="cancel.button"/></button>
             </div>
         </div>
     </div>

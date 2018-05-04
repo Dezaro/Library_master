@@ -3,7 +3,7 @@
 <head>
     <meta name="layout" content="main"/>
     <g:set var="entityName" value="${message(code: 'book.label', default: 'Book')}"/>
-    <title><g:message code="default.show.label" args="[entityName]"/></title>
+    <title><g:message code="book.overview.label"/></title>
 </head>
 
 <body>
@@ -17,7 +17,7 @@
 %{--</div>--}%
 <div id="show-book" role="main" class="text-color-blues">
     <div class="text-color-blues">
-        <h1>Book Overview</h1>
+        <h1><g:message code="book.overview.label"/></h1>
         <hr/>
     </div>
 
