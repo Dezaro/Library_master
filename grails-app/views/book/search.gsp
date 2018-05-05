@@ -73,7 +73,7 @@
     </div>
 </div>
 
-<asset:javascript src="application.js"/>
+
 
 %{--<script>--}%
     %{--function submitForm() {--}%

@@ -75,6 +75,19 @@
             <input id="mobile_menu" type="checkbox">
             <ul class="nav">
 
+                <li>
+                    <div class="dropdown" style="display: inline-block;">
+                        <a class="dropdown-toggle" type="button" id="dropdownMenu" data-toggle="dropdown">
+                            Language
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
+                            <li><a href="${request.forwardURI.contains('?') ? '&' : '?'}lang=bg">Български</a>
+                            <li><a href="${request.forwardURI.contains('?') ? '&' : '?'}lang=en">English</a></li>
+                        </ul>
+                    </div>
+                </li>
+
                 <li><a class="${controllerName == 'home' ? 'active' : ''}" href="/"><g:message code="navbar.home"/></a></li>
                 %{--<li><a class="${controllerName == 'courses' ? 'active' : ''}" href="/">courses</a></li>--}%
                 <li><a class="${controllerName == 'about' ? 'active' : ''}" href="/"><g:message code="navbar.about"/></a></li>

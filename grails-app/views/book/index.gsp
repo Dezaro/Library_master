@@ -84,7 +84,6 @@
     </div>
 </div>
 
-<asset:javascript src="application.js"/>
 <g:javascript library='jquery'>
     (function ($) {
         $(document).ready(function () {

@@ -29,6 +29,11 @@ endpoints:
     jmx:
         enabled: true
 
+guide:
+    languages:
+        - en
+        - bg
+
 ---
 grails:
     mime:
