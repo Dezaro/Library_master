@@ -4,7 +4,7 @@
 <head>
     <meta name="layout" content="main"/>
     <g:set var="entityName" value="${message(code: 'rentBook.label', default: 'RentBook')}"/>
-    <title><g:message code="default.list.label" args="[entityName]"/></title>
+    <title><g:message code="rentBook.list.label"/></title>
 </head>
 
 <body>
@@ -13,9 +13,9 @@
         <div class="col-sm-8" style="float: right; display: inline-block;">
             <div class="btn-group" style="float: right; display: inline-block;">
                 <a href="/rentBook/index" type="button"
-                   class="btn btn-primary ${actionName == 'index' ? 'active' : ''}">All Given</a>
+                   class="btn btn-primary ${actionName == 'index' ? 'active' : ''}"><g:message code="readerCard.allGiven.label"/></a>
                 <a href="/rentBook/showAllNotReturned"
-                   class="btn btn-danger ${actionName == 'showAllNotReturned' ? 'active' : ''}">Not Returned</a>
+                   class="btn btn-danger ${actionName == 'showAllNotReturned' ? 'active' : ''}"><g:message code="readerCard.notReturned.label"/></a>
             </div>
         </div>
     </div>
@@ -27,7 +27,7 @@
         <div class="table-title">
             <div class="row">
                 <div class="col-sm-5">
-                    <h2>Rent books <b>Management</b></h2>
+                    <h2><b><g:message code="rentBook.management.label"/></b></h2>
                 </div>
 
                 <div class="col-sm-7">
@@ -40,14 +40,14 @@
         <table class="table table-condensed table-striped table-hover">
             <thead>
             <tr>
-                <th>Reader card</th>
-                <th>Book</th>
-                <th>Book serial number</th>
-                <th>Given on date</th>
-                <th>Return before date</th>
-                <th>Return date</th>
-                <th>Status</th>
-                <th>Action</th>
+                <th><g:message code="readerCard.label"/></th>
+                <th><g:message code="book.label"/></th>
+                <th><g:message code="bookItem.serial.number.label"/></th>
+                <th><g:message code="book.rent.date.label"/></th>
+                <th><g:message code="book.return.before.date.label"/></th>
+                <th><g:message code="book.returnDate.label"/></th>
+                <th><g:message code="status.label"/></th>
+                <th><g:message code="action.label"/></th>
             </tr>
             </thead>
             <tbody>
@@ -70,13 +70,13 @@
                     </td>
                     <td>
                         <g:if test="${rentBook.isReturn}">
-                            <span title="Mark as returned" style="cursor: pointer;" disabled readonly><i
+                            <span title="${g.message(code: 'book.mask.as.returned.label', default: 'Mask as returned')}" style="cursor: pointer;" disabled readonly><i
                                     class="material-icons" style="">&#xE065;</i></span>
-                            <span title="Send remind email" style="cursor: pointer;" disabled readonly><i
+                            <span title="${g.message(code: 'book.send.mail.label', default: 'Send remind email')}" style="cursor: pointer;" disabled readonly><i
                                     class="material-icons ">&#xE554;</i></span>
                         </g:if>
                         <g:else>
-                            <a href="/rentBook/returnBook/${rentBook.id}?view=rent" title="Mark as returned"
+                            <a href="/rentBook/returnBook/${rentBook.id}?view=rent" title="${g.message(code: 'book.mask.as.returned.label', default: 'Mask as returned')}"
                                style="cursor: pointer;"><i
                                     class="material-icons hover-success">&#xE065;</i></a>
                             <a onclick="onSendMail({
@@ -84,14 +84,14 @@
                                 book: '${library.items.Book.findById(BookItem.findById(rentBook.bookItem.id).book.id).title}',
                                 returnBeforeDate: '${rentBook.returnBeforeDate}',
                                 name: '${library.items.ReaderCard.findById(rentBook.readerCard.id).readerNames}'
-                            });" title="Send remind email" style="cursor: pointer;"><i
+                            });" title="${g.message(code: 'book.send.mail.label', default: 'Send remind email')}" style="cursor: pointer;"><i
                                     class="material-icons ">&#xE554;</i></a>
                         </g:else>
-                        <g:link action="edit" id="${rentBook.id}" class="settings" title="Settings"
+                        <g:link action="edit" id="${rentBook.id}" class="settings" title="${g.message(code: 'settings', default: 'Settings...')}"
                                 data-toggle="tooltip"><i
                                 class="material-icons">&#xE8B8;</i></g:link>
 
-                        <a href="#deleteModal" data-toggle="modal" class=" delete" title="Delete"
+                        <a href="#deleteModal" data-toggle="modal" class=" delete" title="${g.message(code: 'delete.button', default: 'Delete...')}"
                            data-rentBook-id="${rentBook.id}"><i
                                 class="material-icons">&#xE5C9;</i></a>
 
@@ -117,7 +117,7 @@
             <div class="modal-header modal-header-info" id="modal_header_id">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
 
-                <h1><i class="fa fa-lg fa-info-circle"></i> Mail Info</h1>
+                <h1><i class="fa fa-lg fa-info-circle"></i> <g:message code="mail.info.label"/></h1>
             </div>
 
             <div class="modal-body">
@@ -126,7 +126,7 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-info center-block" data-dismiss="modal"
                         id="modal_btn_id"><i
-                        class="fa fa-lg fa-info-circle"></i> Accept</button>
+                        class="fa fa-lg fa-info-circle"></i> <g:message code="accept.label"/></button>
             </div>
         </div>
     </div>
@@ -139,19 +139,19 @@
                 <div class="icon-box">
                     <i class="material-icons">&#xE92B;</i>
                 </div>
-                <h4 class="modal-title">Are you sure?</h4>
+                <h4 class="modal-title"><g:message code="sure.question"/></h4>
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
             </div>
 
             <div class="modal-body">
-                <p>Do you really want to delete these records? This process cannot be undone.</p>
+                <p><g:message code="delete.question"/></p>
             </div>
             <g:form id="#deleteForm" resource="" method="POST">
                 <g:hiddenField name="rentBook_id" value=""/>
             </g:form>
             <div class="modal-footer">
-                <button id="#deleteBtn" type="button" onclick="submitForm()" class="btn btn-danger">Delete</button>
-                <button type="button" class="btn btn-info" data-dismiss="modal">Cancel</button>
+                <button id="#deleteBtn" type="button" onclick="submitForm()" class="btn btn-danger"><g:message code="delete.button"/></button>
+                <button type="button" class="btn btn-info" data-dismiss="modal"><g:message code="cancel.button"/></button>
             </div>
         </div>
     </div>

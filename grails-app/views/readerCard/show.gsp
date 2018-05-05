@@ -21,7 +21,7 @@
                 <a href="/readerCard/showAllNotReturnedBooks/${readerCard.id}"
                    class="btn btn-danger ${actionName == 'showAllNotReturnedBooks' ? 'active' : ''}"><g:message code="readerCard.notReturned.label"/></a>
                 <a data-toggle="modal" href="#giveBookItem" type="button" class="btn btn-warning" name="give_book"
-                   style="cursor: pointer;"><i class="fa fa-lg fa-book"></i> Give Book</a>
+                   style="cursor: pointer;"><i class="fa fa-lg fa-book"></i> <g:message code="readerCard.give.book.label"/></a>
             </div>
         </div>
     </div>
@@ -131,7 +131,7 @@
             <g:each var="rentBook" in="${bookList}">
                 <tr class='clickable-row'>
                     <td style="padding: 0 !important;"><span
-                            class="status ${rentBook.isReturn ? 'text-success' : 'text-danger'}">&bull;</span> ${rentBook.isReturn ? 'returned' : 'not returned'}
+                            class="status ${rentBook.isReturn ? 'text-success' : 'text-danger'}">&bull;</span> ${rentBook.isReturn ? "${message(code: 'returned.book.label', default: 'returned')}" : "${message(code: 'notReturned.book.label', default: 'not returned')}"}
                     </td>
                     <td>${rentBook.bookSerialNumber}</td>
                     <td>${rentBook.title}</td>
@@ -139,9 +139,9 @@
                     <td>${rentBook.returnBeforeDate}</td>
                     <td>
                         <g:if test="${rentBook.isReturn}">
-                            <span title="Mark as returned" style="cursor: pointer;" disabled readonly><i
+                            <span title="${g.message(code: 'book.mask.as.returned.label', default: 'Mask as returned')}" style="cursor: pointer;" disabled readonly><i
                                     class="material-icons" style="">&#xE065;</i></span>
-                            <span title="Send remind email" style="cursor: pointer;" disabled readonly><i
+                            <span title="${g.message(code: 'book.send.mail.label', default: 'Send remind email')}" style="cursor: pointer;" disabled readonly><i
                                     class="material-icons ">&#xE554;</i></span>
                         </g:if>
                         <g:else>

@@ -3,7 +3,7 @@
     <head>
         <meta name="layout" content="main" />
         <g:set var="entityName" value="${message(code: 'rentBook.label', default: 'RentBook')}" />
-        <title><g:message code="default.create.label" args="[entityName]" /></title>
+        <title><g:message code="rentBook.create.label" /></title>
     </head>
     <body>
         <a href="#create-rentBook" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
@@ -30,7 +30,7 @@
                     <f:all bean="rentBook"/>
                 </fieldset>
                 <fieldset class="buttons">
-                    <g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}" />
+                    <g:submitButton name="create" class="save" value="${message(code: 'create.button', default: 'Create')}" />
                 </fieldset>
             </g:form>
         </div>

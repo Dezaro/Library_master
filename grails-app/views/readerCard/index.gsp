@@ -35,8 +35,7 @@
 
                 <div class="col-sm-7">
                     <g:link class="btn btn-primary" action="create" name="new_reader_card"><i
-                            class="material-icons">&#xE147;</i><g:message code="default.new.label"
-                                                                                args="[entityName]"/></g:link>
+                            class="material-icons">&#xE147;</i><g:message code="readerCard.new.label"/></g:link>
                 </div>
             </div>
         </div>
@@ -69,7 +68,7 @@
                     <td>${readerCard.email}</td>
                     <td><span class="status text-success">&bull;</span> <g:message code="active.label"/></td>
                     <td>
-                        <g:link action="show" id="${readerCard.id}" title="Setting"><i class="material-icons">&#xE3B1;</i></g:link>
+                        <g:link action="show" id="${readerCard.id}" title="${g.message(code: 'settings', default: 'Settings...')}"><i class="material-icons">&#xE3B1;</i></g:link>
 
                         <g:link action="edit" id="${readerCard.id}" class="settings" title="${g.message(code: 'edit', default: 'Edit...')}"
                                 data-toggle="tooltip"><i

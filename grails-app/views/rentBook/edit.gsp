@@ -4,12 +4,12 @@
 <head>
     <meta name="layout" content="main"/>
     <g:set var="entityName" value="${message(code: 'rentBook.label', default: 'RentBook')}"/>
-    <title><g:message code="default.edit.label" args="[entityName]"/></title>
+    <title><g:message code="rentBook.edit.label"/></title>
 </head>
 
 <body>
 <div class="nav text-color-blues" role="navigation">
-    <h1>Rent book Edit</h1>
+    <h1><g:message code="rentBook.edit.label"/></h1>
     <hr/>
 </div>
 
@@ -34,7 +34,7 @@
             <g:form class="comment-form-left" resource="${this.rentBook}" method="PUT">
                 <div class="form-group">
                     <label for="category_id" class="col-sm-4 control-label">
-                        Reader card <span class="red-star">*</span>
+                        <g:message code="readerCard.label"/> <span class="red-star">*</span>
                     </label>
 
                     <div class="col-sm-10">
@@ -51,7 +51,7 @@
 
                 <div class="form-group">
                     <label for="book_item_id" class="col-sm-4 control-label">
-                        Book item <span class="red-star">*</span>
+                        <g:message code="bookItem.label"/> <span class="red-star">*</span>
                     </label>
 
                     <div class="col-sm-10">
@@ -68,7 +68,7 @@
 
                 <div class="form-group">
                     <label for="rentDate" class="col-sm-4 control-label">
-                        Given on date
+                        <g:message code="book.rent.date.label"/>
                     </label>
 
                     <div class="col-sm-10">
@@ -81,7 +81,7 @@
 
                 <div class="form-group">
                     <label for="returnBeforeDate" class="col-sm-4 control-label">
-                        To be return before date
+                        <g:message code="book.return.before.date.label"/>
                     </label>
 
                     <div class="col-sm-10">
@@ -94,7 +94,7 @@
 
                 <div class="form-group">
                     <label for="isReturn" class="col-sm-4 control-label">
-                        Is Return
+                        <g:message code="book.isReturn.label"/>
                     </label>
 
                     <div class="col-sm-10">
@@ -104,7 +104,7 @@
 
                 <div class="form-group">
                     <label for="returnDate" class="col-sm-4 control-label">
-                        Returned on
+                        <g:message code="book.returnDate.label"/>
                     </label>
 
                     <div class="col-sm-10">
@@ -120,7 +120,7 @@
 
                     <div class="col-sm-4">
                         <button type="submit" class="btn btn-primary" style="margin-top: 15px;margin-bottom: 15px;">
-                            <span class="fa fa-lg fa-edit"></span> Update
+                            <span class="fa fa-lg fa-edit"></span> <g:message code="edit.button"/>
                         </button>
                     </div>
 

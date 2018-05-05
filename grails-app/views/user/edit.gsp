@@ -4,11 +4,11 @@
     <head>
         <meta name="layout" content="main" />
         <g:set var="entityName" value="${message(code: 'user.label', default: 'User')}" />
-        <title><g:message code="default.edit.label" args="[entityName]" /></title>
+        <title><g:message code="user.edit.label" /></title>
     </head>
     <body>
     <div class="nav text-color-blues" role="navigation">
-        <h1>User Edit</h1>
+        <h1><g:message code="user.edit.label" /></h1>
         <hr/>
     </div>
 
@@ -32,7 +32,7 @@
                 <g:form class="comment-form-left" resource="${this.user}" method="PUT">
                     <div class="form-group">
                         <label for="username_id" class="col-sm-4 control-label">
-                            Username <span class="red-star">*</span>
+                            <g:message code="user.name.label" /> <span class="red-star">*</span>
                         </label>
 
                         <div class="col-sm-10">
@@ -42,7 +42,7 @@
 
                     <div class="form-group">
                         <label for="password_id" class="col-sm-4 control-label">
-                            Password <span class="red-star">*</span>
+                            <g:message code="user.password.label" /> <span class="red-star">*</span>
                         </label>
 
                         <div class="col-sm-10">
@@ -52,7 +52,7 @@
 
                     <div class="form-group">
                         <label for="user_role_id" class="col-sm-4 control-label">
-                            Role <span class="red-star">*</span>
+                            <g:message code="user.role.label" /> <span class="red-star">*</span>
                         </label>
 
                         <div class="col-sm-10">
@@ -69,7 +69,7 @@
 
                     <div class="form-group">
                         <label for="passwordExpired" class="col-sm-4 control-label">
-                            Password expired
+                            <g:message code="user.passExpired.label" />
                         </label>
 
                         <div class="col-sm-10">
@@ -79,7 +79,7 @@
 
                     <div class="form-group">
                         <label for="accountExpired" class="col-sm-4 control-label">
-                            Account expired
+                            <g:message code="user.accountExpired.label" />
                         </label>
 
                         <div class="col-sm-10">
@@ -89,7 +89,7 @@
 
                     <div class="form-group">
                         <label for="accountLocked" class="col-sm-4 control-label">
-                            Account locked
+                            <g:message code="user.account.locked.label" />
                         </label>
 
                         <div class="col-sm-10">
@@ -99,7 +99,7 @@
 
                     <div class="form-group">
                         <label for="enabled" class="col-sm-4 control-label">
-                            Enabled
+                            <g:message code="user.enabled.label" />
                         </label>
 
                         <div class="col-sm-10">
@@ -113,7 +113,7 @@
 
                         <div class="col-sm-4">
                             <button type="submit" class="btn btn-primary" style="margin-top: 15px;margin-bottom: 15px;">
-                                <span class="fa fa-lg fa-edit"></span> Update
+                                <span class="fa fa-lg fa-edit"></span> <g:message code="edit.button" />
                             </button>
                         </div>
 
