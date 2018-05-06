@@ -35,8 +35,7 @@
 
                 <div class="col-sm-7">
                     <g:link class="btn btn-primary" action="create" name="new_category"><i
-                            class="material-icons">&#xE147;</i><g:message code="default.new.label"
-                                                                                args="[entityName]" encodeAs="HTML"/></g:link>
+                            class="material-icons">&#xE147;</i><g:message code="category.new.label" encodeAs="HTML"/></g:link>
                 </div>
             </div>
         </div>

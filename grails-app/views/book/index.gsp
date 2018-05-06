@@ -17,8 +17,7 @@
 
                 <div class="col-sm-7">
                     <g:link class="btn btn-primary" action="create" name="new_book"><i
-                            class="material-icons">&#xE147;</i><g:message code="default.new.label"
-                                                                                args="[entityName]"/></g:link>
+                            class="material-icons">&#xE147;</i><g:message code="book.new.label"/></g:link>
                 %{--<a href="${createLink(uri: '/')}" class="btn btn-primary"><i--}%
                 %{--class="material-icons">&#xE88A;</i> <span><g:message code="default.home.label"/></span></a>--}%
                 </div>

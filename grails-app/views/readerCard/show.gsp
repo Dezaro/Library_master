@@ -211,7 +211,7 @@
                     <div class="modal-header modal-header-info" id="modal_header_id">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
 
-                        <h1><i class="fa fa-lg fa-info-circle"></i> Mail Info</h1>
+                        <h1><i class="fa fa-lg fa-info-circle"></i> <g:message code="mail.info.label"/></h1>
                     </div>
 
                     <div class="modal-body" id="modal_body_info">
@@ -220,7 +220,7 @@
                     <div class="modal-footer">
                         <button type="button" class="btn btn-info center-block" data-dismiss="modal"
                                 id="modal_btn_id"><i
-                                class="fa fa-lg fa-info-circle"></i> Accept</button>
+                                class="fa fa-lg fa-info-circle"></i> <g:message code="accept.label"/></button>
                     </div>
                 </div>
             </div>
@@ -236,7 +236,7 @@
             <div class="modal-header modal-header-warning">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
 
-                <h1><i class="fa fa-lg fa-book"></i> Give New Book</h1>
+                <h1><i class="fa fa-lg fa-book"></i> <g:message code="give.new.book.label"/></h1>
             </div>
 
             <div class="modal-body" style="height: 350px;">
@@ -249,12 +249,12 @@
                     %{--<g:each var="book" in="${bookList}"></g:each>--}%
                     <div>
                         <label for="give_book_id" class="col-sm-4 control-label">
-                            Book Item <span class="red-star">*</span>
+                            <g:message code="bookItem.label"/> <span class="red-star">*</span>
                         </label>
 
                         <div class="col-sm-12">
                             <select class="form-control" name="bookItem" id="give_book_id" required>
-                                <option value="default">-- Select book to give --</option>
+                                <option value="default">-- <g:message code="bookItem.select.book.label"/> --</option>
                                 <g:each var="bookItem"
                                         in="${library.items.BookItem.findAllByIsAvailable(true)}">
                                     <g:set var="book"
@@ -272,31 +272,31 @@
                                 <div class="row">
                                     <div class="text-color-blues col-sm-12"
                                          style="float:left;display: inline-block; margin-top: 20px;">
-                                        <h1>Selected Book</h1>
+                                        <h1><g:message code="selected.book.label"/></h1>
                                     </div>
                                 </div>
                                 <hr/>
 
                                 <div class="row" style="margin-top: 10px;">
-                                    <div class="col-sm-4">Title</div>
+                                    <div class="col-sm-4"><g:message code="book.title.label"/></div>
 
                                     <div class="col-sm-8 text-warning1" id="give_title_id"></div>
                                 </div>
 
                                 <div class="row" style="margin-top: 10px;">
-                                    <div class="col-sm-4">Publisher</div>
+                                    <div class="col-sm-4"><g:message code="book.publisher.label"/></div>
 
                                     <div class="col-sm-8 text-warning1" id="give_publisher_id"></div>
                                 </div>
 
                                 <div class="row" style="margin-top: 10px;">
-                                    <div class="col-sm-4">Published Date</div>
+                                    <div class="col-sm-4"><g:message code="book.published.date.label"/></div>
 
                                     <div class="col-sm-8 text-warning1" id="give_published_date_id"></div>
                                 </div>
 
                                 <div class="row" style="margin-top: 10px;">
-                                    <div class="col-sm-4">Description</div>
+                                    <div class="col-sm-4"><g:message code="book.description.label"/></div>
 
                                     <div class="col-sm-8 text-warning1" id="give_description_id"
                                          style="max-height: 100px; overflow: auto;"></div>
@@ -351,9 +351,9 @@
 
                     %{--<div class="form-group">--}%
                     <button type="submit" id="give_btn_id" class="btn btn-warning " disabled><i
-                            class="fa fa-lg fa-book"></i> Give</button>
+                            class="fa fa-lg fa-book"></i> <g:message code="give.label"/></button>
                     <button type="button" class="btn btn-default " data-dismiss="modal"><i
-                            class="fa fa-lg fa-close"></i> Cancel</button>
+                            class="fa fa-lg fa-close"></i> <g:message code="cancel.button"/></button>
                     %{--</div>--}%
                 </form>
             </div>

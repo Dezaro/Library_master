@@ -66,7 +66,7 @@
                     <td><g:formatDate date="${rentBook.returnBeforeDate}" type="date" style="MEDIUM"/></td>
                     <td><g:formatDate date="${rentBook.returnDate}" type="date" style="MEDIUM"/></td>
                     <td style="padding: 0 !important;"><span
-                            class="status ${rentBook.isReturn ? 'text-success' : 'text-danger'}">&bull;</span> ${rentBook.isReturn ? 'Returned' : 'Not Returned'}
+                            class="status ${rentBook.isReturn ? 'text-success' : 'text-danger'}">&bull;</span> ${rentBook.isReturn ? "${g.message(code: 'returned.book.label', default: 'Returned')}" : "${g.message(code: 'notReturned.book.label', default: 'Not Returned')}"}
                     </td>
                     <td>
                         <g:if test="${rentBook.isReturn}">

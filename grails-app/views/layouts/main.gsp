@@ -78,12 +78,12 @@
                 <li>
                     <div class="dropdown" style="display: inline-block;">
                         <a class="dropdown-toggle" type="button" id="dropdownMenu" data-toggle="dropdown">
-                            Language
+                            <g:message code="language.button"/>
                             <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
-                            <li><a href="${request.forwardURI.contains('?') ? '&' : '?'}lang=bg">Български</a>
-                            <li><a href="${request.forwardURI.contains('?') ? '&' : '?'}lang=en">English</a></li>
+                            <li><a href="${request.forwardURI.contains('?') ? '&' : '?'}lang=bg"><g:message code="language.bulgarian.label"/></a>
+                            <li><a href="${request.forwardURI.contains('?') ? '&' : '?'}lang=en"><g:message code="language.english.label"/></a></li>
                         </ul>
                     </div>
                 </li>
@@ -132,7 +132,7 @@
                     <li ><a href="/author/index" class="${controllerName == 'author' ? 'active' : ''}"><i class="glyphicon glyphicon-user"></i> <g:message code="navbar.authors"/></a></li>
                     <li><a href="/book/index" class="${controllerName == 'book' ? 'active' : ''}"><i class="glyphicon glyphicon-book"></i> <g:message code="navbar.books"/></a></li>
                     <li><a href="/bookItem/index" class="${controllerName == 'bookItem' ? 'active' : ''}"><i class="glyphicon glyphicon-tag"></i> <g:message code="navbar.books.items"/></a></li>
-                    <li><a href="/bg/category/index" class="${controllerName == 'category' ? 'active' : ''}"><i class="glyphicon glyphicon-list"></i> <g:message code="navbar.categories"/></a></li>
+                    <li><a href="/category/index" class="${controllerName == 'category' ? 'active' : ''}"><i class="glyphicon glyphicon-list"></i> <g:message code="navbar.categories"/></a></li>
                     <li><a href="/readerCard/index" class="${controllerName == 'readerCard' ? 'active' : ''}"><i class="glyphicon glyphicon-list-alt"></i> <g:message code="navbar.readers.cards"/></a></li>
                     <li><a href="/rentBook/index" class="${controllerName == 'rentBook' ? 'active' : ''}"><i class="glyphicon glyphicon-download-alt"></i> <g:message code="navbar.rent.books"/></a></li>
                     <li><a href="/user/index" class="${controllerName == 'user' ? 'active' : ''}"><i class="fa fa-ln fa-users"></i> <g:message code="navbar.users"/></a></li>
