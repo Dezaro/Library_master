@@ -7,11 +7,11 @@
 
     <div class="info">
         <div class="row">
-            <div class="col-md-9">
+            <div class="col-xs-9">
                 <h3 class="title">${book.title}</h3>
             </div>
 
-            <div class="col-md-3">
+            <div class="col-xs-3">
                 <span class="vote_average pull-right">6.4 <span
                         class="glyphicon glyphicon-star"></span></span>
             </div>

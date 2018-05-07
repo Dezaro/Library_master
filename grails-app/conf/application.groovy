@@ -1,6 +1,9 @@
 
 
-// Added by the Spring Security Core plugin:
+//// Added by the Spring Security Core plugin:
+grails.plugin.springsecurity.facebook.domain.classname='FacebookUser'
+grails.plugin.springsecurity.facebook.secret = '7797d0e11a5191f7643edeaabc8111b8'
+grails.plugin.springsecurity.facebook.appId = '2103327649911618'
 grails.plugin.springsecurity.userLookup.userDomainClassName = 'library.items.User'
 grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'library.items.UserSecurityRole'
 grails.plugin.springsecurity.authority.className = 'library.items.SecurityRole'

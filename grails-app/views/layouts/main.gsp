@@ -122,7 +122,7 @@
 <!-- page-content -->
 <div class="container" id="main_content_id" style="margin-top: 40px;width: 100%;background-color: white;">
     %{--<div class="row">--}%
-        <div class="col-md-2">
+        <div class="col-xs-2">
         <!-- It can be fixed with bootstrap affix http://getbootstrap.com/javascript/#affix-->
             <sec:ifLoggedIn>
                 <!-- Left column -->
@@ -141,11 +141,11 @@
             </sec:ifLoggedIn>
         </div>
 
-        <div class="col-md-10">
+        <div class="col-xs-10">
             <g:layoutBody/>
         </div>
 
-    %{--<div class="col-md-2"></div>--}%
+    %{--<div class="col-xs-2"></div>--}%
     %{--</div>--}%
 </div>
 <!-- //page-content -->
@@ -153,13 +153,13 @@
 <!--footer-->
 <div class="footer">
     <div class="container">
-        <div class="col-md-3 footer-grid wow fadeInRight animated" data-wow-delay=".5s">
+        <div class="col-xs-3 footer-grid wow fadeInRight animated" data-wow-delay=".5s">
             <h3><g:message code="navbar.about"/></h3>
 
             <p><g:message code="navbar.about.description"/></p>
         </div>
 
-        <div class="col-md-2 footer-grid wow fadeInRight animated" data-wow-delay=".5s">
+        <div class="col-xs-2 footer-grid wow fadeInRight animated" data-wow-delay=".5s">
             <h3><g:message code="navbar.navigation"/></h3>
             <ul>
                 <li><a href="/"><g:message code="navbar.home"/></a></li>
@@ -168,7 +168,7 @@
             </ul>
         </div>
 
-        <div class="col-md-3 footer-grid wow fadeInLeft animated" data-wow-delay=".5s">
+        <div class="col-xs-3 footer-grid wow fadeInLeft animated" data-wow-delay=".5s">
             <h3><g:message code="navbar.get.in.touch"/></h3>
 
             <h2><g:message code="library.title"/></h2>
@@ -180,7 +180,7 @@
             </ul>
         </div>
 
-        <div class="col-md-4 social-grid wow fadeInLeft animated" data-wow-delay=".5s">
+        <div class="col-xs-4 social-grid wow fadeInLeft animated" data-wow-delay=".5s">
             <h3><g:message code="library.connect.online"/></h3>
             <ul>
                 <li><a class="fb1" href="#"></a></li>

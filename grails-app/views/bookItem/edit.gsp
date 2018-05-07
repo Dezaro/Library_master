@@ -27,10 +27,10 @@
 
 <div class="container-fluid custom-form">
     <div class="row">
-        <div class="col-md-2">
+        <div class="col-xs-2">
         </div>
 
-        <div class="col-md-8">
+        <div class="col-xs-8">
             <g:form class="comment-form-left" resource="${this.bookItem}" method="PUT">
                 <div class="form-group">
                     <label for="book_id" class="col-sm-4 control-label">

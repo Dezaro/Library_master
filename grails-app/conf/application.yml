@@ -36,6 +36,22 @@ guide:
 
 ---
 grails:
+    plugin:
+        springsecurity:
+            facebook:
+                    domain:
+                           classname: library.items.FacebookUser
+                    appId: 2103327649911618
+                    secret: 7797d0e11a5191f7643edeaabc8111b8
+#grails:
+#    plugin:
+#        facebooksdk:
+#            app:
+#                id: {2103327649911618}
+##                permissions: {APP_PERMISSIONS} // Ex. ['email','user_photos']
+#                secret: {7797d0e11a5191f7643edeaabc8111b8}
+---
+grails:
     mime:
         disable:
             accept:

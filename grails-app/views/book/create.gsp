@@ -27,10 +27,10 @@
 
                 <div class="container-fluid custom-form">
                     <div class="row">
-                        <div class="col-md-2">
+                        <div class="col-xs-2">
                         </div>
 
-                        <div class="col-md-8">
+                        <div class="col-xs-8">
                             <g:form class="comment-form-left" name="createBookForm" resource="${this.book}" method="POST">
                                 <div class="form-group">
                                     <label for="title_id" class="col-sm-4 control-label">
@@ -165,7 +165,7 @@
             </g:form>
         </div>
 
-        %{--<div class="col-md-2">--}%
+        %{--<div class="col-xs-2">--}%
         %{--</div>--}%
     </div>
 </div>

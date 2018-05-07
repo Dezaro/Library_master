@@ -26,10 +26,10 @@
 
     <div class="container-fluid custom-form">
         <div class="row">
-            <div class="col-md-2">
+            <div class="col-xs-2">
             </div>
 
-            <div class="col-md-8">
+            <div class="col-xs-8">
                 <g:form class="comment-form-left" name="createReaderCardForm" resource="${this.readerCard}" method="POST">
                     <div class="form-group">
                         <label for="card_number_id" class="col-sm-4 control-label">

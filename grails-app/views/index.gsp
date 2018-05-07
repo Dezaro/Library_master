@@ -125,11 +125,11 @@
 
                             <div class="info">
                                 <div class="row">
-                                    <div class="col-md-9">
+                                    <div class="col-xs-9">
                                         <h4 class="title">Rambo</h4>
                                     </div>
 
-                                    <div class="col-md-3">
+                                    <div class="col-xs-3">
                                         <span class="vote_average pull-right">6.4 <span
                                                 class="glyphicon glyphicon-star"></span></span>
                                     </div>
@@ -155,11 +155,11 @@
 
                             <div class="info">
                                 <div class="row">
-                                    <div class="col-md-9">
+                                    <div class="col-xs-9">
                                         <h4 class="title">Rambo</h4>
                                     </div>
 
-                                    <div class="col-md-3">
+                                    <div class="col-xs-3">
                                         <span class="vote_average pull-right">0 <span
                                                 class="glyphicon glyphicon-star"></span></span>
                                     </div>
@@ -185,27 +185,27 @@
         <div id="list-template" style="display: none;">
             <li class="list-group-item">
                 <div class="row">
-                    <div class="col-md-2">
+                    <div class="col-xs-2">
                         <img src="" alt='image' id="image" class="thumbnail img-responsive"
                              style="height: 180px; width:120px;">
                     </div>
 
-                    <div class="col-md-10">
+                    <div class="col-xs-10">
                         <div class="row">
-                            <div class="col-md-10">
+                            <div class="col-xs-10">
                                 <h4 class="title"></h4>
                                 <h6 class="genres" style="font-style: italic;"></h6>
 
                                 <p class="release_date"></p>
                             </div>
 
-                            <div class="col-md-2">
+                            <div class="col-xs-2">
                                 <p class="vote_average" style="text-align:right"></p>
                             </div>
                         </div>
 
                         <div class="row">
-                            <div class="col-md-12">
+                            <div class="col-xs-12">
                                 <p class="overview" style="text-align:justify"></p>
                             </div>
                         </div>
@@ -222,11 +222,11 @@
 
                 <div class="info">
                     <div class="row">
-                        <div class="col-md-9">
+                        <div class="col-xs-9">
                             <h4 class="title"></h4>
                         </div>
 
-                        <div class="col-md-3">
+                        <div class="col-xs-3">
                             <span class="vote_average pull-right"><span class="glyphicon glyphicon-star"></span></span>
                         </div>
                     </div>

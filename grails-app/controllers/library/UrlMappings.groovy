@@ -9,6 +9,8 @@ class UrlMappings {
             }
         }
 
+        "/j_spring_security_facebook_redirect" (controller: 'home', action: 'index')
+
 //        "/"(view:"/index")
         "/"(controller: 'home', action: 'index')
         "500"(view: '/error')
