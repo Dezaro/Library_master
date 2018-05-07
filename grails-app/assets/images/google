@@ -1,0 +1,26 @@
+https://localhost:8443/j_spring_security_facebook_redirect
+https://localhost:8443/login/auth
+
+j_spring_security_facebook_check
+
+https://localhost:8443/j_spring_security_facebook_check
+
+library_ozypdsy_user@tfbnw.net
+admin@4444
+
+
+Google Sing-in:
+
+Api Key
+AIzaSyCELRZOccoNns7cz6PM9dm1drYCRLlv-Vo
+Client ID
+957323283869-sbjc98gqdf41s4qssegev25025mg7jd3.apps.googleusercontent.com
+Client Secret
+rtFaKphOf_pD6sc8h69IClDd
+
+
+
+
+https://localhost:8443/springSecurityOAuth2/authenticate?provider=google
+
+https://console.developers.google.com/apis/credentials?project=library-1525697992326
