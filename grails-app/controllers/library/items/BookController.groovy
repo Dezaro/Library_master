@@ -6,7 +6,7 @@ import grails.validation.ValidationException
 import static org.springframework.http.HttpStatus.*
 
 @SuppressWarnings(['FactoryMethodName', 'ReturnNullFromCatchBlock'])
-@Secured(['ROLE_ADMIN'])
+@Secured(['ROLE_ADMIN', 'ROLE_USER'])
 class BookController {
 
     BookService bookService

@@ -52,6 +52,15 @@ grails:
 #                secret: {7797d0e11a5191f7643edeaabc8111b8}
 ---
 grails:
+    plugin:
+        springsecurity:
+            oauth2:
+                providers:
+                    google:
+                        api_key: '957323283869-sbjc98gqdf41s4qssegev25025mg7jd3.apps.googleusercontent.com'
+                        api_secret: 'rtFaKphOf_pD6sc8h69IClDd'
+---
+grails:
     mime:
         disable:
             accept:
@@ -135,6 +144,15 @@ environments:
                           mail.smtp.socketFactory.port: "465"
                           mail.smtp.socketFactory.class: "javax.net.ssl.SSLSocketFactory"
                           mail.smtp.socketFactory.fallback: "false"
+#        server:
+#                    port: 8080
+#                    ssl:
+#                        enabled: true
+#                    key-store: grails.library.csr
+#                    key-store-password: admin
+#                    key-password: admin
+#                grails:
+#                    serverURL: "https://library:8443"
     test:
         dataSource:
             dbCreate: update

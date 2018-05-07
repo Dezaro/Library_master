@@ -1,12 +1,13 @@
 package library.items
 
 import grails.plugin.springsecurity.annotation.Secured
+import grails.plugin.springsecurity.SpringSecurityUtils
 
 //@Secured(['ROLE_ADMIN'])
 class HomeController {
 
     def index() {
-
+//        respond SpringSecurityUtils.securityConfig.facebook , formats: ['json']
         [bookList: Book.getAll()]
 //        respond Book.getAll(), Category.getAll()
     }

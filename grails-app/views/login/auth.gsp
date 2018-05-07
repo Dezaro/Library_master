@@ -51,7 +51,9 @@
         %{--fjs.parentNode.insertBefore(js, fjs);--}%
     %{--}(document, 'script', 'facebook-jssdk'));--}%
 %{--</script>--}%
-<div class="fb-login-button">Login with Facebook</div>
+
+%{--<div class="fb-login-button">Login with Facebook</div>--}%
+
 <script>
     FB.Event.subscribe('auth.login', function () {
         FB.getLoginStatus(function (response) {
@@ -61,6 +63,7 @@
             else {
                 var uid = response.authResponse.userID;
                 var accessToken = response.authResponse.accessToken;
+                console.log(uid, accessToken);
                 getProfileInfoAndLogin(accessToken);
             }
 
@@ -97,12 +100,18 @@
     %{--Welcome <sec:username/>! (<g:link uri="/j_spring_security_logout">Logout</g:link>)--}%
 %{--</sec:ifAllGranted>--}%
 
-<sec:ifNotGranted roles="ROLE_USER">
-    <facebookAuth:connect />
-</sec:ifNotGranted>
-<sec:ifAllGranted roles="ROLE_USER">
-    Welcome <sec:username/>! (<g:link uri="/j_spring_security_logout">Logout</g:link>)
-</sec:ifAllGranted>
+%{--<sec:ifNotGranted roles="ROLE_USER">--}%
+    %{--<facebookAuth:connect />--}%
+%{--</sec:ifNotGranted>--}%
+%{--<sec:ifAllGranted roles="ROLE_USER">--}%
+    %{--Welcome <sec:username/>! (<g:link uri="/j_spring_security_logout">Logout</g:link>)--}%
+%{--</sec:ifAllGranted>--}%
+%{--<a href="https://localhost:8443/springSecurityOAuth2/authenticate?provider=google" provider="google">Google</a>--}%
+%{--<oauth2:connect provider="google" id="google-connect-link">Google</oauth2:connect>--}%
+
+%{--Logged with google?--}%
+%{--<oauth2:ifLoggedInWith provider="google">yes</oauth2:ifLoggedInWith>--}%
+%{--<oauth2:ifNotLoggedInWith provider="google">no</oauth2:ifNotLoggedInWith>--}%
 
 <div class="col-xs-3"></div>
 
@@ -145,9 +154,9 @@
         <p class="text-center"><g:message code="login.with.social.accout"/></p>
 
         <div class="text-center social-btn">
-            <a href="" class="btn btn-primary"><i class="fa fa-facebook"></i>&nbsp; Facebook</a>
+            <a href="/j_spring_security_facebook_redirect" class="btn btn-primary"><i class="fa fa-facebook"></i>&nbsp; Facebook</a>
             <a href="" class="btn btn-info"><i class="fa fa-twitter"></i>&nbsp; Twitter</a>
-            <a href="" class="btn btn-danger"><i class="fa fa-google"></i>&nbsp; Google</a>
+            <a href="/springSecurityOAuth2/authenticate?provider=google" class="btn btn-danger"><i class="fa fa-google"></i>&nbsp; Google</a>
         </div>
     </form>
 
