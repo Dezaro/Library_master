@@ -32,7 +32,7 @@
                 <g:form class="comment-form-left" resource="${this.user}" method="PUT">
                     <div class="form-group">
                         <label for="username_id" class="col-sm-4 control-label">
-                            <g:message code="user.name.label" /> <span class="red-star">*</span>
+                            <g:message code="user.username.label" /> <span class="red-star">*</span>
                         </label>
 
                         <div class="col-sm-10">
@@ -69,7 +69,7 @@
 
                     <div class="form-group">
                         <label for="passwordExpired" class="col-sm-4 control-label">
-                            <g:message code="user.passExpired.label" />
+                            <g:message code="user.passwordExpired.label" />
                         </label>
 
                         <div class="col-sm-10">
@@ -89,7 +89,7 @@
 
                     <div class="form-group">
                         <label for="accountLocked" class="col-sm-4 control-label">
-                            <g:message code="user.account.locked.label" />
+                            <g:message code="user.accountLocked.label" />
                         </label>
 
                         <div class="col-sm-10">

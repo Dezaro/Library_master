@@ -54,7 +54,7 @@
 
                                 <div class="form-group">
                                     <label for="page_number_id" class="col-sm-4 control-label">
-                                        <g:message code="book.page.number.label"/> <span class="red-star">*</span>
+                                        <g:message code="book.pageNumber.label"/> <span class="red-star">*</span>
                                     </label>
 
                                     <div class="col-sm-10">
@@ -64,7 +64,7 @@
 
                                 <div class="form-group">
                                     <label for="publish_date_id" class="col-sm-4 control-label">
-                                        <g:message code="book.published.date.label"/>
+                                        <g:message code="book.publishedDate.label"/>
                                     </label>
 
                                     <div class="col-sm-10">
@@ -111,7 +111,7 @@
 
                                 <div class="form-group">
                                     <label for="picture_url_id" class="col-sm-4 control-label">
-                                        <g:message code="book.picture.label"/> Url
+                                        <g:message code="book.pictureUrl.label"/> Url
                                     </label>
 
                                     <div class="col-sm-10">

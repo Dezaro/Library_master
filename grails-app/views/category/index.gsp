@@ -42,7 +42,7 @@
         <table class="table table-striped table-hover">
             <thead>
             <tr>
-                <th><g:message code="category.name.label"/></th>
+                <th><g:message code="category.categoryName.label"/></th>
                 <th><g:message code="action.label"/></th>
             </tr>
             </thead>

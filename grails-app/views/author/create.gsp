@@ -33,7 +33,7 @@
                 <g:form class="comment-form-left" name="createAuthorForm" resource="${this.author}" method="POST">
                     <div class="form-group">
                         <label for="author_name_id" class="col-sm-4 control-label">
-                            <g:message code="author.name.label"/> <span class="red-star">*</span>
+                            <g:message code="author.authorName.label"/> <span class="red-star">*</span>
                         </label>
 
                         <div class="col-sm-10">

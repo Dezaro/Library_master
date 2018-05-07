@@ -28,13 +28,13 @@
             <thead>
             <tr>
                 <th><g:message code="book.title.label"/></th>
-                <th><g:message code="book.published.date.label"/></th>
+                <th><g:message code="book.publishedDate.label"/></th>
                 <th>ISBN</th>
                 <th><g:message code="book.author.label"/></th>
                 <th><g:message code="book.category.label"/></th>
                 <th><g:message code="book.description.label"/></th>
                 <th><g:message code="book.publisher.label"/></th>
-                <th><g:message code="book.page.number.label"/></th>
+                <th><g:message code="book.pageNumber.label"/></th>
                 <th><g:message code="status.label"/></th>
                 <th><g:message code="action.label"/></th>
             </tr>

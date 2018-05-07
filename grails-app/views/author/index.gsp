@@ -45,7 +45,7 @@
         <table class="table table-striped table-hover">
             <thead>
             <tr>
-                <th><g:message code="author.name.label"/></th>
+                <th><g:message code="author.authorName.label"/></th>
                 <th><g:message code="action.label"/></th>
             </tr>
             </thead>

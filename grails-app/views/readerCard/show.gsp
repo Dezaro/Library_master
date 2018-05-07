@@ -290,7 +290,7 @@
                                 </div>
 
                                 <div class="row" style="margin-top: 10px;">
-                                    <div class="col-sm-4"><g:message code="book.published.date.label"/></div>
+                                    <div class="col-sm-4"><g:message code="book.publishedDate.label"/></div>
 
                                     <div class="col-sm-8 text-warning1" id="give_published_date_id"></div>
                                 </div>

@@ -24,10 +24,10 @@
             <table class="table table-striped table-hover">
                 <thead>
                 <tr>
-                    <th><g:message code="user.name.label"/></th>
+                    <th><g:message code="user.username.label"/></th>
                     <th><g:message code="user.role.label"/></th>
-                    <th><g:message code="user.passExpired.label"/></th>
-                    <th><g:message code="user.account.locked.label"/></th>
+                    <th><g:message code="user.passwordExpired.label"/></th>
+                    <th><g:message code="user.accountLocked.label"/></th>
                     <th><g:message code="user.accountExpired.label"/></th>
                     <th><g:message code="status.label"/></th>
                     <th><g:message code="action.label"/></th>
@@ -36,7 +36,11 @@
                 <tbody>
                 <g:each var="user" in="${userList}">
                     <tr>
-                        <td><g:link action="show" id="${user.id}">${user.username}</g:link></td>
+                        <td>
+                            %{--<g:link action="show" id="${user.id}">--}%
+                               <span style="color: darkblue"><b> ${user.username} </b></span>
+                            %{--</g:link>--}%
+                        </td>
                         <td>${library.items.SecurityRole.findById(library.items.UserSecurityRole.findByUser(user).securityRole.id).authority}</td>
                         <td>${user.passwordExpired}</td>
                         <td>${user.accountLocked}</td>
