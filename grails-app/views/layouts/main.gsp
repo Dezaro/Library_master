@@ -78,12 +78,12 @@
                 <li>
                     <div class="dropdown" style="display: inline-block;">
                         <a class="dropdown-toggle" type="button" id="dropdownMenu" data-toggle="dropdown">
-                            <g:message code="language.button"/>
+                            Language
                             <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
-                            <li><a href="${request.forwardURI.contains('?') ? '&' : '?'}lang=bg"><g:message code="language.bulgarian.label"/></a>
-                            <li><a href="${request.forwardURI.contains('?') ? '&' : '?'}lang=en"><g:message code="language.english.label"/></a></li>
+                            <li><a href="${request.forwardURI.contains('?') ? '&' : '?'}lang=bg">Български</a>
+                            <li><a href="${request.forwardURI.contains('?') ? '&' : '?'}lang=en">English</a></li>
                         </ul>
                     </div>
                 </li>
