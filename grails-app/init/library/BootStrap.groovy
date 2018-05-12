@@ -14,25 +14,25 @@ class BootStrap {
         }
 
         if ( !User.findByUsername('sherlock') ) {
-            def u = new User(username: 'sherlock', password: 'elementary')
+            def u = new User(username: 'sherlock', password: 'elementary', email: 'test@abv.bg')
             u.save()
             new UserSecurityRole(user: u, securityRole: SecurityRole.findByAuthority('ROLE_BOSS')).save()
         }
 
         if ( !User.findByUsername('watson') ) {
-            def u = new User(username: 'watson', password: '221Bbakerstreet')
+            def u = new User(username: 'watson', password: '221Bbakerstreet', email: 'test2@abv.bg')
             u.save()
             new UserSecurityRole(user: u, securityRole: SecurityRole.findByAuthority('ROLE_EMPLOYEE')).save()
         }
 
         if ( !User.findByUsername('lilyana') ) {
-            def u = new User(username: 'lilyana', password: 'lilyanapass')
+            def u = new User(username: 'lilyana', password: 'lilyanapass', email: 'lilyana.ihtimanska@gmail.com')
             u.save()
             new UserSecurityRole(user: u, securityRole: SecurityRole.findByAuthority('ROLE_ADMIN')).save()
         }
 
         if ( !User.findByUsername('delo') ) {
-            def u = new User(username: 'delo', password: 'delo')
+            def u = new User(username: 'delo', password: 'delo', email: 'delo_bran@abv.bg')
             u.save()
             new UserSecurityRole(user: u, securityRole: SecurityRole.findByAuthority('ROLE_ADMIN')).save()
         }

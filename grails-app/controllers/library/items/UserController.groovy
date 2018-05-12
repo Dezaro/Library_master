@@ -8,6 +8,7 @@ import static org.springframework.http.HttpStatus.*
 class UserController {
 
     UserService userService
+    EmailSenderController emailSender
 
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
@@ -102,5 +103,14 @@ class UserController {
             }
             '*'{ render status: NOT_FOUND }
         }
+    }
+
+    void sendResetPasswordEmail(User user){
+        def token = Token.findByEmail(user.email)
+        if(!token) {
+            token = new Token(email: user.email)
+            token.save(flush: true);
+        }
+        emailSender.sendResetPasswordEmail(user, token)
     }
 }
