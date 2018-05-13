@@ -5,10 +5,6 @@ import grails.plugin.springsecurity.annotation.Secured
 @Secured(['ROLE_ADMIN'])
 class EmailSenderController {
 
-//    EmailSenderService emailSenderService
-
-    def index() {}
-
     def send() {
         sendMail {
             to params.email
@@ -18,13 +14,19 @@ class EmailSenderController {
         respond([message: "Message sent at " + new Date()], formats: ['json'])
     }
 
-    def sendResetPasswordEmail(User user, Token token) {
+    def sendResetPasswordEmail(String userName) {
+        def user = User.findByUsername(userName)
+        def token = Token.findByEmail(user.email)
+        if(!token) {
+            token = new Token(email: user.email)
+            token.save(flush: true);
+        }
         sendMail {
             async true
-            to user?.email
+            to  user?.email
             subject "Password reset on Mobile Career Index"
-            html "Test" + token
-//            html  groovyPageRenderer.render(template: '/mail/resetPassword', model: [user: user,token:token])
+            html "Token value: " + token.value
         }
+        respond([message: "Message sent at " + new Date()], formats: ['json'])
     }
 }

@@ -15,7 +15,7 @@ class UserController {
 
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
-        respond userService.list(params), model:[userCount: userService.count()]
+        respond userService.list(params), model: [userCount: userService.count()]
     }
 
     def show(Long id) {
@@ -36,14 +36,14 @@ class UserController {
             userService.save(user)
             UserSecurityRole.create(user, SecurityRole.findById(params.userRole.toLong()), true)
         } catch (ValidationException e) {
-            respond user.errors, view:'create'
+            respond user.errors, view: 'create'
             return
         }
 
         request.withFormat {
             form multipartForm {
                 flash.message = message(code: 'default.created.message', args: [message(code: 'user.label', default: 'User'), user.id])
-                redirect action:"index", method:"GET"
+                redirect action: "index", method: "GET"
             }
             '*' { respond user, [status: CREATED] }
         }
@@ -63,16 +63,16 @@ class UserController {
             userService.save(user)
             UserSecurityRole.create(user, SecurityRole.findById(params.userRole.toLong()), true)
         } catch (ValidationException e) {
-            respond user.errors, view:'edit'
+            respond user.errors, view: 'edit'
             return
         }
 
         request.withFormat {
             form multipartForm {
                 flash.message = message(code: 'default.updated.message', args: [message(code: 'user.label', default: 'User'), user.id])
-                redirect action:"index", method:"GET"
+                redirect action: "index", method: "GET"
             }
-            '*'{ respond user, [status: OK] }
+            '*' { respond user, [status: OK] }
         }
     }
 
@@ -89,9 +89,9 @@ class UserController {
         request.withFormat {
             form multipartForm {
                 flash.message = message(code: 'default.deleted.message', args: [message(code: 'user.label', default: 'User'), id])
-                redirect action:"index", method:"GET"
+                redirect action: "index", method: "GET"
             }
-            '*'{ render status: NO_CONTENT }
+            '*' { render status: NO_CONTENT }
         }
     }
 
@@ -101,16 +101,26 @@ class UserController {
                 flash.message = message(code: 'default.not.found.message', args: [message(code: 'user.label', default: 'User'), params.id])
                 redirect action: "index", method: "GET"
             }
-            '*'{ render status: NOT_FOUND }
+            '*' { render status: NOT_FOUND }
         }
     }
 
-    void sendResetPasswordEmail(User user){
-        def token = Token.findByEmail(user.email)
-        if(!token) {
-            token = new Token(email: user.email)
-            token.save(flush: true);
+    def resetPassword(String token) {
+        def email = Token.findByValue(token)
+        if (!email) {
+            response.sendError(404)
         }
-        emailSender.sendResetPasswordEmail(user, token)
+        email = Token.findByValue(token).email
+        def user = User.findByEmail(email)
+//        respond([message: email], formats: ['json'])
+        respond(user: user, token: token, view: 'resetPassword')
     }
+
+    def updatePassword(){
+
+        respond([message: email], formats: ['json'])
+//        redirect(controller: "home")
+        redirect(uri: "/")
+    }
+
 }
