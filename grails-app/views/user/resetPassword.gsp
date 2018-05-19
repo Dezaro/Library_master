@@ -7,6 +7,7 @@
 </head>
 
 <body>
+
 <div class="container bootstrap snippet">
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-6 col-md-offset-2">
@@ -20,7 +21,13 @@
                 </div>
 
             <div class="panel-body">
-                <g:form method="PUT">
+                <g:if test="${flash.message}">
+                    <div class="alert alert-info" role="status">${flash.message}</div>
+                </g:if>
+                <g:if test="${flash.error}">
+                    <div class="alert alert-danger" role="alert">${flash.error}</div>
+                </g:if>
+                <g:form action="updatePassword" method="POST">
                     <div class="row">
                         <input type="hidden" name="token" value="${token}">
 
@@ -29,7 +36,7 @@
                                 <div class="input-group">
                                     <div class="input-group-addon"><span class="glyphicon glyphicon-lock"></span>
                                     </div>
-                                    <input class="form-control" type="password" placeholder="Password">
+                                    <input class="form-control" name="password" type="password" placeholder="Password">
                                 </div>
                             </div>
 
@@ -37,7 +44,7 @@
                                 <div class="input-group">
                                     <div class="input-group-addon"><span class="glyphicon glyphicon-log-in"></span>
                                     </div>
-                                    <input class="form-control" type="password" placeholder="Confirm Password">
+                                    <input class="form-control" name="password_confirm" type="password" placeholder="Confirm Password">
                                 </div>
                             </div>
                         </div>

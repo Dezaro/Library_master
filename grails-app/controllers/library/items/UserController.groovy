@@ -112,15 +112,23 @@ class UserController {
         }
         email = Token.findByValue(token).email
         def user = User.findByEmail(email)
-//        respond([message: email], formats: ['json'])
         respond(user: user, token: token, view: 'resetPassword')
     }
 
     def updatePassword(){
-
-        respond([message: email], formats: ['json'])
-//        redirect(controller: "home")
-        redirect(uri: "/")
+        def token = Token.findByValue(params.token)
+        if (!token) {
+            response.sendError(404)
+        }
+        if (params.password != params.password_confirm){
+            flash.error = 'Password not match!'
+            redirect(uri: "/user/resetPassword?token=" + token.value)
+        }
+        def user = User.findByEmail(token.email)
+        user.setPassword(params.password)
+        user.save(flush: true)
+        token.delete(flush: true)
+        redirect action: 'auth', controller: 'login'
     }
 
 }

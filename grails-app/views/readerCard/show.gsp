@@ -229,9 +229,8 @@
     </div>
 </div>
 
-<div class="modal fade modal-backdrop1" id="giveBookItem" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-     aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered ">
+<div class="modal fade" id="giveBookItem" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content modal-lg">
             <div class="modal-header modal-header-warning">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>

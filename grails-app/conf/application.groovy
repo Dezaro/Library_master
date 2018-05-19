@@ -27,7 +27,10 @@ grails.plugin.springsecurity.controllerAnnotations.staticRules = [
 	[pattern: '/fonts/**',    	                     access: ['permitAll']],
 	[pattern: '/**/fonts',   	                     access: ['permitAll']],
 	[pattern: '/**/favicon.ico',                     access: ['permitAll']],
-	[pattern: '/emailSender/sendResetPasswordEmail', access: ['permitAll']]
+	[pattern: '/emailSender/sendResetPasswordEmail', access: ['permitAll']],
+	[pattern: '/user/resetPassword', 				 access: ['permitAll']],
+	[pattern: '/user/resetPassword/**',				 access: ['permitAll']],
+	[pattern: '/user/updatePassword',				 access: ['permitAll']],
 ]
 
 grails.plugin.springsecurity.filterChain.chainMap = [

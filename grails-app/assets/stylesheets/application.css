@@ -45,6 +45,12 @@ body {
     font-size: 13px;
 }
 
+table {
+    max-width: none;
+    table-layout: fixed;
+    word-wrap: break-word;
+}
+
 .table-wrapper {
     background: #fff;
     /*padding: 20px 25px;*/
