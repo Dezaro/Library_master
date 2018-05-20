@@ -12,6 +12,7 @@
 //= require_tree .
 //= require_self
 //= require jquery.preload.min
+//= require jquery.easy-autocomplete.min
 
 if (typeof jQuery !== 'undefined') {
     (function($) {

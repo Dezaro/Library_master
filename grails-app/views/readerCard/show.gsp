@@ -17,11 +17,14 @@
             <div class="btn-group">
                 %{--<button type="button" class="btn btn-default">Apple</button>--}%
                 <a href="/readerCard/show/${readerCard.id}" type="button"
-                   class="btn btn-primary ${actionName == 'show' ? 'active' : ''}"><g:message code="readerCard.allGiven.label"/></a>
+                   class="btn btn-primary ${actionName == 'show' ? 'active' : ''}"><g:message
+                        code="readerCard.allGiven.label"/></a>
                 <a href="/readerCard/showAllNotReturnedBooks/${readerCard.id}"
-                   class="btn btn-danger ${actionName == 'showAllNotReturnedBooks' ? 'active' : ''}"><g:message code="readerCard.notReturned.label"/></a>
+                   class="btn btn-danger ${actionName == 'showAllNotReturnedBooks' ? 'active' : ''}"><g:message
+                        code="readerCard.notReturned.label"/></a>
                 <a data-toggle="modal" href="#giveBookItem" type="button" class="btn btn-warning" name="give_book"
-                   style="cursor: pointer;"><i class="fa fa-lg fa-book"></i> <g:message code="readerCard.give.book.label"/></a>
+                   style="cursor: pointer;"><i class="fa fa-lg fa-book"></i> <g:message
+                        code="readerCard.give.book.label"/></a>
             </div>
         </div>
     </div>
@@ -139,15 +142,18 @@
                     <td>${rentBook.returnBeforeDate}</td>
                     <td>
                         <g:if test="${rentBook.isReturn}">
-                            <span title="${g.message(code: 'book.mask.as.returned.label', default: 'Mask as returned')}" style="cursor: pointer;" disabled readonly><i
+                            <span title="${g.message(code: 'book.mask.as.returned.label', default: 'Mask as returned')}"
+                                  style="cursor: pointer;" disabled readonly><i
                                     class="material-icons" style="">&#xE065;</i></span>
-                            <span title="${g.message(code: 'book.send.mail.label', default: 'Send remind email')}" style="cursor: pointer;" disabled readonly><i
+                            <span title="${g.message(code: 'book.send.mail.label', default: 'Send remind email')}"
+                                  style="cursor: pointer;" disabled readonly><i
                                     class="material-icons ">&#xE554;</i></span>
                         </g:if>
                         <g:else>
                             <g:set var="nameAsId"
                                    value="${nameAsId.toInteger() + 1}"></g:set>
-                            <a href="/rentBook/returnBook/${rentBook.rentBookId}" name="return_${nameAsId}" title="${g.message(code: 'book.mask.as.returned.label', default: 'Mask as returned')}"
+                            <a href="/rentBook/returnBook/${rentBook.rentBookId}" name="return_${nameAsId}"
+                               title="${g.message(code: 'book.mask.as.returned.label', default: 'Mask as returned')}"
                                style="cursor: pointer;"><i
                                     class="material-icons hover-success">&#xE065;</i></a>
                             <a name="name_${nameAsId}" onclick="onSendMail({
@@ -156,7 +162,8 @@
                                 returnBeforeDate: '${rentBook.returnBeforeDate}',
                                 name: '${readerCard.readerNames}'
                                 %{--});" title="Send remind email"><i class="fa fa-lg fa-envelope-o text-info"></i></a>--}%
-                            });" title="${g.message(code: 'book.send.mail.label', default: 'Send remind email')}" style="cursor: pointer;"><i
+                            });" title="${g.message(code: 'book.send.mail.label', default: 'Send remind email')}"
+                               style="cursor: pointer;"><i
                                     class="material-icons ">&#xE554;</i></a>
                         </g:else>
                     </td>
@@ -184,6 +191,7 @@
                     btn.addClass(btn_danger_cls);
                 }
             }
+
             function onSendMail(params) {
                 $('body').preloader();
                 $.ajax({
@@ -252,20 +260,47 @@
                         </label>
 
                         <div class="col-sm-12">
-                            <select class="form-control" name="bookItem" id="give_book_id" required>
-                                <option value="default">-- <g:message code="bookItem.select.book.label"/> --</option>
-                                <g:each var="bookItem"
-                                        in="${library.items.BookItem.findAllByIsAvailable(true)}">
-                                    <g:set var="book"
-                                           value="${library.items.Book.findById(bookItem.book.id)}"></g:set>
-                                    <option value="${bookItem.id}"
-                                            data-book='{"title": "${book.title}",
-                                                     "description": "${book.description}",
-                                                     "publisher": "${book.publisher}",
-                                                     "publishedDate": "${book.publishedDate}",
-                                                     "pictureUrl": "${book.pictureUrl}"}'>${book.title} - ${bookItem.bookSerialNumber}</option>
-                                </g:each>
-                            </select>
+                            <input class="form-control" name="bookItem" id="give_book_id" required/>
+                            <script>
+                                var data = null, options = {
+                                    url: function (phrase) {
+                                        return "http://localhost:8080/bookItem/search";
+                                    },
+
+                                    getValue: function (element) {
+                                        data = element;
+                                        return element.title;
+                                    },
+
+                                    ajaxSettings: {
+                                        dataType: "json",
+                                        method: "GET",
+                                        data: {
+                                            dataType: "json"
+                                        }
+                                    },
+
+                                    preparePostData: function (data) {
+                                        data.phrase = $("#give_book_id").val();
+                                        return data;
+                                    },
+
+                                    template: {
+                                        type: "description",
+                                        fields: {
+                                            description: 'bookSerialNumber'
+                                        }
+                                    },
+
+                                    requestDelay: 400,
+
+                                    theme: "plate-dark"
+                                };
+
+                                $("#give_book_id").easyAutocomplete(options);
+
+                                $('div.easy-autocomplete').removeAttr('style');
+                            </script>
 
                             <div class="col-sm-12">
                                 <div class="row">
@@ -303,26 +338,14 @@
                             </div>
 
                             <script>
-                                //                                $('#giveBookItem').on('show.bs.modal', function (e) {
-                                //                                    $('.modal-backdrop1').appendTo('body');
-                                //                                });
-
-                                $('body').on('click', '#give_btn_id', function () {
-                                    var optionSelected = $('#give_book_id').find('option:selected'),
-                                        valueSelected = optionSelected.val(),
-                                        book = optionSelected.data('book');
-                                    console.log(valueSelected, book);
-//                                    $("#give_title_id").text(book['title']);
-                                });
-
+                                // var input = $('#book_item_id');
                                 $('#give_book_id').on('change', function (e) {
-                                    var optionSelected = $('option:selected', this),
-                                        valueSelected = this.value,
-                                        book = optionSelected.data('book');
+                                    var valueSelected = this.value,
+                                        book = data;
                                     if (valueSelected !== 'default') {
                                         $("#give_btn_id").prop('disabled', false);
-                                        $("#book_item_id").val(valueSelected);
-                                        $("#info_picture_id").attr('src', book['pictureUrl'] !== '' ? book['pictureUrl'] : '/assets/no-photo-6.jpg');
+                                        $("#book_item_id").val(book['bookItemId']);
+                                        $("#info_picture_id").attr('src', book['pictureUrl'] !== null ? book['pictureUrl'] : '/assets/no-photo-6.jpg');
                                         $("#give_title_id").text(book['title']);
                                         $("#give_publisher_id").text(book['publisher']);
                                         $("#give_published_date_id").text(book['publishedDate']);
@@ -336,6 +359,7 @@
                                         $("#give_published_date_id").text('');
                                         $("#give_description_id").text('');
                                     }
+                                    // input.val(parseInt(book['bookItemId']));
                                 });
                             </script>
                         </div>

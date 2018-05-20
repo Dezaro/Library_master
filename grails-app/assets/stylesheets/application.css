@@ -22,6 +22,8 @@
 *= require roboto
 *= require datepicker
 *= require preloader
+*= require easy-autocomplete.min
+*= require easy-autocomplete.themes.min
 */
 .custom-form {
     color: #566787;

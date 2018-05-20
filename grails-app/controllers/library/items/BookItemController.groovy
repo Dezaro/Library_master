@@ -12,9 +12,30 @@ class BookItemController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
+    def search() {
+        def author = Author.findByAuthorName(params.phrase)
+        def book = Book.findByAuthorOrTitleIlike(author, '%' + params.phrase + '%')
+        def bookItems = BookItem.findAllByBookAndIsAvailable(book, true)
+        def list = new ArrayList()
+        def map
+        for (int i = 0; i < bookItems.size(); i++) {
+            map = new HashMap<String, Object>()
+            map.put('bookItemId', bookItems[i].id)
+            map.put('bookSerialNumber', bookItems[i].bookSerialNumber)
+            map.put('bookId', book.id)
+            map.put('title', book.title)
+            map.put('description', book.description)
+            map.put('publisher', book.publisher)
+            map.put('publishedDate', book.publishedDate)
+            map.put('pictureUrl', book.pictureUrl)
+            list.add(map)
+        }
+        respond(list, formats: ['json'])
+    }
+
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
-        respond bookItemService.list(params), model:[bookItemCount: bookItemService.count()]
+        respond bookItemService.list(params), model: [bookItemCount: bookItemService.count()]
     }
 
     def show(Long id) {
@@ -38,7 +59,7 @@ class BookItemController {
             book.availability = book.availability + 1;
             bookService.save(book);
         } catch (ValidationException e) {
-            respond bookItem.errors, view:'create'
+            respond bookItem.errors, view: 'create'
             return
         }
 
@@ -64,7 +85,7 @@ class BookItemController {
         try {
             bookItemService.save(bookItem)
         } catch (ValidationException e) {
-            respond bookItem.errors, view:'edit'
+            respond bookItem.errors, view: 'edit'
             return
         }
 
@@ -73,7 +94,7 @@ class BookItemController {
                 flash.message = message(code: 'default.updated.message', args: [message(code: 'bookItem.label', default: 'BookItem'), bookItem.id])
                 redirect(view: 'index')
             }
-            '*'{ respond view: 'index', [status: OK] }
+            '*' { respond view: 'index', [status: OK] }
         }
     }
 
@@ -98,9 +119,9 @@ class BookItemController {
         request.withFormat {
             form multipartForm {
                 flash.message = message(code: 'default.deleted.message', args: [message(code: 'bookItem.label', default: 'BookItem'), id])
-                redirect action:"index", method:"GET"
+                redirect action: "index", method: "GET"
             }
-            '*'{ render status: NO_CONTENT }
+            '*' { render status: NO_CONTENT }
         }
     }
 
@@ -110,7 +131,7 @@ class BookItemController {
                 flash.message = message(code: 'default.not.found.message', args: [message(code: 'bookItem.label', default: 'BookItem'), params.id])
                 redirect action: "index", method: "GET"
             }
-            '*'{ render status: NOT_FOUND }
+            '*' { render status: NOT_FOUND }
         }
     }
 }
