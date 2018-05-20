@@ -202,12 +202,12 @@
                     $('body').preloader('remove');
                     $('#sendMailInfo').modal('show');
                     ajaxInfoModal(true);
-                    $('#modal_body_info').text(response.message);
+                    $('#modal_body_info').text("<g:message code="email.sent.success.msg"/>");
                 }).fail(function () {
                     $('body').preloader('remove');
                     $('#sendMailInfo').modal('show');
                     ajaxInfoModal(false);
-                    $('#modal_body_info').text('Something went wrong!');
+                    $('#modal_body_info').text("<g:message code="email.sent.fail.label"/>");
                 })
             }
         </script>

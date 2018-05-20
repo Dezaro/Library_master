@@ -25,7 +25,7 @@ class Book {
 
     static constraints = {
         title nullable: false, blank: false
-        isbn nullable: false, minSize: 13, maxSize: 13, matches: "[0-9]+"
+        isbn nullable: true, minSize: 13, maxSize: 13, matches: "[0-9]+"
         pageNumber nullable: false, blank: false
         publishedDate nullable:  true, defaultValue: "now()"
         description nullable: true, maxSize: 1000

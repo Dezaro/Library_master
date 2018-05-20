@@ -44,7 +44,7 @@
 
                                 <div class="form-group">
                                     <label for="isbn_id" class="col-sm-4 control-label">
-                                        ISBN <span class="red-star">*</span>
+                                        ISBN
                                     </label>
 
                                     <div class="col-sm-10">

@@ -16,7 +16,7 @@
                 <div class="panel-heading">
                     <h3 class="panel-title">
                         <span class="glyphicon glyphicon-th"></span>
-                        Change password for user [ <span style="color: orange">${user.username}</span> ]
+                        <g:message code="change.password.for.user.label"/> [ <span style="color: orange">${user.username}</span> ]
                     </h3>
                 </div>
 
@@ -36,7 +36,7 @@
                                 <div class="input-group">
                                     <div class="input-group-addon"><span class="glyphicon glyphicon-lock"></span>
                                     </div>
-                                    <input class="form-control" name="password" type="password" placeholder="Password">
+                                    <input class="form-control" name="password" type="password" placeholder="${g.message(code: 'password.placeholder', default: 'Password')}">
                                 </div>
                             </div>
 
@@ -44,7 +44,7 @@
                                 <div class="input-group">
                                     <div class="input-group-addon"><span class="glyphicon glyphicon-log-in"></span>
                                     </div>
-                                    <input class="form-control" name="password_confirm" type="password" placeholder="Confirm Password">
+                                    <input class="form-control" name="password_confirm" type="password" placeholder="${g.message(code: 'confirm.password.placeholder', default: 'Confirm password')}">
                                 </div>
                             </div>
                         </div>
@@ -57,7 +57,7 @@
                                 <button type="submit" name="_action_updatePassword"
                                         class="btn icon-btn-save btn-success">
                                     <span class="btn-save-label"><i class="glyphicon glyphicon-floppy-disk"></i>
-                                    </span>save
+                                    </span><g:message code="save.label"/>
                                 </button>
                             </div>
                         </div>

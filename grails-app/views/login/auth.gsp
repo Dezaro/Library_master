@@ -160,9 +160,9 @@
         <div class="text-center social-btn">
             <a href="/j_spring_security_facebook_redirect" class="btn btn-primary"><i
                     class="fa fa-facebook"></i>&nbsp; Facebook</a>
-            <a href="" class="btn btn-info"><i class="fa fa-twitter"></i>&nbsp; Twitter</a>
-            <a href="/springSecurityOAuth2/authenticate?provider=google" class="btn btn-danger"><i
-                    class="fa fa-google"></i>&nbsp; Google</a>
+            %{--<a href="" class="btn btn-info"><i class="fa fa-twitter"></i>&nbsp; Twitter</a>--}%
+            %{--<a href="/springSecurityOAuth2/authenticate?provider=google" class="btn btn-danger"><i--}%
+                    %{--class="fa fa-google"></i>&nbsp; Google</a>--}%
         </div>
     </form>
 
@@ -195,9 +195,9 @@
                                 <div class="text-center">
                                     <h3><i class="fa fa-lock fa-4x"></i></h3>
 
-                                    <h2 class="text-center">Forgot Password?</h2>
+                                    <h2 class="text-center"><g:message code="forgot.password"/>?</h2>
 
-                                    <p>You can reset your password here.</p>
+                                    <p><g:message code="forgot.password.msg"/></p>
 
                                     <div class="panel-body">
 
@@ -210,7 +210,7 @@
                                                             class="glyphicon glyphicon-envelope color-blue"></i>
                                                     </span>
                                                     <input id="user-name" name="userName"
-                                                           placeholder="Email or Username"
+                                                           placeholder="${g.message(code: 'emailOrUsername.placeholder', default: 'Email Or Username')}"
                                                            class="form-control" type="text">
                                                 </div>
                                             </div>
@@ -218,7 +218,7 @@
                                             <div class="form-group">
                                                 <input id="resetPasswordBtn" name="recover-submit"
                                                        class="btn btn-lg btn-primary btn-block"
-                                                       value="Reset Password" type="button">
+                                                       value="${g.message(code: 'reset.password.button', default: 'Reset password')}" type="button">
                                             </div>
                                         </form>
 
@@ -251,7 +251,7 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-info center-block" data-dismiss="modal"
                         id="modal_btn_id"><i
-                        class="fa fa-lg fa-info-circle"></i> <g:message code="accept.label"/></button>
+                        class="fa fa-lg fa-info-circle"></i> <g:message code="close.label"/></button>
             </div>
         </div>
     </div>
@@ -295,12 +295,12 @@
                 $('body').preloader('remove');
                 $('#sendMailInfo').modal('show');
                 ajaxInfoModal(true);
-                $('#modal_body_info').text(response.message);
+                $('#modal_body_info').text("<g:message code="email.sent.success.label"/>");
             }).fail(function () {
                 $('body').preloader('remove');
                 $('#sendMailInfo').modal('show');
                 ajaxInfoModal(false);
-                $('#modal_body_info').text('Something went wrong!');
+                $('#modal_body_info').text("<g:message code="email.sent.fail.label"/>");
             });
         }
     });

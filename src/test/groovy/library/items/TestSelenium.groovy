@@ -29,7 +29,7 @@ class TestSelenium {
     @Before
     void setup() {
         if (driver == null) {
-            System.setProperty('webdriver.chrome.driver', 'F:\\chromedriver.exe')
+            System.setProperty('webdriver.chrome.driver', 'D:\\chromedriver.exe')
             driver = new ChromeDriver()
             driver.manage().window().maximize()
             driver.get(baseUrl)
@@ -227,7 +227,7 @@ class TestSelenium {
         assertEquals(expected, actual)
         driver.findElement(By.id("serial_number_id")).sendKeys((Math.abs(new Random().nextInt() % 1000000000000) + 1).toString())
 
-        clickByWhenIsVisible('create_btn_id', 'id')
+        clickByWhenIsVisible('#createBtn', 'id')
     }
 
     @Test
@@ -269,7 +269,7 @@ class TestSelenium {
 
     @Test
     void hGiveBookTest() {
-        expected = "Show ReaderCard"
+        expected = "Reader Card Overview"
         actual = driver.getTitle()
         assertEquals(expected, actual)
 

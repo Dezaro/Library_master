@@ -190,12 +190,12 @@
             $('body').preloader('remove');
             $('#sendMailInfo').modal('show');
             ajaxInfoModal(true);
-            $('.modal-body').text(response.message);
+            $('.modal-body').text("<g:message code="email.sent.success.msg"/>");
         }).fail(function () {
             $('body').preloader('remove');
             $('#sendMailInfo').modal('show');
             ajaxInfoModal(false);
-            $('.modal-body').text('Something went wrong!');
+            $('.modal-body').text("<g:message code="email.sent.fail.label"/>");
         })
     }
     function submitForm() {
