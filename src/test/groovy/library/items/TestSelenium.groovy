@@ -143,7 +143,7 @@ class TestSelenium {
 
     @Test
     void daManagementCategoryTest() {
-        clickByWhenIsVisible('CATEGORY', 'linkText')
+        clickByWhenIsVisible('CATEGORIES', 'linkText')
 
         expected = "Categories Management"
         actual = driver.findElementByClassName('col-sm-5').getText()
@@ -227,7 +227,7 @@ class TestSelenium {
         assertEquals(expected, actual)
         driver.findElement(By.id("serial_number_id")).sendKeys((Math.abs(new Random().nextInt() % 1000000000000) + 1).toString())
 
-        clickByWhenIsVisible('#createBtn', 'id')
+        clickByWhenIsVisible('create_btn_id', 'id')
     }
 
     @Test

@@ -34,7 +34,7 @@
             <g:form class="comment-form-left" name="createCategoryForm" resource="${this.category}" method="POST">
                 <div class="form-group">
                     <label for="category_name_id" class="col-sm-4 control-label">
-                        <g:message code="category.categoryName.label"/><span class="red-star">*</span>
+                        <g:message code="category.categoryName.label"/><span class="red-star"> *</span>
                     </label>
 
                     <div class="col-sm-10">

@@ -32,7 +32,7 @@
                 <g:form class="comment-form-left" name="createBookForm" resource="${this.bookItem}" method="POST">
                     <div class="form-group">
                         <label for="book_id" class="col-sm-4 control-label">
-                            <g:message code="book.label"/> <span class="red-star">*</span>
+                            <g:message code="book.label"/><span class="red-star"> *</span>
                         </label>
 
                         <div class="col-sm-10">
@@ -45,7 +45,7 @@
                     </div>
                     <div class="form-group">
                         <label for="serial_number_id" class="col-sm-4 control-label">
-                            <g:message code="bookItem.serial.number.label" /><span class="red-star">*</span>
+                            <g:message code="bookItem.serial.number.label"/><span class="red-star"> *</span>
                         </label>
 
                         <div class="col-sm-10">
