@@ -152,7 +152,12 @@
                         <g:else>
                             <g:set var="nameAsId"
                                    value="${nameAsId.toInteger() + 1}"></g:set>
-                            <a href="/rentBook/returnBook/${rentBook.rentBookId}" name="return_${nameAsId}"
+                            %{--<a href="/rentBook/returnBook/${rentBook.rentBookId}" name="return_${nameAsId}"--}%
+                               %{--title="${g.message(code: 'book.mask.as.returned.label', default: 'Mask as returned')}"--}%
+                               %{--style="cursor: pointer;"><i--}%
+                                    %{--class="material-icons hover-success">&#xE065;</i></a>--}%
+                            <a href="#markAsReturnedModal" data-toggle="modal" name="return_${nameAsId}"
+                               data-rentbook-id="${rentBook.rentBookId}"
                                title="${g.message(code: 'book.mask.as.returned.label', default: 'Mask as returned')}"
                                style="cursor: pointer;"><i
                                     class="material-icons hover-success">&#xE065;</i></a>
@@ -165,12 +170,26 @@
                             });" title="${g.message(code: 'book.send.mail.label', default: 'Send remind email')}"
                                style="cursor: pointer;"><i
                                     class="material-icons ">&#xE554;</i></a>
+                            <form id="form_${rentBook.rentBookId}" action="/rentBook/returnBook/${rentBook.rentBookId}" method="post">
+                                <input type="hidden" name="_method" value="MarkAsReturned" id="_method_${rentBook.rentBookId}">
+                            </form>
                         </g:else>
                     </td>
                 </tr>
             </g:each>
             </tbody>
         </table>
+        <g:javascript library='jquery'>
+            (function ($) {
+                $(document).ready(function () {
+                    $('#markAsReturnedModal').on('show.bs.modal', function (e) {
+                        var rentBook_id = $(e.relatedTarget).data('rentbook-id');
+                        $(e.currentTarget).find('input[name="rentBook_id"]').val(rentBook_id);
+                    });
+                });
+
+            })(jQuery);
+        </g:javascript>
         <script>
             function ajaxInfoModal(valid) {
                 var header = $("#modal_header_id"),
@@ -210,6 +229,11 @@
                     $('#modal_body_info').text("<g:message code="email.sent.fail.label"/>");
                 })
             }
+            function markAsReturned() {
+                var rentBook_id = document.getElementsByName('rentBook_id')[0].value,
+                    rentBook_form = document.getElementById('form_' + rentBook_id);
+                rentBook_form.submit();
+            }
         </script>
 
         <div class="modal fade" id="sendMailInfo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
@@ -229,6 +253,30 @@
                         <button type="button" class="btn btn-info center-block" data-dismiss="modal"
                                 id="modal_btn_id"><i
                                 class="fa fa-lg fa-info-circle"></i> <g:message code="accept.label"/></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="markAsReturnedModal" class="modal fade">
+            <div class="modal-dialog modal-confirm">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <div class="icon-box">
+                            <i class="material-icons">&#xE92B;</i>
+                        </div>
+                        <h4 class="modal-title"><g:message code="sure.question"/></h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </div>
+
+                    <div class="modal-body">
+                        <p><g:message code="markAsReturned.question"/></p>
+                    </div>
+                    <g:form id="#markAsReturnedForm" resource="" method="POST">
+                        <g:hiddenField name="rentBook_id" value=""/>
+                    </g:form>
+                    <div class="modal-footer">
+                        <button id="#markAsReturnedBtn" type="button" onclick="markAsReturned()" class="btn btn-danger"><g:message code="confirm.button"/></button>
+                        <button type="button" class="btn btn-info" data-dismiss="modal"><g:message code="cancel.button"/></button>
                     </div>
                 </div>
             </div>

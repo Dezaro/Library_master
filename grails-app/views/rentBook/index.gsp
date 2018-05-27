@@ -76,7 +76,7 @@
                                     class="material-icons ">&#xE554;</i></span>
                         </g:if>
                         <g:else>
-                            <a href="/rentBook/returnBook/${rentBook.id}?view=rent" title="${g.message(code: 'book.mask.as.returned.label', default: 'Mask as returned')}"
+                            <a href="#markAsReturnedModal" data-toggle="modal" data-markrentbook-id="${rentBook.id}" title="${g.message(code: 'book.mask.as.returned.label', default: 'Mask as returned')}"
                                style="cursor: pointer;"><i
                                     class="material-icons hover-success">&#xE065;</i></a>
                             <a onclick="onSendMail({
@@ -86,6 +86,9 @@
                                 name: '${library.items.ReaderCard.findById(rentBook.readerCard.id).readerNames}'
                             });" title="${g.message(code: 'book.send.mail.label', default: 'Send remind email')}" style="cursor: pointer;"><i
                                     class="material-icons ">&#xE554;</i></a>
+                            <form id="form_mark_${rentBook.id}" action="/rentBook/returnBook/${rentBook.id}?view=rent" method="POST">
+                                <input type="hidden" name="_method" value="MarkAsReturned" id="_method_${rentBook.id}">
+                            </form>
                         </g:else>
                         <g:link action="edit" id="${rentBook.id}" class="settings" title="${g.message(code: 'settings', default: 'Settings...')}"
                                 data-toggle="tooltip"><i
@@ -156,10 +159,39 @@
         </div>
     </div>
 </div>
+
+<div id="markAsReturnedModal" class="modal fade">
+    <div class="modal-dialog modal-confirm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="icon-box">
+                    <i class="material-icons">&#xE92B;</i>
+                </div>
+                <h4 class="modal-title"><g:message code="sure.question"/></h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            </div>
+
+            <div class="modal-body">
+                <p><g:message code="markAsReturned.question"/></p>
+            </div>
+            <g:form id="#markAsReturnedForm" resource="" method="POST">
+                <g:hiddenField name="markRentBook_id" value=""/>
+            </g:form>
+            <div class="modal-footer">
+                <button id="#markAsReturnedBtn" type="button" onclick="markAsReturned()" class="btn btn-danger"><g:message code="confirm.button"/></button>
+                <button type="button" class="btn btn-info" data-dismiss="modal"><g:message code="cancel.button"/></button>
+            </div>
+        </div>
+    </div>
+</div>
 <script>
     $('#deleteModal').on('show.bs.modal', function (e) {
         var rentBook_id = $(e.relatedTarget).data('rentbook-id');
         $(e.currentTarget).find('input[name="rentBook_id"]').val(rentBook_id);
+    });
+    $('#markAsReturnedModal').on('show.bs.modal', function (e) {
+        var markRentBook_id = $(e.relatedTarget).data('markrentbook-id');
+        $(e.currentTarget).find('input[name="markRentBook_id"]').val(markRentBook_id);
     });
     function ajaxInfoModal(valid) {
         var header = $("#modal_header_id"),
@@ -201,6 +233,11 @@
     function submitForm() {
         var rentBook_id = document.getElementsByName('rentBook_id')[0].value,
             rentBook_form = document.getElementById('form_' + rentBook_id);
+        rentBook_form.submit();
+    }
+    function markAsReturned() {
+        var rentBook_id = document.getElementsByName('markRentBook_id')[0].value,
+            rentBook_form = document.getElementById('form_mark_' + rentBook_id);
         rentBook_form.submit();
     }
 </script>
