@@ -425,7 +425,7 @@ img {
 }
 
 div.media {
-    width: 1000px;
+    width: auto;
     margin: 0 auto;
     margin-top: 50px;
     margin-bottom: 50px;
@@ -472,7 +472,7 @@ div.item.poster.card {
 }
 
 div.item.card:nth-child(even) {
-    margin-left: 34px;
+    /*margin-left: 34px;*/
 }
 
 div.item.card:nth-child(odd) {

@@ -9,7 +9,7 @@
 
 <body>
 
-<div id="content" role="main">
+<div class="col-xs-12" id="content" role="main">
     <section class="row colset-2-its">
         <div class="media">
             %{--<div style="display: inline-block;">--}%
