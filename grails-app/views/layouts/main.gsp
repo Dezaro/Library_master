@@ -90,7 +90,7 @@
 
                 <li><a class="${controllerName == 'home' ? 'active' : ''}" href="/"><g:message code="navbar.home"/></a></li>
                 %{--<li><a class="${controllerName == 'courses' ? 'active' : ''}" href="/">courses</a></li>--}%
-                <li><a class="${controllerName == 'about' ? 'active' : ''}" href="/"><g:message code="navbar.about"/></a></li>
+                <li><a class="${controllerName == 'about' ? 'active' : ''}" href="/about/index"><g:message code="navbar.about"/></a></li>
                 <li><a class="${controllerName == 'contacts' ? 'active' : ''}" href="/"><g:message code="navbar.contacts"/></a></li>
 
                 <sec:ifNotLoggedIn>

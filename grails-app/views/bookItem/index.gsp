@@ -45,7 +45,7 @@
                     <td>${Book.findById(bookItem.book.id).category}</td>
                     <td>${bookItem.bookSerialNumber}</td>
                     <td style="padding: 0 !important;"><span
-                            class="status ${bookItem.isAvailable ? 'text-success' : 'text-danger'}">&bull;</span> ${bookItem.isAvailable ? 'Available' : 'Not Available'}
+                            class="status ${bookItem.isAvailable ? 'text-success' : 'text-danger'}">&bull;</span> ${bookItem.isAvailable ? "${g.message(code: 'available.label', default: 'Available')}" : "${g.message(code: 'not.available.label', default: 'Not Available')}"}
                     </td>
                     <td>
                         <g:link action="edit" id="${bookItem.id}" class="settings" title="${g.message(code: 'edit', default: 'Edit...')}"
